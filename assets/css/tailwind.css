@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'commissioner-400';
+        src: url('../font/Commissioner-Regular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'commissioner-600';
+        src: url('../font/Commissioner-SemiBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'commissioner-700';
+        src: url('../font/Commissioner-Bold.ttf') format('truetype');
+    }
+}
+
+* {
+    @apply font-commissioner-400 leading-[140%];
+}
+
+body {
+    @apply bg-white;
+}

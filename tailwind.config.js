@@ -8,6 +8,12 @@ export default {
         text: "#64748B",
         danger: "#EB5757"
       },
+      fontFamily: {
+        "commissioner": ["commissioner-400"],
+        "commissioner-400": ["commissioner-400"],
+        "commissioner-600": ["commissioner-600"],
+        "commissioner-700": ["commissioner-700"]
+      }
     },
   },
   plugins: [
