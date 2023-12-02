@@ -11,15 +11,22 @@ const props = defineProps({
     bgColor: {
         type: String,
         default: 'bg-info-main'
+    },
+    type: {
+        type: String,
+        default: 'text'
     }
 })
+
+const modelValue = defineModel()
 </script>
 
 <template>
     <div class="flex flex-col">
         <label class="font-commissioner-600 text-primary-light">{{ props.label }}</label>
         <input 
-            type="text" 
+            v-model="modelValue"
+            :type="props.type" 
             placeholder="Введите имя" 
             class="mt-1 rounded-xl border border-white"
             :class="bgColor"

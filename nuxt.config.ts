@@ -7,5 +7,8 @@ export default defineNuxtConfig({
   ],
   build: {
     transpile: ['vue-remix-icons'],
+  },
+  vue: {
+    defineModel: true
   }
 })
