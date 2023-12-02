@@ -7,6 +7,10 @@ const props = defineProps({
     placeholder: {
         type: String,
         default: 'Введите'
+    },
+    bgColor: {
+        type: String,
+        default: 'bg-info-main'
     }
 })
 </script>
@@ -14,7 +18,12 @@ const props = defineProps({
 <template>
     <div class="flex flex-col">
         <label class="font-commissioner-600 text-primary-light">{{ props.label }}</label>
-        <input type="text" placeholder="Введите имя" class="bg-info-main mt-1 rounded-xl border border-white">
+        <input 
+            type="text" 
+            placeholder="Введите имя" 
+            class="mt-1 rounded-xl border border-white"
+            :class="bgColor"
+        >
     </div>
 </template>
 

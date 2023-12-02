@@ -8,7 +8,9 @@
                         alt="logo"
                     >
                 </div>
-                <slot />
+                <div class="h-full flex flex-col justify-center">
+                    <slot />
+                </div>
             </div>
             <div class="bg-black flex items-center justify-center">
                 <div>

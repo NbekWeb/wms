@@ -5,7 +5,7 @@
             <div>
                 <BaseHeader />
             </div>
-            <div class="mt-[30px] bg-white">
+            <div class="mt-[30px] bg-white h-full">
                 <slot />
             </div>
         </div>
