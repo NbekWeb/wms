@@ -5,8 +5,10 @@ export default {
     extend: {
       colors: {
         primary: '#141416',
+        "primary-light": "#141416",
         text: "#64748B",
-        danger: "#EB5757"
+        danger: "#EB5757",
+        "info-main": "#F5F5F5"
       },
       fontFamily: {
         "commissioner": ["commissioner-400"],

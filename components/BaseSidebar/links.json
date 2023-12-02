@@ -1,0 +1,27 @@
+[
+    {
+        "to": "main",
+        "title": "Главная",
+        "icon": "main.svg"
+    },
+    {
+        "to": "warehouses",
+        "title": "Склады",
+        "icon": "warehouse.svg"
+    },
+    {
+        "to": "shops",
+        "title": "Магазины",
+        "icon": "shops.svg"
+    },
+    {
+        "to": "employees",
+        "title": "Сотрудники",
+        "icon": "employees.svg"
+    },
+    {
+        "to": "products",
+        "title": "Товары",
+        "icon": "products.svg"
+    }
+]

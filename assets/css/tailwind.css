@@ -24,3 +24,7 @@
 body {
     @apply bg-white;
 }
+
+button {
+    @apply rounded-xl py-3 px-4;
+}
