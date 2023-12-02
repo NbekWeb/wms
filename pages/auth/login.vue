@@ -13,9 +13,6 @@ async function submit() {
 }
 </script>
 
-
-<!-- http://185.211.170.253:8008/api/wms/v1/auths/login
-http://185.211.170.253:8008/api/wms/v1/auths/login -->
 <template>
     <NuxtLayout name="auth">
         <section>
