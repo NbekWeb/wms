@@ -8,7 +8,8 @@ export default {
         "primary-light": "#141416",
         text: "#64748B",
         danger: "#EB5757",
-        "info-main": "#F5F5F5"
+        "info-main": "#F5F5F5",
+        "gray": "#F9F9F9"
       },
       fontFamily: {
         "commissioner": ["commissioner-400"],
