@@ -1,15 +1,15 @@
-FROM node:18.15-alpine
+FROM node:20
 
 # create destination directory
 RUN mkdir -p /usr/src/nuxt-app
 WORKDIR /usr/src/nuxt-app
 
 # update and install dependency
-RUN apk update && apk upgrade
-RUN apk add git
+RUN apt update
+RUN apt add git
 
 # copy the app, note .dockerignore
-COPY . /usr/src/nuxt-app/
+COPY /app /usr/src/nuxt-app/
 RUN npm cache clean --force
 RUN npm update --legacy-peer-deps
 RUN npm audit fix --force

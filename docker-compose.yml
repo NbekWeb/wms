@@ -1,0 +1,15 @@
+version: "3.4"
+services:
+  frontend:
+    container_name: frontend
+    image: frontend:latest
+    restart: on-failure
+    build:
+      context: . # Context will be the project root
+      dockerfile: ./Dockerfile
+      args:
+        version: 1.0.0-SNAPSHOT
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
