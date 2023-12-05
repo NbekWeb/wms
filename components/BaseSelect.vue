@@ -1,83 +1,117 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import {
+import { type PropType } from 'vue';
+import {
     Listbox,
     ListboxButton,
     ListboxOptions,
     ListboxOption,
 } from '@headlessui/vue'
-  
-const people = [
-    { name: 'Wade Cooper' },
-    { name: 'Arlene Mccoy' },
-    { name: 'Devon Webb' },
-    { name: 'Tom Cook' },
-    { name: 'Tanya Fox' },
-    { name: 'Hellen Schmidt' },
-]
+// import { CheckIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
+
+interface SelectOptionModel {
+    label: string;
+    value: string | number;
+}
 
 const props = defineProps({
+    id: {
+        type: [String, Number],
+        default: Math.random()
+    },
     label: {
         type: String,
         default: ''
+    },
+    options: {
+        type: Array as PropType<SelectOptionModel[]>,
+        required: true
+    },
+    modelValue: {
+        type: [String, Number, Object],
+        default: ''
+    },
+    trackBy: {
+        type: String,
+        default: 'label'
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+   },
+   color: {
+        type: String,
+        default: false
+    },
+})
+
+const emit = defineEmits(['update:modelValue', 'select'])
+
+const value = computed({
+    get() {
+        for (const option of props.options) {
+            if (option.value === props.modelValue) {
+                return option
+            }
+        }
+
+        const option = props.options?.[0]
+
+        if (option) {
+            emit('update:modelValue', option.value)
+            emit('select', option) // WHOLE OBJECT
+            return option
+        }        
+    },
+    set(value) {
+        emit('update:modelValue', value?.value)
+
+        emit('select', value) // WHOLE OBJECT
     }
 })
-const selectedPerson = ref(people[0])
 </script>
 
 <template>
     <div>
-        <p class="font-commissioner-600 text-primary">{{ props.label }}</p>
-        <Listbox v-model="selectedPerson">
-            <div class="w-full relative mt-1">
-            <ListboxButton
-                class="bg-info-main flex items-center justify-between w-full"
-            >
-                <span class="block truncate">{{ selectedPerson.name }}</span>
-                <img src="@/assets/img/down.svg" />
-            </ListboxButton>
-    
-            <transition
-                leave-active-class="transition duration-100 ease-in"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
-            >
-                <ListboxOptions
-                class="absolute mt-1 z-30 max-h-24 w-full overflow-auto rounded-md bg-white"
+        <p class="pb-1">{{ props.label }}</p>
+        <Listbox :class="props.color ? props.color : ''" :disabled="props.disabled" v-model="value">
+            <div class="relative">
+                <ListboxButton
+                    class="relative w-full flex justify-between border border-gray-100 border-solid p-3 rounded-lg"
                 >
-                <ListboxOption
-                    v-slot="{ active, selected }"
-                    v-for="person in people"
-                    :key="person.name"
-                    :value="person"
-                    as="template"
+                    <strong v-if="value" class="text-gray-800"> {{ value?.label }}</strong>
+                    <ChevronDownIcon
+                        class="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                    />
+                </ListboxButton>
+        
+                <transition
+                    leave-active-class="transition duration-100 ease-in"
+                    leave-from-class="opacity-100"
+                    leave-to-class="opacity-0"
                 >
-                    <li
-                    :class="[
-                        active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-10 pr-4',
-                    ]"
+                    <ListboxOptions
+                    class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg"
                     >
-                    <span
-                        :class="[
-                        selected ? 'font-medium' : 'font-normal',
-                        'block truncate',
-                        ]"
-                        >{{ person.name }}</span
-                    >
-                    <span
-                        v-if="selected"
-                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
-                    >
-                        
-                    </span>
-                    </li>
-                </ListboxOption>
-                </ListboxOptions>
-            </transition>
+                        <ListboxOption
+                            required
+                            v-slot="{ active, selected }"
+                            v-for="option of props.options"
+                            :key="option.label"
+                            :value="option"
+                            as="template"
+                        >   
+                            <li
+                                class="relative cursor-pointer p-3 flex items-center justify-between"
+                                :class="active || selected ? 'bg-gray-50' : ''"
+                            >             
+                                <strong :class="selected ? 'font-manrope-500' : ''">{{ props.label }}</strong>                                       
+                                <CheckIcon v-if="selected" class="h-5 w-5 text-primary" aria-hidden="true" />
+                            </li>
+                        </ListboxOption>
+                    </ListboxOptions>
+                </transition>
             </div>
         </Listbox>
     </div>
 </template>
-
-  

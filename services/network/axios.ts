@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import { _TOKEN } from '../user';
+import { _TOKEN } from '../profile';
 
 // console.log("TEST")
 // console.log(import.meta.env.VITE_APP_BRANCH_NAME)
@@ -15,14 +15,14 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config: any) => {
-        // const token = _TOKEN.value;
-        // if (config.url.includes('/login')) {
-        //     return config
-        // }
+        const token = _TOKEN.value;
+        if (config.url.includes('/login')) {
+            return config
+        }
 
-        // if (token) {
-        //     config.headers.authorization = `Bearer ${token}`;
-        // } else {
+        if (token) {
+            config.headers.authorization = `Bearer ${token}`;
+        }
         //     router.push('/login')
         // }     
 

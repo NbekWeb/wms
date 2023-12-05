@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { type WarehouseModel, getWarehouse_DEFAULT } from "@/services/warehouse"
+import { type WarehouseModel, getWarehouse_DEFAULT, createWarehouse_API, updateWarehouse_API } from "@/services/warehouse"
 const _visible = useState(() => false)
 const _loading = useState(() => false)
 const _formData = useState<WarehouseModel>(getWarehouse_DEFAULT)
 
-function open() {
-    console.log("open")
+const emit = defineEmits(['update'])
+function open(item: WarehouseModel) {
+    if (item?.id) _formData.value = item
     _visible.value = true
 }
 
@@ -14,6 +15,12 @@ function close() {
 }
 
 async function submit() {
+    const handler = _formData.value.id ? updateWarehouse_API : createWarehouse_API
+    const [error, response] = await handler(_formData.value)
+
+    if (error) return
+    emit('update')
+
     _visible.value = false
 }
 

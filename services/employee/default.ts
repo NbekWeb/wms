@@ -10,6 +10,7 @@ export function getEmployee_DEFAULT(): EmployeeModel {
         mobile: '',
         username: '',
         password: '',
+        id: ''
     }
 
     return object;

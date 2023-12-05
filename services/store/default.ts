@@ -5,6 +5,7 @@ export function getStore_DEFAULT(): StoreModel {
         warehouseId: '',
         title: '',
         address: '',
+        id: ''
     }
 
     return object;

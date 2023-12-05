@@ -1,14 +1,30 @@
 <script lang="ts" setup>
+import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
+import { type StoreModel, getStores_API } from '@/services/store';
+
+const _items = ref<BaseListResponse<StoreModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
-function openModal() {
-    _modalRef.value?.open()
+
+function openModal(item?: StoreModel) {
+    console.log("openModal")
+    _modalRef.value?.open(item)
 }
+
+async function loadItems() {
+    const [error, response] = await getStores_API()
+
+    if (error) return
+
+    _items.value = response
+}
+
+loadItems()
 </script>
 
 <template>
     <NuxtLayout name="default">
         <div>
-            <StoreModal ref="_modalRef" />
+            <StoreModal @edit="loadItems" ref="_modalRef" />
             <div class="flex items-center justify-between">
                 <h2 class="font-commissioner-700 text-4xl">Магазины</h2>
                 <button @click="openModal()" class="flex items-center bg-black text-white">
@@ -18,7 +34,7 @@ function openModal() {
             </div>
 
             <div class="grid grid-cols-3 gap-6 mt-8">
-                <StoreCard v-for="i of 4" />
+                <StoreCard @edit="openModal(item)" v-for="item of _items.content" :key="item.id" :item="item" />
             </div>
         </div>
     </NuxtLayout>

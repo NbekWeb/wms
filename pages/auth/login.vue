@@ -1,5 +1,5 @@
 <script setup>
-import { login_API } from "@/services/profile"
+import { login_API, _TOKEN } from "@/services/profile"
 
 const _username = useState(() => '')
 const _password = useState(() => '')
@@ -8,7 +8,7 @@ async function submit() {
     const [error, response] = await login_API(_username.value, _password.value)
     if (error) return
 
-    console.log(response)
+    _TOKEN.value = response.token
     navigateTo('/home/main')
 }
 </script>

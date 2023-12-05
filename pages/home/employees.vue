@@ -1,9 +1,24 @@
 <script lang="ts" setup>
+import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
+import { type EmployeeModel, getEmployees_API } from '@/services/employee';
+
+const _items = ref<BaseListResponse<EmployeeModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
-function openModal() {
+
+function openModal(item?: EmployeeModel) {
     console.log("openModal")
-    _modalRef.value?.open()
+    _modalRef.value?.open(item)
 }
+
+async function loadItems() {
+    const [error, response] = await getEmployees_API()
+
+    if (error) return
+
+    _items.value = response
+}
+
+loadItems()
 </script>
 
 <template>
