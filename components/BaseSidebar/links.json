@@ -10,7 +10,7 @@
         "icon": "warehouse.svg"
     },
     {
-        "to": "shops",
+        "to": "stores",
         "title": "Магазины",
         "icon": "shops.svg"
     },

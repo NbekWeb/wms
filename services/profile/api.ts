@@ -1,6 +1,5 @@
 import { axiosInstance } from '~/services/network'
-import { getProfile_DEFAULT, type ProfileModel } from './index'
-
+import { type ProfileModel } from './index'
 
 export async function login_API(username: string, password: string): Promise<[Error, null] | [null, ProfileModel]> {
     try {
@@ -10,6 +9,6 @@ export async function login_API(username: string, password: string): Promise<[Er
                 
         return [null, response]
     } catch (error) {
-        return [error, null]
+        return [error as Error, null]
     }
 } 
