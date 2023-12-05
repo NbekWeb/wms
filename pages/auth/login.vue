@@ -6,10 +6,14 @@ const _password = useState(() => '')
 
 async function submit() {
     const [error, response] = await login_API(_username.value, _password.value)
+    console.log("QWERTY")
+    console.log(error)
     if (error) return
 
+    console.log(response)
     _TOKEN.value = response.token
     navigateTo('/home/main')
+    console.log('Success')
 }
 </script>
 
