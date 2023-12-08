@@ -3,8 +3,11 @@ import { getBaseListResponse_DEFAULT, type BaseListResponse } from "@/services/n
 import { type StoreModel, getStore_DEFAULT, createStore_API, updateStore_API, getStores_API } from "@/services/store"
 import { getEmployee_DEFAULT, type EmployeeModel, updateEmployee_API, createEmployee_API, getEmployees_API } from "~/services/employee";
 import { type WarehouseModel, getWarehouses_API } from '~/services/warehouse';
+import { _rules } from './rules'
+
 const _warehouses = ref<BaseListResponse<WarehouseModel>>(getBaseListResponse_DEFAULT())
 const _stores = ref<BaseListResponse<StoreModel>>(getBaseListResponse_DEFAULT())
+const _modalRef = ref()
 
 const emit = defineEmits(['update'])
 
@@ -38,13 +41,18 @@ function close() {
 }
 
 async function submit() {
-    const handler = _formData.value.id ? updateEmployee_API : createEmployee_API
-    const [error, response] = await handler(_formData.value)
+    _modalRef.value?.validate(async (valid: boolean) => {
+        console.log(valid)
+        if (valid) {
+            const handler = _formData.value.id ? updateEmployee_API : createEmployee_API
+            const [error, response] = await handler(_formData.value)
 
-    if (error) return
-    emit('update')
+            if (error) return
+            emit('update')
 
-    _visible.value = false
+            _visible.value = false
+        }
+    })
 }
 
 defineExpose({
@@ -53,38 +61,44 @@ defineExpose({
 </script>
 
 <template>
-    <BaseModal v-model="_visible" @close="close" :loading="_loading" @confirm="submit" width="480px">
+    <el-dialog v-model="_visible" :show-close="false" @close="close" width="480">
         <h2 class="font-commissioner-700 text-3xl">Добавить сотрудника</h2>
-        <form class="mt-5 space-y-5" @submit.prevent="submit">
-            <BaseInput v-model="_formData.firstname" label="Имя" placeholder="Введите имя" />
-            <BaseInput v-model="_formData.lastname" label="Фамилия" placeholder="Введите фамилию" />
+        <el-form label-position="top" ref="_modalRef" :model="_formData" :rules="_rules" class="mt-5 space-y-5" @submit.prevent="submit">            
+            <el-form-item label="Имя" prop="firstname">
+                <el-input v-model="_formData.firstname" placeholder="Введите имя" />
+            </el-form-item>
+            <el-form-item label="Фамилия" prop="lastname">
+                <el-input v-model="_formData.lastname" placeholder="Введите фамилию" />
+            </el-form-item>
+            
+            <el-form-item label="Position" prop="position">
+                <el-select v-model="_formData.position">
+                    <el-option value="STACKER">STACKER</el-option>
+                    <el-option value="SALESMAN">SALESMAN</el-option>
+                </el-select>
+            </el-form-item>
 
-            <div>
-                <p>Position</p>
-                <select v-model="_formData.position">
-                    <option value="STACKER">STACKER</option>
-                    <option value="SALESMAN">SALESMAN</option>
-                </select>
-            </div>
+            <el-form-item label="Склад" prop="warehouseId">
+                <el-select v-model="_formData.warehouseId">
+                    <el-option v-for="item of _warehouses.content" :value="item.id" :key="item.id" :label="item.title" />
+                </el-select>
+            </el-form-item>
 
-            <div>
-                <p>Склад</p>
-                <select v-model="_formData.warehouseId">
-                    <option v-for="item of _warehouses.content" :value="item.id" :key="item.id">{{ item.title }}</option>
-                </select>
-            </div>
+            <el-form-item label="Магазины" prop="storeId">
+                <el-select v-model="_formData.storeId">
+                    <el-option v-for="item of _stores.content" :value="item.id" :key="item.id" :label="item.title" />
+                </el-select>
+            </el-form-item>
 
-            <div>
-                <p>Магазины</p>
-                <select v-model="_formData.storeId">
-                    <option v-for="item of _stores.content" :value="item.id" :key="item.id">{{ item.title }}</option>
-                </select>
-            </div>
+            <el-form-item label="Логин" prop="username">
+                <el-input v-model="_formData.username" placeholder="Введите логин" />
+            </el-form-item>
 
-            <BaseInput v-model="_formData.username" label="Логин" placeholder="Введите логин" />
-            <BaseInput v-model="_formData.password" label="Пароль" placeholder="Введите пароль" />
+            <el-form-item label="Пароль" prop="password">
+                <el-input v-model="_formData.password" placeholder="Введите пароль" />
+            </el-form-item>
 
-            <button class="bg-primary text-white w-full">Сохранить</button>
-        </form>
-    </BaseModal>
+            <el-button native-type="submit" class="w-full" type="primary">Сохранить</el-button>
+        </el-form>
+    </el-dialog>
 </template>

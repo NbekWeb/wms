@@ -1,5 +1,14 @@
 import { EMPLOYEE_POSITION_ENUM } from "../employee";
-import type { ProfileModel, RegisterModel } from "./model";
+import type { ProfileModel, RegisterModel, LoginModel } from "./model";
+
+export function getLogin_DEFAULT(): LoginModel {
+    const object: LoginModel = { 
+        password: '',
+        username: ''
+    }
+
+    return object;
+}
 
 export function getProfile_DEFAULT(): ProfileModel {
     const object: ProfileModel = {

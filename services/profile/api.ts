@@ -1,10 +1,10 @@
 import { axiosInstance } from '~/services/network'
-import { type ProfileModel } from './index'
+import { type LoginModel, type ProfileModel, type RegisterModel } from './index'
 
-export async function login_API(username: string, password: string): Promise<[Error, null] | [null, ProfileModel]> {
+export async function login_API(payload: LoginModel): Promise<[Error, null] | [null, ProfileModel]> {
     try {
         const response = <ProfileModel> await axiosInstance.post('auths/login', {
-            username, password
+            ...payload
         })
                 
         return [null, response]
@@ -13,3 +13,14 @@ export async function login_API(username: string, password: string): Promise<[Er
     }
 } 
 
+export async function register_API(payload: RegisterModel): Promise<[Error, null] | [null, ProfileModel]> {
+    try {
+        const response = <ProfileModel> await axiosInstance.post('auths/register', {
+            ...payload,
+        })
+                
+        return [null, response]
+    } catch (error) {
+        return [error as Error, null]
+    }
+}

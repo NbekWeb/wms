@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { type WarehouseModel, getWarehouses_API } from '@/services/warehouse';
+
 const _modalRef = ref()
 const _items = ref<BaseListResponse<WarehouseModel>>(getBaseListResponse_DEFAULT())
 
@@ -32,7 +33,7 @@ loadItems()
                 </button>
             </div>
 
-            <div class="grid grid-cols-3 gap-6 mt-8">
+            <div class="grid grid-cols-3 gap-6 mt-8" v-if="_items.content">
                 <WarehouseCard 
                     @edit="openModal(item)"
                     v-for="item of _items.content" 
@@ -40,6 +41,8 @@ loadItems()
                     :item="item"
                 />
             </div>
+
+            <NoData v-else title="Добавить склад" @set="openModal()" />
         </div>
     </NuxtLayout>
 </template>

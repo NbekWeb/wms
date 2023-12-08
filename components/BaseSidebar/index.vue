@@ -38,14 +38,14 @@ function getImgUrl_UTIL(name: string) {
 
             <div class="flex flex-col">
                 <NuxtLink
-                    to="/help"
+                    to="/home/help"
                     class="text-text p-4 flex items-center space-x-3"
                 >
                     <img src="@/assets/img/help.svg" />
                     <span>Помощь</span>
                 </NuxtLink>
                 <NuxtLink
-                    to="/settings"
+                    to="/home/settings"
                     class="text-text p-4 flex items-center space-x-3"
                 >
                     <img src="@/assets/img/settings.svg" />
