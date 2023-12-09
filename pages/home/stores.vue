@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { type StoreModel, getStores_API } from '@/services/store';
-// import { getEmployee_DEFAULT } from "@/services/employee"
-
-// getEmployee_DEFAULT()
 
 const _items = ref<BaseListResponse<StoreModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
@@ -35,9 +32,16 @@ loadItems()
                     <span>Добавить магазин</span>
                 </button>
             </div>
-
-            <div class="grid grid-cols-3 gap-6 mt-8" v-if="_items.content">
-                <StoreCard @edit="openModal(item)" v-for="item of _items.content" :key="item.id" :item="item" />
+            <div 
+                class="grid grid-cols-3 gap-6 mt-8" 
+                v-if="_items.content.length > 0"
+            >
+                <StoreCard 
+                    @edit="openModal(item)" 
+                    v-for="item of _items.content" 
+                    :key="item.id" 
+                    :item="item" 
+                />
             </div>
             <NoData v-else title="Добавить магазин" @set="openModal()" />
         </div>

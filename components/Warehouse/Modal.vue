@@ -15,6 +15,8 @@ function open(item: WarehouseModel) {
 }
 
 function close() {
+    _formData.value = getWarehouse_DEFAULT()
+    _modalRef.value?.resetFields()
     _visible.value = false
 }
 
@@ -38,8 +40,8 @@ defineExpose({
 </script>
 
 <template>
-    <el-dialog v-model="_visible" :show-close="false" @close="close" width="480">
-        <h2 class="font-commissioner-700 text-3xl">Добавить склад</h2>
+    <el-dialog align-center v-model="_visible" :show-close="false" @close="close" width="480">
+        <h2 class="font-commissioner-700 text-3xl text-primary">Добавить склад</h2>
         <el-form :rules="_rules" :model="_formData" ref="_modalRef" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">
             <el-form-item label="Название склада" prop="title">
                 <el-input v-model="_formData.title" placeholder="Введите название склада" />

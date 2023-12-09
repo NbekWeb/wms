@@ -14,6 +14,16 @@ export async function createStore_API(payload: StoreModel): Promise<[Error, null
     }
 } 
 
+export async function removeStore_API(id: string): Promise<[Error, null] | [null, StoreModel]> {
+    try {
+        const response = <StoreModel> await axiosInstance.delete(`stores/${id}`)
+                
+        return [null, response]
+    } catch (error) {
+        return [error as Error, null]
+    }
+} 
+
 export async function updateStore_API(payload: StoreModel): Promise<[Error, null] | [null, StoreModel]> {
     try {
         const response = <StoreModel> await axiosInstance.put(`stores/${payload.id}`, {

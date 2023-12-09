@@ -61,8 +61,8 @@ defineExpose({
 </script>
 
 <template>
-    <el-dialog v-model="_visible" :show-close="false" @close="close" width="480">
-        <h2 class="font-commissioner-700 text-3xl">Добавить сотрудника</h2>
+    <el-dialog align-center v-model="_visible" :show-close="false" @close="close" width="480">
+        <h2 class="font-commissioner-700 text-3xl text-primary">Добавить сотрудника</h2>
         <el-form label-position="top" ref="_modalRef" :model="_formData" :rules="_rules" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Имя" prop="firstname">
                 <el-input v-model="_formData.firstname" placeholder="Введите имя" />
@@ -72,20 +72,20 @@ defineExpose({
             </el-form-item>
             
             <el-form-item label="Position" prop="position">
-                <el-select v-model="_formData.position">
+                <el-select class="w-full" v-model="_formData.position">
                     <el-option value="STACKER">STACKER</el-option>
                     <el-option value="SALESMAN">SALESMAN</el-option>
                 </el-select>
             </el-form-item>
 
             <el-form-item label="Склад" prop="warehouseId">
-                <el-select v-model="_formData.warehouseId">
+                <el-select class="w-full" v-model="_formData.warehouseId">
                     <el-option v-for="item of _warehouses.content" :value="item.id" :key="item.id" :label="item.title" />
                 </el-select>
             </el-form-item>
 
             <el-form-item label="Магазины" prop="storeId">
-                <el-select v-model="_formData.storeId">
+                <el-select class="w-full" v-model="_formData.storeId">
                     <el-option v-for="item of _stores.content" :value="item.id" :key="item.id" :label="item.title" />
                 </el-select>
             </el-form-item>

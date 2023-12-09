@@ -50,11 +50,12 @@ defineExpose({
 </script>
 
 <template>
-    <el-dialog v-model="_visible" :show-close="false" @close="close" width="480">
-        <h2 class="font-commissioner-700 text-3xl">Добавить магазин</h2>
+    <el-dialog align-center v-model="_visible" :show-close="false" @close="close" width="480">
+        <template #header></template>
+        <h2 class="font-commissioner-700 text-3xl text-primary">Добавить магазин</h2>
         <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Склад" prop="warehouseId">
-                <el-select v-model="_formData.warehouseId">
+                <el-select class="w-full" v-model="_formData.warehouseId">
                     <el-option v-for="item of _warehouses.content" :key="item.id" :label="item.title" :value="item.id" />
                 </el-select>
             </el-form-item>

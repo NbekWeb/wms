@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
-import { type EmployeeModel, getEmployees_API } from '@/services/employee';
+import { type EmployeeModel, getEmployees_API, removeEmployee_API } from '@/services/employee';
 
 const _items = ref<BaseListResponse<EmployeeModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
@@ -17,6 +17,8 @@ async function loadItems() {
 
     _items.value = response
 }
+
+removeEmployee_API('')
 
 loadItems()
 </script>

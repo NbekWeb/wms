@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   vue: {
     defineModel: true
   },
-  // css: ['~/assets/scss/index.scss'],
+  css: ['~/assets/css/custom.css'],
   vite: {
     css: {
       preprocessorOptions: {

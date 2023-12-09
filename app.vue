@@ -4,6 +4,7 @@ import { type LoginModel } from './services/profile';
 
 <template>
   <div>
+    <delete-modal />
     <NuxtPage />
   </div>
 </template>

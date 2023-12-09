@@ -1,21 +1,38 @@
 <script lang="ts" setup>
 import { type PropType } from 'vue';
 import { type WarehouseModel } from '~/services/warehouse';
+import { OPEN_DELETE_MODAL } from '@/store';
 
-const emit = defineEmits(['edit'])
+const emit = defineEmits(['edit', 'update'])
 const props = defineProps({
     item: {
         type: Object as PropType<WarehouseModel>,
         required: true
     }
 })
+
+function deleteItem() {
+    OPEN_DELETE_MODAL({
+        // callback: ,
+        callback: () => {
+            emit('update')
+        },
+        text: 'Kuryer',
+        // urlni to'g'irlash kk
+        url: `warehouses/${props.item.id}`,
+        title: `${props.item.title}`,
+    })
+}
 </script>
 
 <template>
     <div class="p-6 bg-black rounded-2xl">
         <div class="flex items-center justify-between cursor-pointer">
             <span class="text-white/60 text-sm">ID {{ props.item.id }}</span>
-            <img src="@/assets/img/edit.svg" @click="emit('edit')" alt="">
+            <div class="flex space-x-2">
+                <img src="@/assets/img/edit.svg" @click="emit('edit')" alt="">
+                <img src="@/assets/img/remove.svg" @click="deleteItem" alt="">
+            </div>
         </div>
 
         <div class="mt-3">

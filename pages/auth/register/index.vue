@@ -40,6 +40,10 @@ async function submit() {
                             <el-input v-model="_formData.companyType" />
                         </el-form-item>
 
+                        <el-form-item label="Имя" prop="companyType">
+                            <el-input v-model="_formData.username" />
+                        </el-form-item>
+
                         <el-form-item label="Имя" prop="mobile">
                             <el-input v-model="_formData.mobile" />
                         </el-form-item>

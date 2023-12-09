@@ -26,11 +26,9 @@ export async function updateWarehouse_API(payload: WarehouseModel): Promise<[Err
     }
 } 
 
-export async function deleteWarehouse_API(payload: WarehouseModel): Promise<[Error, null] | [null, WarehouseModel]> {
+export async function deleteWarehouse_API(id: string): Promise<[Error, null] | [null, WarehouseModel]> {
     try {
-        const response = <WarehouseModel> await axiosInstance.put('auths/login', {
-            ...payload
-        })
+        const response = <WarehouseModel> await axiosInstance.put(`warehouses/${id}`)
                 
         return [null, response]
     } catch (error) {

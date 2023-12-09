@@ -22,7 +22,7 @@ defineExpose({
 
 <template>
     <BaseModal v-model="_visible" @close="close" :loading="_loading" @confirm="submit" width="480px">
-        <h2 class="font-commissioner-700 text-3xl">Прикрепить к складу</h2>
+        <h2 class="font-commissioner-700 text-3xl text-primary">Прикрепить к складу</h2>
         <div class="flex items-center space-x-2 mt-5">
             <span class="text-text">Сотрудник</span>
             <span class="text-primary font-commissioner-600">: Алимов Ильхом</span>

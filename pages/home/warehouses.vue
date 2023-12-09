@@ -35,6 +35,7 @@ loadItems()
 
             <div class="grid grid-cols-3 gap-6 mt-8" v-if="_items.content">
                 <WarehouseCard 
+                    @update="loadItems"
                     @edit="openModal(item)"
                     v-for="item of _items.content" 
                     :key="item.title" 

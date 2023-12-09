@@ -5,6 +5,10 @@ export enum EMPLOYEE_POSITION_ENUM {
 
 export enum USER_ROLES_ENUM {
     ADMIN = 'ADMIN',
+    USER = 'USER',
+    CASHIER = 'CASHIER',
+    EMPLOYEE = 'EMPLOYEE',
+    MANAGER = 'MANAGER',
 }
 
 export interface EmployeeModel {

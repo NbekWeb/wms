@@ -32,7 +32,6 @@ async function submit() {
                     </el-form-item>
 
                     <div class="mt-10">
-                        <!-- <button type="submit" class="w-full bg-black text-white">Войти</button> -->
                         <el-button class="w-full" type="primary" native-type="submit">Войти</el-button>
                     </div>
                 </el-form>

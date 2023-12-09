@@ -1,0 +1,35 @@
+.el-input__wrapper {
+    @apply !rounded-xl !bg-info-main !border-none !h-12 !shadow-none;
+}
+
+.el-input__wrapper:focus-visible {
+    outline: none !important;
+}
+
+.el-form-item__label {
+    @apply !text-primary-light !font-commissioner-600 !text-base; 
+}
+
+button {
+    @apply !py-3 !px-4 !rounded-xl !h-12 !font-commissioner-700;
+}
+
+input {
+    @apply !bg-info-main;
+}
+
+input:focus {
+    box-shadow: none !important;
+}
+
+select:focus {
+    box-shadow: none !important;
+}
+
+.el-dialog {
+    border-radius: 20px !important;
+}
+
+.el-dialog__header {
+    display: none !important;
+}

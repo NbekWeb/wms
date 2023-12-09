@@ -1,4 +1,4 @@
-import { EMPLOYEE_POSITION_ENUM } from "../employee";
+import { EMPLOYEE_POSITION_ENUM, USER_ROLES_ENUM } from "../employee";
 import type { ProfileModel, RegisterModel, LoginModel } from "./model";
 
 export function getLogin_DEFAULT(): LoginModel {
@@ -26,7 +26,7 @@ export function getRegister_DEFAULT(): RegisterModel {
     const object: RegisterModel = {
         username: '',
         password: '',
-        roles: [],
+        roles: [USER_ROLES_ENUM.ADMIN],
         companyName: '',
         companyType: '',
         name: '',

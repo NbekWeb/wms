@@ -1,5 +1,5 @@
 export * from "./axios"
 export * from "./model"
 export * from "./default"
-// export * from "./delete"
+export * from "./delete"
 // export * from "./natification"
