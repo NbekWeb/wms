@@ -31,7 +31,7 @@ defineExpose({
             <BaseInput label="Название склада" placeholder="Введите название склада" />
             <BaseInput label="Адрес склада" placeholder="Введите адрес склада" />
 
-            <button class="bg-primary text-white w-full">Сохранить</button>
+            <button class="bg-primary h-12 text-white w-full">Сохранить</button>
         </form>
     </BaseModal>
 </template>

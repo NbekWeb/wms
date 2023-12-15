@@ -1,13 +1,20 @@
 
-import type { EmployeeAssignToWarehouseModal } from '#build/components';
-
-import type { EmployeeAssignToShopModal } from '#build/components';
 <script lang="ts" setup>
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import type { PropType } from 'vue';
+import { EMPLOYEE_POSITION, type EmployeeModel } from '~/services/employee';
+import type { BaseListResponse } from '~/services/network';
 
 const _shopModalRef = ref()
 const _warehouseModalRef = ref()
 const _modalRef = ref()
+
+const props = defineProps({
+    items: {
+        type: Object as PropType<BaseListResponse<EmployeeModel>>,
+        required: true
+    }
+})
 
 function openModal() {
     _modalRef.value?.open()
@@ -22,7 +29,7 @@ function openWarehouseModal() {
 }
 </script>
 <template>
-    <div class="p-5 bg-[#2222220D] w-full">
+    <div class="p-5 bg-[#2222220D] w-full h-full">
         <EmployeeAssignToShopModal ref="_shopModalRef" />
         <EmployeeAssignToWarehouseModal ref="_warehouseModalRef" />
         <BaseInput placeholder="Поиск" bgColor="bg-white" class="w-80" />
@@ -33,7 +40,7 @@ function openWarehouseModal() {
             <button class="text-white border border-white">Сбросить</button>
         </div>
         <div class="rounded-xl border border-text/20 my-5">
-            <table class="w-full">
+            <table class="w-full h-full">
                 <thead>
                     <tr>
                         <th>№</th>
@@ -45,16 +52,16 @@ function openWarehouseModal() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="i of 5"> 
-                        <td>1</td>
-                        <td>Алимов Ильхом</td>
+                    <tr v-for="item, idx of props.items.content"> 
+                        <td>{{ idx + 1 }}</td>
+                        <td>{{ item.lastname }} {{ item.firstname }}</td>
                         <td>
                             <div class="bg-primary text-white w-fit p-2 rounded-full mx-auto">
-                                Кладовщик
+                                {{ EMPLOYEE_POSITION.get(item.position) }}
                             </div>
                         </td>
-                        <td>Склад 1</td>
-                        <td>Не назначен</td>
+                        <td>{{ item.assignedStoreName || 'Не назначен' }}</td>
+                        <td>{{ item.assignedWarehouseName || 'Не назначен' }}</td>
                         <td>
                             <Menu as="div" class="relative inline-block text-left">
                                 <div>

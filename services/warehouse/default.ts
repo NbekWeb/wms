@@ -4,7 +4,8 @@ export function getWarehouse_DEFAULT(): WarehouseModel {
     const object: WarehouseModel = {
         title: '',
         address: '',
-        id: ''
+        id: '',
+        countOfStores: 0
     }
 
     return object;

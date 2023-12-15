@@ -2,26 +2,26 @@
     {
         "to": "main",
         "title": "Главная",
-        "icon": "main.svg"
+        "icon": "icon-main"
     },
     {
         "to": "warehouses",
         "title": "Склады",
-        "icon": "warehouse.svg"
+        "icon": "icon-warehouse"
     },
     {
         "to": "stores",
         "title": "Магазины",
-        "icon": "shops.svg"
+        "icon": "icon-shop"
     },
     {
         "to": "employees",
         "title": "Сотрудники",
-        "icon": "employees.svg"
+        "icon": "icon-users"
     },
     {
         "to": "products",
         "title": "Товары",
-        "icon": "products.svg"
+        "icon": "icon-orders"
     }
 ]

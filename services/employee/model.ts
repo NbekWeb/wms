@@ -3,6 +3,10 @@ export enum EMPLOYEE_POSITION_ENUM {
     STACKER = 'STACKER',
 }
 
+export const EMPLOYEE_POSITION = new Map<EMPLOYEE_POSITION_ENUM, string>()
+EMPLOYEE_POSITION.set(EMPLOYEE_POSITION_ENUM.STACKER, 'STACKER')
+EMPLOYEE_POSITION.set(EMPLOYEE_POSITION_ENUM.WH_WORKER, 'WH_WORKER')
+
 export enum USER_ROLES_ENUM {
     ADMIN = 'ADMIN',
     USER = 'USER',
@@ -13,12 +17,13 @@ export enum USER_ROLES_ENUM {
 
 export interface EmployeeModel {
     id: string;
-    storeId: string;
-    warehouseId: string;
     position: EMPLOYEE_POSITION_ENUM;
+    workId: string;
     firstname: string;
     lastname: string;
     mobile: string;
     username: string;
     password: string;
+    assignedStoreName: string;
+    assignedWarehouseName: string;
 }

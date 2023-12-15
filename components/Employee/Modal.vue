@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { getBaseListResponse_DEFAULT, type BaseListResponse } from "@/services/network"
-import { type StoreModel, getStore_DEFAULT, createStore_API, updateStore_API, getStores_API } from "@/services/store"
-import { getEmployee_DEFAULT, type EmployeeModel, updateEmployee_API, createEmployee_API, getEmployees_API } from "~/services/employee";
+import { type StoreModel, getStores_API } from "@/services/store"
+import { getEmployee_DEFAULT, type EmployeeModel, updateEmployee_API, createEmployee_API} from "~/services/employee";
 import { type WarehouseModel, getWarehouses_API } from '~/services/warehouse';
 import { _rules } from './rules'
 
@@ -44,6 +44,7 @@ async function submit() {
     _modalRef.value?.validate(async (valid: boolean) => {
         console.log(valid)
         if (valid) {
+            _formData.value.workId = 'fc34a9b6-27c9-4950-b5ce-cba2f7ef1c17'
             const handler = _formData.value.id ? updateEmployee_API : createEmployee_API
             const [error, response] = await handler(_formData.value)
 
@@ -62,6 +63,9 @@ defineExpose({
 
 <template>
     <el-dialog align-center v-model="_visible" :show-close="false" @close="close" width="480">
+        <button @click="close" class="absolute top-4 right-4 p-0">
+            <i class="icon-close"></i>
+        </button>
         <h2 class="font-commissioner-700 text-3xl text-primary">Добавить сотрудника</h2>
         <el-form label-position="top" ref="_modalRef" :model="_formData" :rules="_rules" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Имя" prop="firstname">
@@ -78,15 +82,13 @@ defineExpose({
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="Склад" prop="warehouseId">
-                <el-select class="w-full" v-model="_formData.warehouseId">
-                    <el-option v-for="item of _warehouses.content" :value="item.id" :key="item.id" :label="item.title" />
-                </el-select>
-            </el-form-item>
-
-            <el-form-item label="Магазины" prop="storeId">
-                <el-select class="w-full" v-model="_formData.storeId">
-                    <el-option v-for="item of _stores.content" :value="item.id" :key="item.id" :label="item.title" />
+            <el-form-item label="Wareouse" prop="warehouse">
+                <el-select class="w-full" v-model="_formData.workId">
+                    <el-option
+                        v-for="warehouse of _warehouses.content"
+                        :key="warehouse.id" 
+                        :value="warehouse.id"
+                    >{{ warehouse.title }}</el-option>
                 </el-select>
             </el-form-item>
 

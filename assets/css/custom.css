@@ -1,5 +1,6 @@
+@import url(./icons.css);
 .el-input__wrapper {
-    @apply !rounded-xl !bg-info-main !border-none !h-12 !shadow-none;
+    @apply !rounded-xl !bg-[#F4F7FB] !border-none !h-12 !shadow-none;
 }
 
 .el-input__wrapper:focus-visible {
@@ -10,12 +11,12 @@
     @apply !text-primary-light !font-commissioner-600 !text-base; 
 }
 
-button {
-    @apply !py-3 !px-4 !rounded-xl !h-12 !font-commissioner-700;
-}
+/* button {
+    @apply py-3 px-4 rounded-xl h-12 font-commissioner-700;
+} */
 
 input {
-    @apply !bg-info-main;
+    /* @apply !bg-text/40; */
 }
 
 input:focus {
@@ -32,4 +33,20 @@ select:focus {
 
 .el-dialog__header {
     display: none !important;
+}
+
+i.primary::before {
+    @apply text-primary;
+}
+
+i.danger::before {
+    @apply text-danger;
+}
+
+i.white::before {
+    @apply text-white;
+}
+
+.el-button {
+    @apply !h-12 !rounded-2xl;
 }

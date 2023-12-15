@@ -20,10 +20,10 @@ async function submit() {
 
 <template>
     <NuxtLayout name="auth">
-        <section>
+        <section class="w-1/2 mx-auto">
             <div>
                 <h1 class="font-commissioner-700 text-4xl text-center">Вход в систему</h1>
-                <el-form ref="_formRef" :rules="_rules" label-position="top" :model="_formData" @submit.prevent="submit">
+                <el-form class="mt-10" ref="_formRef" :rules="_rules" label-position="top" :model="_formData" @submit.prevent="submit">
                     <el-form-item label="Логин" prop="username">
                         <el-input placeholder="Логин" v-model="_formData.username" />
                     </el-form-item>

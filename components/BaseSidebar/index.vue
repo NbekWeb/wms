@@ -1,10 +1,6 @@
 <script lang="ts" setup>
 import links from "./links.json"
 
-function getImgUrl_UTIL(name: string) {
-    console.log(name)
-    return new URL(`/${name}`, import.meta.url).href
-}
 </script>
 
 <template>
@@ -24,12 +20,9 @@ function getImgUrl_UTIL(name: string) {
                             v-for="link of links"
                             :key="link.title" 
                             :to="link.to"
-                            class="text-text p-4 flex items-center space-x-2"
+                            class="text-text p-4 flex items-center space-x-3"
                         >                            
-                            <img 
-                                src="@/assets/img/main.svg" 
-                                alt="icon"
-                            />
+                            <i class="text-white" :class="link.icon"></i>
                             <span>{{ link.title }}</span>
                         </NuxtLink>
                     </div>
@@ -41,7 +34,7 @@ function getImgUrl_UTIL(name: string) {
                     to="/home/help"
                     class="text-text p-4 flex items-center space-x-3"
                 >
-                    <img src="@/assets/img/help.svg" />
+                    <span class="icon-help text-lg"></span>
                     <span>Помощь</span>
                 </NuxtLink>
                 <NuxtLink
@@ -59,5 +52,9 @@ function getImgUrl_UTIL(name: string) {
 <style>
 .router-link-active {
     @apply bg-black p-4 text-white rounded-xl;
+}
+
+.router-link-active i::before {
+    @apply text-white;
 }
 </style>

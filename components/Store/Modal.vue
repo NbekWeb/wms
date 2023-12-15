@@ -51,7 +51,9 @@ defineExpose({
 
 <template>
     <el-dialog align-center v-model="_visible" :show-close="false" @close="close" width="480">
-        <template #header></template>
+        <button @click="close" class="absolute top-4 right-4 p-0">
+            <i class="icon-close"></i>
+        </button>
         <h2 class="font-commissioner-700 text-3xl text-primary">Добавить магазин</h2>
         <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Склад" prop="warehouseId">

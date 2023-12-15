@@ -26,5 +26,5 @@ body {
 }
 
 button {
-    @apply rounded-xl py-3 px-4;
+    @apply py-3 px-4 rounded-xl font-commissioner-700;
 }

@@ -27,7 +27,7 @@ export async function updateEmployee_API(payload: EmployeeModel): Promise<[Error
 
 export async function removeEmployee_API(id: string): Promise<[Error, null] | [null, EmployeeModel]> {
     try {
-        const response = <EmployeeModel> await axiosInstance.delete(`employees/97c0220c-45fd-4f9d-9363-c4dddac0b1af`)
+        const response = <EmployeeModel> await axiosInstance.delete(`employees/${id}`)
                 
         return [null, response]
     } catch (error) {

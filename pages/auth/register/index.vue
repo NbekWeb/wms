@@ -22,7 +22,7 @@ async function submit() {
 
 <template>
     <NuxtLayout name="auth">
-        <section>
+        <section class="mx-auto w-5/6">
             <div>
                 <h1 class="font-commissioner-700 text-4xl text-center">Регистрация в системе</h1>
                 <el-form :rules="_rules" label-position="top" :model="_formData" ref="_formRef" class="mt-10" @submit.prevent="submit">
@@ -57,7 +57,7 @@ async function submit() {
                     </div>
                 </el-form>
             </div>
-            <div class="mt-24 text-center">
+            <div class="mt-10 text-center">
                 <span class="text-primary">Уже есть учетная запись?</span>
                 <NuxtLink to="/auth/login" class="ml-1 font-commissioner-600 text-primary">Войдите</NuxtLink>
             </div>

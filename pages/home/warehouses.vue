@@ -27,8 +27,8 @@ loadItems()
             <WarehouseModal @update="loadItems" ref="_modalRef" />
             <div class="flex items-center justify-between">
                 <h2 class="font-commissioner-700 text-4xl">Склады</h2>
-                <button @click="openModal()" class="flex items-center bg-black text-white">
-                    <img src="@/assets/img/plus.svg" alt="plus">
+                <button @click="openModal()" class="h-12 flex items-center space-x-3 bg-black text-white">
+                    <i class="icon-plus white"></i>
                     <span>Добавить склад</span>
                 </button>
             </div>

@@ -14,8 +14,8 @@ const props = defineProps({
                 <img src="@/assets/img/noData.svg" alt="noData">
                 <h2 class="text-3xl text-text font-commissioner-700 mt-2 text-center">Здесь пока пусто</h2>
 
-                <button @click="$emit('set')" class="flex items-center bg-black text-white space-x-2 mx-auto mt-8">
-                    <img src="@/assets/img/plus.svg" alt="plus">
+                <button @click="$emit('set')" class="flex h-12 items-center bg-black text-white space-x-3 mx-auto mt-8">
+                    <i class="icon-plus white"></i>
                     <span>{{ props.title }}</span>
                 </button>
             </div>

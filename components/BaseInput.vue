@@ -28,7 +28,7 @@ const modelValue = defineModel()
             v-model="modelValue"
             :type="props.type" 
             placeholder="Введите имя" 
-            class="mt-1 rounded-xl border border-white"
+            class="mt-1 rounded-xl border border-white bg-[#F4F7FB]"
             :class="bgColor"
         >
     </div>

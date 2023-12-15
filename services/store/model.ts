@@ -3,4 +3,5 @@ export interface StoreModel {
     title: string;
     address: string;
     id: string;
+    countOfEmployees: number;
 }
