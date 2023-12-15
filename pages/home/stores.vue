@@ -24,7 +24,7 @@ loadItems()
 <template>
     <NuxtLayout name="default">
         <div>
-            <StoreModal @edit="loadItems" ref="_modalRef" />
+            <StoreModal @update="loadItems" ref="_modalRef" />
             <div class="flex items-center justify-between">
                 <h2 class="font-commissioner-700 text-4xl">Магазины</h2>
                 <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3">

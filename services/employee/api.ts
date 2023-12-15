@@ -25,6 +25,19 @@ export async function updateEmployee_API(payload: EmployeeModel): Promise<[Error
     }
 } 
 
+export async function assignEmployee_API(payload: EmployeeModel): Promise<[Error, null] | [null, EmployeeModel]> {
+    try {
+        const response = <EmployeeModel> await axiosInstance.put(`employees/${payload.id}`, {
+            workId: payload.workId,
+            position: payload.position
+        })
+                
+        return [null, response]
+    } catch (error) {
+        return [error as Error, null]
+    }
+} 
+
 export async function removeEmployee_API(id: string): Promise<[Error, null] | [null, EmployeeModel]> {
     try {
         const response = <EmployeeModel> await axiosInstance.delete(`employees/${id}`)

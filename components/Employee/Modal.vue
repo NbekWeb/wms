@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { getBaseListResponse_DEFAULT, type BaseListResponse } from "@/services/network"
 import { type StoreModel, getStores_API } from "@/services/store"
-import { getEmployee_DEFAULT, type EmployeeModel, updateEmployee_API, createEmployee_API} from "~/services/employee";
+import { getEmployee_DEFAULT, type EmployeeModel, updateEmployee_API, createEmployee_API, EMPLOYEE_POSITION_ENUM} from "~/services/employee";
 import { type WarehouseModel, getWarehouses_API } from '~/services/warehouse';
 import { _rules } from './rules'
 
@@ -44,7 +44,6 @@ async function submit() {
     _modalRef.value?.validate(async (valid: boolean) => {
         console.log(valid)
         if (valid) {
-            _formData.value.workId = 'fc34a9b6-27c9-4950-b5ce-cba2f7ef1c17'
             const handler = _formData.value.id ? updateEmployee_API : createEmployee_API
             const [error, response] = await handler(_formData.value)
 
@@ -77,18 +76,19 @@ defineExpose({
             
             <el-form-item label="Position" prop="position">
                 <el-select class="w-full" v-model="_formData.position">
-                    <el-option value="STACKER">STACKER</el-option>
-                    <el-option value="SALESMAN">SALESMAN</el-option>
+                    <el-option :value="EMPLOYEE_POSITION_ENUM.STACKER">STACKER</el-option>
+                    <el-option :value="EMPLOYEE_POSITION_ENUM.SALESMAN">SALESMAN</el-option>
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="Wareouse" prop="warehouse">
+            <el-form-item label="Wareouse" prop="warehouse" v-if="_formData.position === EMPLOYEE_POSITION_ENUM.STACKER">
                 <el-select class="w-full" v-model="_formData.workId">
-                    <el-option
-                        v-for="warehouse of _warehouses.content"
-                        :key="warehouse.id" 
-                        :value="warehouse.id"
-                    >{{ warehouse.title }}</el-option>
+                    <el-option v-for="item of _warehouses.content" :key="item.id" :label="item.title" :value="item.id" />
+                </el-select>
+            </el-form-item>
+            <el-form-item label="store" prop="warehouse" v-else>
+                <el-select class="w-full" v-model="_formData.workId">
+                    <el-option v-for="item of _stores.content" :key="item.id" :label="item.title" :value="item.id" />
                 </el-select>
             </el-form-item>
 

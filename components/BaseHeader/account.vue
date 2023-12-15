@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 </script>
 
 <template>
