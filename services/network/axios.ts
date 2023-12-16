@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { _TOKEN } from '../profile';
+import { checkAxiosError, checkAxiosResponse } from './natification';
 
-// console.log("TEST")
-// console.log(import.meta.env.VITE_APP_BRANCH_NAME)
 
 export const axiosInstance = axios.create({
     baseURL: 'http://185.211.170.253:8008/api/wms/v1',
@@ -37,21 +36,19 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     (response) => {        
-        // checkAxiosResponse(response)       
+        checkAxiosResponse(response)       
         return response.data;
     },
     (error) => {
-        // checkAxiosError(error)
-        // // checkAxiosResponse(error.response)
+        checkAxiosError(error)
+        // checkAxiosResponse(error.response)
 
-        // if (error?.response?.status === 403) {
+        if (error?.response?.status === 403) {
 
-        // }
-        // if (error?.response?.status === 401) {
-        //     localStorage.clear();            
-        //     router.push('/login');
-        //     location.reload()
-        // }
+        }
+        if (error?.response?.status === 401) {
+            // LOGOUT()             
+        }
 
 
         return Promise.reject(error);

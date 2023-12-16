@@ -4,11 +4,14 @@ import { _rules } from './rules'
 
 const _formData = useState<LoginModel>(getLogin_DEFAULT)
 const _formRef = ref()
+const _loading = useState(() => false)
 
 async function submit() {
     _formRef.value?.validate(async (valid: boolean) => {
         if (valid) {
+            _loading.value = true
             const [error, response] = await login_API(_formData.value)
+            _loading.value = false
             if (error) return
 
             _TOKEN.value = response.token
@@ -28,11 +31,11 @@ async function submit() {
                         <el-input placeholder="Логин" v-model="_formData.username" />
                     </el-form-item>
                     <el-form-item label="Пароль" prop="password">
-                        <el-input placeholder="Пароль" v-model="_formData.password" />
+                        <el-input type="password" placeholder="Пароль" v-model="_formData.password" />
                     </el-form-item>
 
                     <div class="mt-10">
-                        <el-button class="w-full" type="primary" native-type="submit">Войти</el-button>
+                        <el-button :loading="_loading" class="w-full" type="primary" native-type="submit">Войти</el-button>
                     </div>
                 </el-form>
             </div>

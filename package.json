@@ -25,6 +25,7 @@
     "@headlessui/vue": "^1.7.16",
     "axios": "^1.6.2",
     "nuxt-hero-icons": "^0.0.9",
+    "remixicon": "^3.7.0",
     "vue-remix-icons": "^3.5.0"
   }
 }

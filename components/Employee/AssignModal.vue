@@ -50,7 +50,10 @@ async function submit() {
     _visible.value = false
 
     _formData.value.position = _position.value
+    _loading.value = true
     const [error, response] = await assignEmployee_API(_formData.value)
+    _loading.value = false
+    
     if (error) return
 
     close()

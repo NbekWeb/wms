@@ -16,6 +16,7 @@ export interface LoginModel {
 export interface RegisterModel {
     username: string;
     password: string;
+    confirmPassword: string;
     roles: USER_ROLES_ENUM[];
     companyName: string;
     companyType: string;

@@ -26,6 +26,7 @@ export function getRegister_DEFAULT(): RegisterModel {
     const object: RegisterModel = {
         username: '',
         password: '',
+        confirmPassword: '',
         roles: [USER_ROLES_ENUM.ADMIN],
         companyName: '',
         companyType: '',

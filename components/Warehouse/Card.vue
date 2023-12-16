@@ -3,7 +3,7 @@ import { type PropType } from 'vue';
 import { type WarehouseModel } from '~/services/warehouse';
 import { OPEN_DELETE_MODAL } from '@/store';
 
-const emit = defineEmits(['edit', 'update'])
+const emit = defineEmits(['edit', 'update', 'setStore'])
 const props = defineProps({
     item: {
         type: Object as PropType<WarehouseModel>,
@@ -50,7 +50,7 @@ function deleteItem() {
                 <span class="text-sm text-white font-commissioner-600">{{ item.countOfStores }} магазинов</span>
             </div>
 
-            <button class="flex items-center space-x-2 border border-white">
+            <button @click="emit('setStore')" class="flex items-center space-x-2 border border-white">
                 <i class="icon-plus white"></i>
                 <span class="text-white">Добавить</span>
             </button>

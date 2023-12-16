@@ -23,5 +23,10 @@
         "to": "products",
         "title": "Товары",
         "icon": "icon-orders"
+    },
+    {
+        "to": "moderators",
+        "title": "Модераторы",
+        "icon": "icon-users"
     }
 ]

@@ -20,21 +20,27 @@ const _visible = useState(() => false)
 const _loading = useState(() => false)
 const _formData = useState<StoreModel>(getStore_DEFAULT)
 
-function open(item: StoreModel) {
+function open(item: StoreModel, warehouseId: string) {
     if (item?.id) _formData.value = item
+    if (warehouseId) _formData.value.warehouseId = warehouseId
+
     _visible.value = true
     loadWarehouses()
 }
 
 function close() {
     _visible.value = false
+    _modalRef.value?.resetFields()
+    _formData.value = getStore_DEFAULT()
 }
 
 async function submit() {
     _modalRef.value?.validate(async (valid: boolean) => {
         if (valid) {
+            _loading.value = true
             const handler = _formData.value.id ? updateStore_API : createStore_API
             const [error, response] = await handler(_formData.value)
+            _loading.value = false
 
             if (error) return
             emit('update')
@@ -54,7 +60,9 @@ defineExpose({
         <button @click="close" class="absolute top-4 right-4 p-0">
             <i class="icon-close"></i>
         </button>
-        <h2 class="font-commissioner-700 text-3xl text-primary">Добавить магазин</h2>
+        <h2 class="font-commissioner-700 text-3xl text-primary">            
+            {{ _formData.id ? 'Редактировать магазина' : 'Добавить магазин' }}
+        </h2>
         <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Склад" prop="warehouseId">
                 <el-select class="w-full" v-model="_formData.warehouseId">
@@ -69,7 +77,7 @@ defineExpose({
                 <el-input v-model="_formData.address" placeholder="Введите адрес склада" />
             </el-form-item>
 
-            <el-button native-type="submit" class="w-full" type="primary">Сохранить</el-button>
+            <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">Сохранить</el-button>
         </el-form>
     </el-dialog>
 </template>

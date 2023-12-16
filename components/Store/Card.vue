@@ -2,7 +2,7 @@
 import { type PropType } from 'vue';
 import { type StoreModel, removeStore_API } from '~/services/store';
 
-const emit = defineEmits(['edit', 'update'])
+const emit = defineEmits(['edit', 'update', 'setEmployee'])
 const props = defineProps({
     item: {
         type: Object as PropType<StoreModel>,
@@ -51,7 +51,7 @@ function deleteItem() {
                 <span class="text-sm text-white font-commissioner-600">{{ props.item.countOfEmployees }} сотрудников</span>
             </div>
 
-            <button class="flex items-center space-x-2 border border-white">
+            <button @click="emit('setEmployee')" class="flex items-center space-x-2 border border-white">
                 <i class="icon-plus white"></i>
                 <span class="text-white font-commissioner-700">Добавить</span>
             </button>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type LoginModel } from './services/profile';
+import "element-plus/theme-chalk/src/notification.scss";
 </script>
 
 <template>

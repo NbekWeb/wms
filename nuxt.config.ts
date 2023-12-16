@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   vue: {
     defineModel: true
   },
-  css: ['~/assets/css/custom.css'],
+  css: ['~/assets/css/custom.css', 'element-plus/theme-chalk/src/notification.scss', 'remixicon/fonts/remixicon.css'],
   vite: {
     css: {
       preprocessorOptions: {

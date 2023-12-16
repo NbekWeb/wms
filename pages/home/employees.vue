@@ -44,7 +44,7 @@ loadItems()
                 </button>
             </div>
 
-            <el-table class="mt-4 w-full" :data="_items.content" border table-layout="auto">
+            <el-table class="mt-8 w-full" :data="_items.content" border table-layout="auto">
                 <el-table-column type="index" width="80" label="#" />
                 <el-table-column label="ФАМИЛИЯ И ИМЯ">
                     <template #default="{ row }">
@@ -54,7 +54,10 @@ loadItems()
                 </el-table-column>
                 <el-table-column label="ДОЛЖНОСТЬ">
                     <template #default="{ row }">
-                        <div class="bg-primary text-white w-fit p-2 rounded-full mx-auto">
+                        <div v-if="row.position === EMPLOYEE_POSITION_ENUM.STACKER" class="bg-primary text-white w-fit p-2 rounded-xl">
+                            {{ EMPLOYEE_POSITION.get(row.position) }}
+                        </div>
+                        <div v-if="row.position === EMPLOYEE_POSITION_ENUM.SALESMAN" class="bg-info-main border border-primary text-primary w-fit p-2 rounded-xl">
                             {{ EMPLOYEE_POSITION.get(row.position) }}
                         </div>
                     </template>
@@ -73,7 +76,7 @@ loadItems()
                 <el-table-column label="ЕЩЁ">
                     <template #default="{ row }">
                         <el-dropdown trigger="click">
-                            <button class="p-0 bg-black">
+                            <button class="bg-black py-1 px-2">
                                 <img src="@/assets/img/dots.svg"  />
                             </button>
 
@@ -124,5 +127,9 @@ loadItems()
 <style>
 .el-dropdown-menu {
     @apply bg-black rounded-xl;
+}
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:active, .el-dropdown-menu__item:hover {
+    @apply !bg-transparent;
+    /* @apply !bg-black; */
 }
 </style>
