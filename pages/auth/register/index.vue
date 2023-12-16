@@ -1,6 +1,29 @@
 <script lang="ts" setup>
 import { getRegister_DEFAULT, type RegisterModel, register_API } from '~/services/profile';
-import { _rules } from './rules';
+import type { FormRules } from 'element-plus'
+
+const _rules = ref<FormRules>({
+    name: [{ required: true, message: 'Введите имя', trigger: 'change' }],
+    surname: [{ required: true, message: 'Введите фамилию', trigger: 'change' }],
+    companyName: [{ required: true, message: 'Введите название организации', trigger: 'change' }],
+    companyType: [{ required: true, message: 'Введите ИНН', trigger: 'change' }],
+    mobile: [{ required: true, message: 'Введите номер телефона', trigger: 'change' }],
+    username: [{ required: true, message: 'Введите логин', trigger: 'change' }],
+    password: [{ required: true, message: 'Введите пароль', trigger: 'change' }],
+    confirmPassword: [{validator: validateConfirmPSW, trigger: 'blur' }]
+})
+
+function validateConfirmPSW(rule: any, value: any, callback: any) {
+    if (value === '') {
+        callback(new Error('Пожалуйста, подтвердите пароль'))
+    } 
+
+    if(value !== _formData.value.password){
+        callback(new Error('Пароли не совпадают'))
+    }
+
+    callback()
+}
 
 const _formRef = ref()
 const _formData = useState<RegisterModel>(getRegister_DEFAULT)
@@ -54,8 +77,8 @@ async function submit() {
                         <el-form-item label="Пароль" prop="password">
                             <el-input placeholder="Введите пароль" type="password" v-model="_formData.password" />
                         </el-form-item>
-                        <el-form-item label="Повторите пароль" prop="password">
-                            <el-input placeholder="Повторите пароль" type="password" v-model="_formData.password" />
+                        <el-form-item label="Повторите пароль" prop="confirmPassword">
+                            <el-input placeholder="Повторите пароль" type="password" v-model="_formData.confirmPassword" />
                         </el-form-item>
                     </div>
                     <div class="mt-10 flex justify-center">
