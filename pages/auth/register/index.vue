@@ -16,7 +16,8 @@ async function submit() {
             _loading.value = false
             if (error) return
 
-            console.log(response)
+            _formData.value = getRegister_DEFAULT()
+            navigateTo('/auth/login')
         }
     })
 }

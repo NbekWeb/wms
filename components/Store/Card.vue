@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { type PropType } from 'vue';
-import { type StoreModel, removeStore_API } from '~/services/store';
+import { type StoreModel } from '~/services/store';
+import { OPEN_DELETE_MODAL } from '@/store';
 
 const emit = defineEmits(['edit', 'update', 'setEmployee'])
 const props = defineProps({
@@ -11,18 +12,16 @@ const props = defineProps({
 })
 
 function deleteItem() {
-    // OPEN_DELETE_MODAL({
-    //     // callback: ,
-    //     callback: () => {
-    //         emit('update')
-    //     },
-    //     text: 'Kuryer',
-    //     // urlni to'g'irlash kk
-    //     url: `stores/${props.item.id}`,
-    //     title: `${props.item.title}`,
-    // })
-
-    removeStore_API(props.item.id)
+    OPEN_DELETE_MODAL({
+        // callback: ,
+        callback: () => {
+            emit('update')
+        },
+        text: 'Удалить магазина',
+        // urlni to'g'irlash kk
+        url: `stores/${props.item.id}`,
+        title: `${props.item.title}`,
+    })
 }
 </script>
 

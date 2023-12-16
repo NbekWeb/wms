@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { login_API, _TOKEN, getLogin_DEFAULT, type LoginModel } from "@/services/profile"
+import { login_API, _TOKEN, _username, getLogin_DEFAULT, type LoginModel } from "@/services/profile"
 import { _rules } from './rules'
 
 const _formData = useState<LoginModel>(getLogin_DEFAULT)
@@ -15,6 +15,7 @@ async function submit() {
             if (error) return
 
             _TOKEN.value = response.token
+            _username.value = response.username
             navigateTo('/home/main')
         }
     })    

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { _username } from "@/services/profile"
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 </script>
 
@@ -10,7 +11,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
             class="flex items-center bg-info-main p-2 space-x-3"
           >
             <img class="h-8 w-8 object-cover rounded-full" src="@/assets/img/user.jpg" />
-            <span class="text-text">Фамилия И.</span>
+            <span class="text-text">{{ _username }}</span>
             <img src="@/assets/img/down.svg" alt="down" />
           </MenuButton>
         </div>

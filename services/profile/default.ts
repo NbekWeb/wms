@@ -34,7 +34,7 @@ export function getRegister_DEFAULT(): RegisterModel {
         surname: '',
         mobile: '',
         position: EMPLOYEE_POSITION_ENUM.STACKER,
-        isActive: false,
+        isActive: true,
     }
 
     return object;

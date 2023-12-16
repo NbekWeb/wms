@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { type EmployeeModel, EMPLOYEE_POSITION, getEmployees_API, EMPLOYEE_POSITION_ENUM } from '@/services/employee';
-
+import { OPEN_DELETE_MODAL } from '@/store';
 
 const _items = ref<BaseListResponse<EmployeeModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
@@ -25,6 +25,17 @@ function openStoreModal(item: EmployeeModel) {
 
 function openWarehouseModal(item: EmployeeModel) {
     _assignModalRef.value?.open(item, EMPLOYEE_POSITION_ENUM.STACKER)
+}
+
+function deleteItem(item: EmployeeModel) {
+    OPEN_DELETE_MODAL({
+        // callback: ,
+        callback: loadItems,
+        text: 'Удалить сотрудника',
+        // urlni to'g'irlash kk
+        url: `employees/${item.id}`,
+        title: `${item.lastname} ${item.firstname}`,
+    })
 }
 
 loadItems()
@@ -108,6 +119,7 @@ loadItems()
                                         </el-dropdown-item>
                                         <el-dropdown-item>
                                             <button
+                                                @click="deleteItem(row)"
                                                 class="text-danger"
                                             >                  
                                                 Удалить

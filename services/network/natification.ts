@@ -4,25 +4,25 @@ export function checkAxiosResponse(response: any) {
     type NotificationType = 'success' | 'warning' | 'error';
 
     let type:NotificationType = 'success';
-    let title = 'Success';
-    let message = 'Item posted successfully';
+    let title = 'Успех';
+    let message = 'Успешно создан';
 
     switch(response.status) {
         case 500: {
-            title = 'Error'
-            message = 'Server Error occurred, please connect to developers'
+            title = 'Ошибка'
+            message = 'Произошла ошибка сервера, пожалуйста, свяжитесь с разработчиками'
             type = 'error'
             break
         }
         case 400: {
-            title = 'Error'
-            message = 'Error occurred, please try again later'
+            title = 'Ошибка'
+            message = 'Произошла ошибка. Повторите попытку позже.'
             type = 'error'
             break
         }
         case 403: {
-            title = 'Warning'
-            message = 'Forbidden data access required!'
+            title = 'Ошибка'
+            message = 'Требуется запрещенный доступ к данным!'
             type = 'warning'
             break
         }
@@ -35,17 +35,22 @@ export function checkAxiosResponse(response: any) {
                     if(response.config.url.includes('files/v1/')) {
                         message = 'File uploaded successfully';
                     }
-                    else if(response.config.url.includes('users/login')) {
-                        message = 'Logged in successfully';
+                    else if(response.config.url.includes('auths/login')) {
+                        message = 'Вы успешно вошли в систему';
                     }    
+                    else if(response.config.url.includes('auths/register')) {
+                        message = 'Регистрация прошла успешно';
+                    }    
+
+                    
                     break;
                 }
                 case 'put': {
-                    message = 'Item updated successfully';
+                    message = 'Успешно обновлен';
                     break;
                 }
                 case 'delete': {
-                    message = 'Item deleted successfully';
+                    message = 'Успешно удален';
                     break;
                 }                
             }
@@ -64,33 +69,33 @@ export function checkAxiosError(error: any) {
 
     let type:NotificationType = 'error';
     let title = 'Error';
-    let message = 'Item posted successfully';
+    let message = 'Произошла ошибка';
 
     console.log("Checking Error")
     console.log(error)
 
     switch(error.response.status) {
         case 500: {
-            title = 'Error'
-            message = 'Server Error occurred, please connect to developers'
+            title = 'Ошибка'
+            message = 'Произошла ошибка сервера, пожалуйста, свяжитесь с разработчиками'
             type = 'error'
             break
         }
         case 401: {
-            title = 'Error'
-            message = '401 Error occurred'
+            title = 'Ошибка'
+            message = '401 Произошла ошибка'
             type = 'error'
             break
         }
         case 400: {
-            title = 'Error'
-            message = 'Error occurred, please try again later'
+            title = 'Ошибка'
+            message = 'Произошла ошибка. Повторите попытку позже.'
             type = 'error'
             break
         }
         case 403: {
-            title = 'Warning'
-            message = 'Forbidden data access required!'
+            title = 'Предупреждение'
+            message = 'Требуется запрещенный доступ к данным!'
             type = 'warning'
             break
         }

@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
 import { deleteItem } from '@/services/network';
 import { _deleteModal, CLOSE_DELETE_MODAL } from '@/store';
 
-const router = useRouter()
+const _loading = ref(false)
 
 async function submit() {
+  _loading.value = true
   const repsonse = await deleteItem(_deleteModal.url)
-  if (_deleteModal.callback === undefined) {
-    router.go(-1)
-  }
+  _loading.value = false
   
   CLOSE_DELETE_MODAL()
 }
@@ -23,15 +21,21 @@ async function submit() {
 </script>
 
 <template>
-    <el-dialog v-model="_deleteModal.visible" width="400">
-        <div class="flex flex-col mb-8">
-            <p class="text-lg font-semibold text-red-500">Diqqat, {{_deleteModal.text}}ni o‘chirishga aminmisiz?</p>
-            <p class="text-base leading-4 py-1.5 break-words">{{_deleteModal.title}}</p>
+    <el-dialog class="relative" align-center v-model="_deleteModal.visible" :show-close="false" width="480">
+        <button @click="CLOSE_DELETE_MODAL" class="absolute top-4 right-4 p-0">
+            <i class="icon-close"></i>
+        </button>
+        <h2 class="font-commissioner-700 text-3xl text-primary">            
+          {{ _deleteModal.text }}
+        </h2>
+        <div class="mt-5 space-x-1">
+          <span class="text-text">Вы действительно хотите удалить</span>
+          <span class="text-primary font-commissioner-600"> {{ _deleteModal.title }}?</span>
         </div>
 
-        <div class="flex items-center gap-3">
-            <el-button type="danger" @click="submit">Delete</el-button>
-            <el-button @click="_deleteModal.visible = false">Cancel</el-button>
+        <div class="space-y-5 mt-8">
+          <el-button :loading="_loading" class="w-full" type="danger" @click="submit">Удалить</el-button>
+          <button class="h-12 border w-full border-text text-text font-commissioner-700">Отмена</button>
         </div>
     </el-dialog>
 </template>

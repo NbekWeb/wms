@@ -17,7 +17,7 @@ function deleteItem() {
         callback: () => {
             emit('update')
         },
-        text: 'Kuryer',
+        text: 'Удалить склада',
         // urlni to'g'irlash kk
         url: `warehouses/${props.item.id}`,
         title: `${props.item.title}`,

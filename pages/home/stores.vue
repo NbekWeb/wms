@@ -43,7 +43,8 @@ loadItems()
             >
                 <StoreCard 
                     @set-employee="openEmployeeModal(item)"
-                    @edit="openModal(item)" 
+                    @edit="openModal(item)"
+                    @update="loadItems" 
                     v-for="item of _items.content" 
                     :key="item.id" 
                     :item="item" 
