@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { _rules } from './rules'
-import { getProduct_DEFAULT, type ProductModel, createProduct_API } from "~/services/product";
+import { getProduct_DEFAULT, type ProductModel, createProduct_API, MEASUREMENT_UNITS, sendProductToModeration_API } from "~/services/product";
+
+const _measurementUnitsOptions = Array.from(MEASUREMENT_UNITS, ([name, value]) => ({ name, value }))
 
 const _modalRef = ref()
 
@@ -24,11 +26,15 @@ async function submit() {
     _modalRef.value?.validate(async (valid: boolean) => {
         if (valid) {
             _loading.value = true
-            const [error, response] = await createProduct_API(_formData.value)
+            const [error, url] = await createProduct_API(_formData.value)
             _loading.value = false
 
             if (error) return
             emit('update')
+            _loading.value = true
+            const [error1, response] = await sendProductToModeration_API(url)
+            _loading.value = false
+            if (error1) return
 
             _visible.value = false
         }
@@ -55,7 +61,14 @@ defineExpose({
                 <el-input v-model="_formData.name" placeholder="Введите Название продукта" />
             </el-form-item>
             <el-form-item label="Тип продукта" prop="type">
-                <el-input v-model="_formData.type" placeholder="Введите Тип продукта" />
+                <el-select v-model="_formData.unit" class="w-full">
+                    <el-option 
+                        v-for="option of _measurementUnitsOptions"
+                        :key="option.value"
+                        :label="option.value" 
+                        :value="option.name"
+                    />
+                </el-select>
             </el-form-item>
 
             <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">Отправить на модерацию</el-button>

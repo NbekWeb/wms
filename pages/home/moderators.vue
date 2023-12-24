@@ -7,13 +7,20 @@ const _modalRef = ref()
 const _assignModalRef = ref()
 const _status = ref<PRODUCT_STATUS_ENUM>(PRODUCT_STATUS_ENUM.ACCEPTED)
 const _search = ref('')
+const router = useRouter()
 
 async function loadItems() {
-    const [error, response] = await getProductsByStatus_API(PRODUCT_STATUS_ENUM.REJECTED)
+    const [error, response] = await getProductsByStatus_API(_status.value, _items.value.currentPage - 1)
 
     if (error) return
 
     _items.value = response
+}
+
+async function handleChange(page: number) {
+    _items.value.currentPage = page
+    await router.replace({ query: { page }})
+    loadItems();
 }
 
 loadItems()
@@ -34,7 +41,7 @@ loadItems()
                     <el-input class="!bg-white" v-model="_search" placeholder="Поиск" />
                 </div>                
                 <div class="flex items-center justify-between mt-5 bg-text/60 p-5">
-                    <el-select v-model="_status">
+                    <el-select v-model="_status" @change="loadItems">
                         <el-option label="Принятый" :value="PRODUCT_STATUS_ENUM.ACCEPTED" />
                         <el-option label="Инициализировано" :value="PRODUCT_STATUS_ENUM.INITIALIZED" />
                         <el-option label="На модерации" :value="PRODUCT_STATUS_ENUM.MODERATION" />
@@ -73,6 +80,7 @@ loadItems()
                         </template>
                     </el-table-column>
                 </el-table>
+                <el-pagination v-if="_items.totalPages > 1" class="mt-8" background :current-page="_items.currentPage" layout="prev, pager, next" :total="_items.totalElements" @current-change="handleChange" />
             </section>            
         </div>
     </NuxtLayout>

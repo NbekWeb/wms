@@ -6,6 +6,7 @@ export interface BaseListResponse<T> {
     content: T[];
     size: number;
     page: number;
+    currentPage: number;
     totalPages: number;
     totalElements: number;
     number: number;

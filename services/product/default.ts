@@ -1,4 +1,4 @@
-import { type ProductModel, PRODUCT_STATUS_ENUM } from "./model";
+import { type ProductModel, PRODUCT_STATUS_ENUM, MEASUREMENT_UNITS_ENUM } from "./model";
 
 export function getProduct_DEFAULT(): ProductModel {
     const object: ProductModel = {
@@ -7,7 +7,7 @@ export function getProduct_DEFAULT(): ProductModel {
         picture: '',
         status: PRODUCT_STATUS_ENUM.ACCEPTED,
         rejectedMessage: '',
-        type: ''
+        unit: MEASUREMENT_UNITS_ENUM.block
     }
 
     return object;
