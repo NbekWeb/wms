@@ -3,6 +3,10 @@
     @apply !rounded-xl !bg-[#F4F7FB] !border-none !h-12 !shadow-none;
 }
 
+.el-textarea__inner {
+    @apply !rounded-xl !bg-[#F4F7FB] !border-none !shadow-none;
+}
+
 .el-input__wrapper:focus-visible {
     outline: none !important;
 }

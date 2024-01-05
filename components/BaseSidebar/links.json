@@ -28,5 +28,10 @@
         "to": "moderators",
         "title": "Модераторы",
         "icon": "icon-users"
+    },
+    {
+        "to": "cashier",
+        "title": "Открытие смены",
+        "icon": "icon-users"
     }
 ]

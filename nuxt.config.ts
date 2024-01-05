@@ -1,11 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
     '@vueuse/nuxt',
-    '@element-plus/nuxt'
+    '@element-plus/nuxt',
+    'nuxt-vue3-google-signin'
   ],
+  googleSignIn: {
+    clientId: '964160393945-a5uegr7n7cf2fv6rmtte1q4fno9gvllr.apps.googleusercontent.com',
+  },
   build: {
     transpile: ['vue-remix-icons'],
   },
