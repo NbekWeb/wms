@@ -26,7 +26,7 @@ function deleteItem() {
 </script>
 
 <template>
-    <div class="p-6 bg-black rounded-2xl">
+    <NuxtLink :to="`warehouses/${props.item.id}`" class="p-6 bg-black rounded-2xl">
         <div class="flex items-center justify-between cursor-pointer">
             <span class="text-white text-sm">ID {{ props.item.id }}</span>
             <div class="flex space-x-2">
@@ -55,6 +55,6 @@ function deleteItem() {
                 <span class="text-white">Добавить</span>
             </button>
         </section>
-    </div>
+    </NuxtLink>
 </template>
 
