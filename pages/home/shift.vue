@@ -1,0 +1,73 @@
+<script setup lang="ts">
+import type { TabsPaneContext } from 'element-plus'
+import { type ExpenseModel, getExpensesByStoreId_API } from "@/services/expense"
+import { getBaseListResponse_DEFAULT, type BaseListResponse } from "~/services/network";
+
+const activeName = ref('first')
+const _items = ref<BaseListResponse<ExpenseModel>>(getBaseListResponse_DEFAULT())
+const _modalRef = ref()
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+  console.log(tab, event)
+}
+
+async function loadItems() {
+    const [error, response] = await getExpensesByStoreId_API('c7189d5c-c771-417d-83e7-3e88fe18acc8')
+
+    if (error) return
+    _items.value = response
+}
+
+function openModal() {
+    _modalRef.value?.open()
+}
+
+loadItems()
+</script>
+
+<template>
+    <NuxtLayout name="default">
+        <ExpenseModal @update="loadItems" ref="_modalRef" />
+
+        <div class="flex items-center justify-between">
+            <h2 class="font-commissioner-700 text-4xl">Магазин 1</h2>
+        </div>
+
+        <div class="flex space-x-2 mt-5">
+            <span class="font-commissioner-600 text-black">Смена №1</span>
+            <div class="flex space-x-2">
+                <span class="text-text">Начало: </span>
+                <span class="text-black font-commissioner-600">9:00 21.12.2023</span>
+            </div>
+        </div>
+
+        <el-tabs v-model="activeName" class="demo-tabs mt-5" @tab-click="handleClick">
+            <el-tab-pane label="Чеки" name="first">
+                <Checks />
+            </el-tab-pane>
+            <el-tab-pane label="Расходы" name="second">
+                <Expenses />
+            </el-tab-pane>
+        </el-tabs>        
+    </NuxtLayout>
+</template>
+
+<style>
+.tab {
+    @apply !p-0 !text-black !bg-white !relative;
+}
+
+.router-link-exact-active {
+    @apply !font-commissioner-600;
+}
+
+.router-link-exact-active::after {
+    @apply !font-commissioner-600 bg-black;
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+</style>

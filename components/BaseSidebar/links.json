@@ -30,8 +30,8 @@
         "icon": "icon-users"
     },
     {
-        "to": "cashier",
-        "title": "Открытие смены",
+        "to": "shift",
+        "title": "shift",
         "icon": "icon-users"
     }
 ]
