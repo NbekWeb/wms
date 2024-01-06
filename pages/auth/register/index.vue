@@ -53,20 +53,20 @@ async function submit() {
                 <h1 class="font-commissioner-700 text-4xl text-center">Регистрация в системе</h1>
                 <el-form :rules="_rules" label-position="top" :model="_formData" ref="_formRef" class="mt-10" @submit.prevent="submit">
                     <div class="grid grid-cols-2 gap-6">
-                        <el-form-item label="Имя" prop="name">
-                            <el-input placeholder="Введите имя" v-model="_formData.name" />
+                        <el-form-item label="Имя" prop="firstname">
+                            <el-input placeholder="Введите имя" v-model="_formData.firstname" />
                         </el-form-item>
-                        <el-form-item label="Фамилия" prop="surname">
-                            <el-input placeholder="Введите фамилию" v-model="_formData.surname" />
+                        <el-form-item label="Фамилия" prop="lastname">
+                            <el-input placeholder="Введите фамилию" v-model="_formData.lastname" />
                         </el-form-item>
-                        <el-form-item label="Организация" prop="companyName">
-                            <el-input placeholder="Введите название организации" v-model="_formData.companyName" />
+                        <el-form-item label="Организация" prop="orgName">
+                            <el-input placeholder="Введите название организации" v-model="_formData.orgName" />
                         </el-form-item>
-                        <el-form-item label="ИНН организации" prop="companyType">
-                            <el-input placeholder="Введите ИНН" v-model="_formData.companyType" />
+                        <el-form-item label="ИНН организации" prop="tin">
+                            <el-input placeholder="Введите ИНН" v-model="_formData.tin" />
                         </el-form-item>
 
-                        <el-form-item label="Логин" prop="companyType">
+                        <el-form-item label="Логин" prop="username">
                             <el-input placeholder="Введите логин" v-model="_formData.username" />
                         </el-form-item>
 

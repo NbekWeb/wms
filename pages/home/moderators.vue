@@ -10,6 +10,8 @@ const _search = ref('')
 const router = useRouter()
 
 async function loadItems() {
+    console.log("Loading")
+    console.log(_items.value.currentPage)
     const [error, response] = await getProductsByStatus_API(_status.value, _items.value.currentPage - 1)
 
     if (error) return
@@ -18,7 +20,7 @@ async function loadItems() {
 }
 
 async function handleChange(page: number) {
-    _items.value.currentPage = page
+    _items.value.currentPage = page || 1
     await router.replace({ query: { page }})
     loadItems();
 }

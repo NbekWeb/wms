@@ -14,15 +14,12 @@ export interface LoginModel {
 }
 
 export interface RegisterModel {
+    firstname: string;
+    lastname: string;
+    orgName: string;
+    tin: number;
+    mobile: string;
     username: string;
     password: string;
     confirmPassword: string;
-    roles: USER_ROLES_ENUM[];
-    companyName: string;
-    companyType: string;
-    name: string;
-    surname: string;
-    mobile: string;
-    position: EMPLOYEE_POSITION_ENUM;
-    isActive: boolean;
 }

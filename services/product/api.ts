@@ -37,7 +37,7 @@ export async function getProductsByStatus_API(status: PRODUCT_STATUS_ENUM, page:
     try {
         const response = <BaseListResponse<ProductModel>> await axiosInstance.get('products/status/' + status, {
             params: {
-                page,
+                page: page > 0 ? page : 0,
                 size: 10
             }
         })
