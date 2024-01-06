@@ -28,5 +28,84 @@ function openWarehouseProductRealisationModal() {
                 </button>
             </div>
         </div>
+
+        <el-table class="mt-8 w-full" border table-layout="auto">
+                <el-table-column type="index" width="80" label="#" />
+                <el-table-column label="ФАМИЛИЯ И ИМЯ">
+                    <template #default="{ row }">
+                        <span>{{ row.lastname }}</span>
+                        <span>{{ row.firstname }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="КОЛ-ВО">
+                    <template #default="{ row }">
+                        <span>{{ row.lastname }}</span>
+                        <span>{{ row.firstname }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="ЗАКУПОЧНАЯ ЦЕНА">
+                    <template #default="{ row }">
+                        <span>{{ row.lastname }}</span>
+                        <span>{{ row.firstname }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="ПРОДАЖНАЯ ЦЕНА">
+                    <template #default="{ row }">
+                        <span>{{ row.lastname }}</span>
+                        <span>{{ row.firstname }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="КОЛ-ВО ПАРТИЙ">
+                    <template #default="{ row }">
+                        <span>{{ row.lastname }}</span>
+                        <span>{{ row.firstname }}</span>
+                    </template>
+                </el-table-column>
+                
+                <el-table-column label="ЕЩЁ">
+                    <template #default="{ row }">
+                        <el-dropdown trigger="click">
+                            <button class="bg-black py-1 px-2">
+                                <img src="@/assets/img/dots.svg"  />
+                            </button>
+
+                            <template #dropdown>
+                                <div>
+                                    <el-dropdown-menu>
+                                        <el-dropdown-item >
+                                            <button
+                                                class="text-white"
+                                            >                  
+                                                Прикрепить к складу
+                                            </button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item>
+                                            <button
+                                                class="text-white"
+                                            >                  
+                                                Прикрепить к магазину
+                                            </button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item>
+                                            <button
+                                                class="text-white"
+                                            >                  
+                                                Редактировать
+                                            </button>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item>
+                                            <button                                            
+                                                class="text-danger"
+                                            >                  
+                                                Удалить
+                                            </button>
+                                        </el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </div>
+                            </template>
+                        </el-dropdown>
+                    </template>
+                </el-table-column>
+            </el-table>
     </NuxtLayout>
 </template>

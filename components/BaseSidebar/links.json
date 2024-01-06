@@ -1,36 +1,36 @@
 [
     {
-        "to": "main",
+        "to": "/home/main",
         "title": "Главная",
         "icon": "icon-main"
     },
     {
-        "to": "warehouses",
+        "to": "/home/warehouses",
         "title": "Склады",
         "icon": "icon-warehouse"
     },
     {
-        "to": "stores",
+        "to": "/home/stores",
         "title": "Магазины",
         "icon": "icon-shop"
     },
     {
-        "to": "employees",
+        "to": "/home/employees",
         "title": "Сотрудники",
         "icon": "icon-users"
     },
     {
-        "to": "products",
+        "to": "/home/products",
         "title": "Товары",
         "icon": "icon-orders"
     },
     {
-        "to": "moderators",
+        "to": "/home/moderators",
         "title": "Модераторы",
         "icon": "icon-users"
     },
     {
-        "to": "shift",
+        "to": "/home/shift",
         "title": "shift",
         "icon": "icon-users"
     }
