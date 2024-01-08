@@ -25,8 +25,8 @@ function open(item: StoreModel, warehouseId: string) {
     if (warehouseId) _formData.value.warehouseId = warehouseId
 
     _visible.value = true
-    loadWarehouses()
-}
+   }
+   loadWarehouses()
 
 function close() {
     _visible.value = false

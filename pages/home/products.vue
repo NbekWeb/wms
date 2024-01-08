@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
+// import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { type ProductModel, getProductsAutocomplete_API, getProduct_DEFAULT } from '@/services/product';
 
-const _items = ref<BaseListResponse<ProductModel>>(getBaseListResponse_DEFAULT())
+const _items = ref<ProductModel[]>([])
 const _selectedProduct = ref<ProductModel>(getProduct_DEFAULT())
 const _loading = ref(false)
 const _modalRef = ref()
@@ -11,8 +11,8 @@ async function getProductsAutocomplete(query: string) {
     if (!query || query.length <= 3) return
     const [error, response] = await getProductsAutocomplete_API(query)
 
-    if (error) return
-    console.log(response)
+   if (error) return
+    _items.value = response
 }
 
 function onProductChange() {
@@ -30,7 +30,6 @@ function openModal() {
         <div>
             <ProductModal ref="_modalRef" />
             <h2 class="font-commissioner-700 text-4xl">Продукты</h2>            
-
             <div class="flex items-center justify-between mt-8">
                 <el-select
                     class="w-96"
@@ -46,7 +45,7 @@ function openModal() {
                     :loading="_loading"
                 >
                     <el-option
-                        v-for="item of _items.content"
+                        v-for="item of _items"
                         :key="item.id"
                         :label="item.name"
                         :value="item"

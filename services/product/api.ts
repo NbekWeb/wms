@@ -48,9 +48,9 @@ export async function getProductsByStatus_API(status: PRODUCT_STATUS_ENUM, page:
     }
 } 
 
-export async function getProductsAutocomplete_API(name: string): Promise<[Error, null] | [null, BaseListResponse<ProductModel>]> {
+export async function getProductsAutocomplete_API(name: string): Promise<[Error, null] | [null, ProductModel[]]> {
     try {
-        const response = <BaseListResponse<ProductModel>> await axiosInstance.get('products/autocomplete', {
+        const response = <ProductModel[]> await axiosInstance.get('products/autocomplete', {
             params: {
                 name
             }
