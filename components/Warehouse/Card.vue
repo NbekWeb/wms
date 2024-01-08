@@ -26,14 +26,14 @@ function deleteItem() {
 </script>
 
 <template>
-    <div class="p-6 block bg-black rounded-2xl">
+    <div @click="$router.push(`/home/warehouses/${item.id}`)" class="cursor-pointer p-6 block bg-black rounded-2xl">
         <div class="flex items-center justify-between cursor-pointer">
             <span class="text-white text-sm">ID {{ props.item.id }}</span>
             <div class="flex space-x-2">
-                <button @click="$emit('edit')" class="p-0">
+                <button @click.stop="$emit('edit')" class="p-0">
                     <i class="icon-edit white"></i>
                 </button>
-                <button @click="deleteItem" class="p-0">
+                <button @click.stop="deleteItem" class="p-0">
                     <i class="icon-close danger"></i>
                 </button>
             </div>
@@ -51,10 +51,10 @@ function deleteItem() {
             </div>
 
             <div class="space-y-2">
-                <NuxtLink :to="`/home/warehouses/${item.id}`" class="p-2 flex items-center rounded-lg justify-center space-x-2 border border-white">
+                <!-- <NuxtLink :to="`/home/warehouses/${item.id}`" class="p-2 flex items-center rounded-lg justify-center space-x-2 border border-white">
                     <i class="icon-plus white"></i>
                     <span class="text-white">inside</span>
-                </NuxtLink>
+                </NuxtLink> -->
 
                 <button @click.stop="emit('setStore')" class="flex items-center space-x-2 border border-white">
                     <i class="icon-plus white"></i>

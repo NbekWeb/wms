@@ -1,9 +1,9 @@
 import { axiosInstance, type BaseListResponse } from '~/services/network'
-import { type InventoryModel } from './index'
+import { type InventoryModel, type InventoryAddModel } from './index'
 
-export async function createInventory_API(payload: InventoryModel): Promise<[Error, null] | [null, InventoryModel]> {
+export async function createInventory_API(payload: InventoryAddModel): Promise<[Error, null] | [null, InventoryAddModel]> {
     try {
-        const response = <InventoryModel> await axiosInstance.post('inventories', {
+        const response = <InventoryAddModel> await axiosInstance.post('inventories', {
             ...payload
         })
                 

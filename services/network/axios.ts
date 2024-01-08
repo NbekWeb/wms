@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { _TOKEN } from '../profile';
+import { _TOKEN, LOGOUT } from '../profile';
 import { checkAxiosError, checkAxiosResponse } from './natification';
 
 
@@ -41,13 +41,13 @@ axiosInstance.interceptors.response.use(
     },
     (error) => {
         checkAxiosError(error)
-        // checkAxiosResponse(error.response)
-
+       // checkAxiosResponse(error.response)
+       
         if (error?.response?.status === 403) {
 
         }
         if (error?.response?.status === 401) {
-            // LOGOUT()             
+            LOGOUT()             
         }
 
 
