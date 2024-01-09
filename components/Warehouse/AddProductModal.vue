@@ -3,6 +3,7 @@ import { Check, Close } from '@element-plus/icons-vue'
 import { type WarehouseModel, getWarehouse_DEFAULT, createWarehouse_API, updateWarehouse_API, getWarehouses_API } from "@/services/warehouse"
 import { getProductsAutocomplete_API, type ProductModel } from "~/services/product";
 import { createInventory_API, type InventoryModel, getInventory_DEFAULT, getInventoryAdd_DEFAULT, type InventoryAddModel } from "~/services/inventory";
+import { cryleTitle } from "~/utils/crill"
 import { _rules } from './rules'
 const _visible = useState(() => false)
 const _loading = useState(() => false)
@@ -11,6 +12,7 @@ const _inventory = ref<InventoryAddModel>(getInventoryAdd_DEFAULT())
 const links = ref<ProductModel[]>([]);
 const _productName = ref<string>('')
 const _productPicture = ref<string>('')
+const _productUnit = ref<string>('')
 const _modalRef = ref()
 const route = useRoute()
 const emit = defineEmits(['update'])
@@ -21,6 +23,8 @@ function open(item: WarehouseModel) {
 
 function close() {
    _formData.value = getWarehouse_DEFAULT()
+   _inventory.value = getInventoryAdd_DEFAULT()
+
    _modalRef.value?.resetFields()
    _visible.value = false
 }
@@ -49,7 +53,7 @@ async function createInventory() {
    close()
 }
 async function searchProduct() {
-   const [error, response] = await getProductsAutocomplete_API(_productName.value);
+   const [error, response] = await getProductsAutocomplete_API(cryleTitle(_productName.value));
    if (error) return;
    links.value = response;
 }
@@ -71,7 +75,7 @@ async function querySearchAsync(queryString: string, cb: (arg: any) => void) {
 }
 function createFilter(queryString: string) {
    return (link: any) => {
-      return link.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+      return link.name.toLowerCase().indexOf(cryleTitle(queryString).toLowerCase()) === 0;
    };
 };
 const handleSelect = (item: Record<string, any>) => {
@@ -79,15 +83,18 @@ const handleSelect = (item: Record<string, any>) => {
    _inventory.value.warehouseId = route.params.id as string;
    _productName.value = item.name;
    _productPicture.value = item.picture
+   _productUnit.value = item.unit
 };
 
 defineExpose({
    open
 })
+
+
 </script>
 
 <template>
-   <el-dialog class="relative" align-center v-model="_visible" :show-close="false" @close="close" width="580">
+   <el-dialog class="relative" align-center v-model="_visible" :show-close="false" @close="close" width="600">
       <button @click="close" class="absolute top-4 right-4 p-0">
          <i class="icon-close"></i>
       </button>
@@ -110,11 +117,14 @@ defineExpose({
             <p v-else>No image</p>
          </div>
          <el-form class="grid grid-cols-2 col-span-2 gap-2 mt-5" label-position="top">
-            <el-form-item label="КОЛИЧЕСТВО">
+            <el-form-item :label="`КОЛИЧЕСТВО (${_productUnit})`">
                <el-input v-model="_inventory.amount" />
             </el-form-item>
             <el-form-item label="basePrice">
                <el-input v-model="_inventory.basePrice" />
+            </el-form-item> 
+            <el-form-item label="sellingPrice">
+               <el-input v-model="_inventory.sellingPrice" />
             </el-form-item>
             <el-form-item label="debt">
                <el-switch v-model="_inventory.debt" class="mt-2" style="margin-left: 24px" inline-prompt
@@ -124,41 +134,6 @@ defineExpose({
       </div>
       <div @click="createInventory" class="flex justify-end">
          <el-button type="primary">Qo'shish</el-button>
-      </div>
-      <div class="grid grid-cols-2 gap-5 mt-8">
-         <div class="bg-info p-4 rounded-lg">
-            <p class="text-xl font-commissioner-600 text-black">1 партия</p>
-            <div class="flex space-x-2">
-               <span class="text-text">Дата:</span>
-               <span class="text-black font-commissioner-600">13 октября 2023</span>
-            </div>
-            <div class="flex space-x-2">
-               <span class="text-text">Кол-во:</span>
-               <span class="text-black font-commissioner-600">200 ед</span>
-            </div>
-         </div>
-         <div class="bg-info p-4 rounded-lg">
-            <p class="text-xl font-commissioner-600 text-black">2 партия</p>
-            <div class="flex space-x-2">
-               <span class="text-text">Дата:</span>
-               <span class="text-black font-commissioner-600">13 октября 2023</span>
-            </div>
-            <div class="flex space-x-2">
-               <span class="text-text">Кол-во:</span>
-               <span class="text-black font-commissioner-600">200 ед</span>
-            </div>
-         </div>
-         <div class="bg-info p-4 rounded-lg">
-            <p class="text-xl font-commissioner-600 text-black">3 партия</p>
-            <div class="flex space-x-2">
-               <span class="text-text">Дата:</span>
-               <span class="text-black font-commissioner-600">13 октября 2023</span>
-            </div>
-            <div class="flex space-x-2">
-               <span class="text-text">Кол-во:</span>
-               <span class="text-black font-commissioner-600">200 ед</span>
-            </div>
-         </div>
       </div>
    </el-dialog>
 </template>

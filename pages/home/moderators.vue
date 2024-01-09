@@ -5,6 +5,7 @@ import { getProductsByStatus_API, PRODUCT_STATUS_ENUM, type ProductModel } from 
 const _items = ref<BaseListResponse<ProductModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
 const _assignModalRef = ref()
+const _declineModalRef = ref()
 const _status = ref<PRODUCT_STATUS_ENUM>(PRODUCT_STATUS_ENUM.ACCEPTED)
 const _search = ref('')
 const router = useRouter()
@@ -17,6 +18,10 @@ async function loadItems() {
     if (error) return
 
     _items.value = response
+}
+
+function openModal(item: ProductModel, isOpen: boolean) {
+   _declineModalRef.value?.open(item, isOpen)
 }
 
 async function handleChange(page: number) {
@@ -33,7 +38,7 @@ loadItems()
         <div>
             <EmployeeModal ref="_modalRef" @update="loadItems" />
             <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
-
+            <EmployeeDeclineModal ref="_declineModalRef" @update="loadItems"  />  
             <div class="flex items-center justify-between">
                 <h2 class="font-commissioner-700 text-4xl">Продукты</h2>
             </div>
@@ -53,7 +58,7 @@ loadItems()
                     <button class="border border-white text-white text-sm font-commissioner-700">Сбросить</button>
                 </div>
 
-                <el-table class="w-full" :data="_items.content" border table-layout="auto">
+                <el-table class="w-full tables" :data="_items.content" border table-layout="auto">
                     <el-table-column type="index" width="80" label="#" />
                     <el-table-column label="Изображение продукта">
                         <template #default="{ row }">
@@ -78,7 +83,11 @@ loadItems()
                     </el-table-column>
                     <el-table-column label="Действие">
                         <template #default="{ row }">
-                            <span>{{ row.status }}</span>
+                             <div class="flex gap-1 justify-center items-center" v-if="row.status == PRODUCT_STATUS_ENUM.MODERATION">
+                               <el-button @click="openModal(row, false)" class="!h-8" type="primary">Qabul qilish</el-button>
+                               <el-button @click="openModal(row, true)" type="danger">Rad etish</el-button>
+                             </div>
+                            <span v-else>{{ row.status }}</span>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -89,6 +98,9 @@ loadItems()
 </template>
 
 <style>
+.tables .el-button{
+   height: 30px!important;
+}
 .el-dropdown-menu {
     @apply bg-black rounded-xl;
 }

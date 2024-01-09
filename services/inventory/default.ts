@@ -17,6 +17,7 @@ export function getInventoryAdd_DEFAULT(): InventoryAddModel {
       productId: '',
       amount: 0,
       basePrice: 0,
+      sellingPrice: 0,
       debt: true,
       warehouseId: ''
    }

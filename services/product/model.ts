@@ -38,3 +38,10 @@ export interface ProductModel {
     rejectedMessage: string;
     unit: MEASUREMENT_UNITS_ENUM;
 }
+export interface ProductRequestModel {
+   id?: string;
+   name: string;
+   picture: string;
+   unit: MEASUREMENT_UNITS_ENUM;
+   categoryId: string;
+}

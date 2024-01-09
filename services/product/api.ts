@@ -1,7 +1,7 @@
 import { axiosInstance, type BaseListResponse } from '~/services/network'
-import { PRODUCT_STATUS_ENUM, type ProductModel } from './index'
+import { PRODUCT_STATUS_ENUM, type ProductModel, type ProductRequestModel } from './index'
 
-export async function createProduct_API(payload: ProductModel): Promise<[Error, null] | [null, string]> {
+export async function createProduct_API(payload: ProductRequestModel): Promise<[Error, null] | [null, string]> {
     try {
         const response = <string> await axiosInstance.post('products', {
             ...payload
