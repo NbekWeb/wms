@@ -10,6 +10,7 @@ export interface InventoryAddModel {
    productId: string,
    amount: number,
    basePrice: number,
+   sellingPrice: number,
    debt: boolean,
    warehouseId: string
 }

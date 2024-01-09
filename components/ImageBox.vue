@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { ref } from "vue"
 // import { getFileURL_UTIL } from '@/utils';
-// import { uploadFile_API, removeFile_API } from '@/services/file'
+import { uploadFile_API, removeFile_API } from '@/services/file'
 
 
 const _loading = ref(false);
 const _lastFile = ref('');
+const _image = ref('');
 const modelValue = defineModel({
     default: '',
     required: true
@@ -22,26 +23,34 @@ function onDrop(e: Event) {
     const file = (e.target as HTMLInputElement)?.files?.[0]
 
     file && setFile(file);
-
 }
 
 async function setFile(file: File) {
-    console.log(file)
-    // modelValue.value = file.arrayBuffer
+   console.log(file)
+
+   _loading.value = true;
+   const [res, err] = await uploadFile_API(file as any as File);
+   console.log('res: ' + res);
+   _image.value = res
+   _loading.value = false
+   if (err) return;
+   
+    modelValue.value = res
 }
 
 async function removeFile() {
-    // await removeFile_API(_lastFile.value);
+   //  await removeFile_API(_lastFile.value);
 }
 
-// defineExpose({ removeFile })
+defineExpose({ removeFile })
 </script>
 
 <template>
     <div>
+      {{ _image }}
+      <img v-if="_image" class="h-10" :src="`http://185.211.170.253:8008/api/wms/v1/files/download/resource?file=${_image}`" alt="">
         <div class="file w-full h-full relative border border-primary rounded bg-lightgray overflow-hidden" :class="modelValue == '' ? 'border-dashed' : ''">
             <img v-if="modelValue" class="w-full h-full object-cover object-center" :src="(modelValue)" alt="" />
-
 
             <label :for="`image-box${props.id}`" class="change absolute top-0 left-0 w-full h-full rounded flex items-center justify-center cursor-pointer">
                 <p v-if="_loading" class="loader"><i class="ri-loader-2-fill ri-xl text-gray"></i></p>
