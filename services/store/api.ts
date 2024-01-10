@@ -36,9 +36,9 @@ export async function updateStore_API(payload: StoreModel): Promise<[Error, null
     }
 } 
 
-export async function getStores_API(): Promise<[Error, null] | [null, BaseListResponse<StoreModel>]> {
+export async function getStores_API(): Promise<[Error, null] | [null,StoreModel[]]> {
     try {
-        const response = <BaseListResponse<StoreModel>> await axiosInstance.get('stores')
+        const response = <StoreModel[]> await axiosInstance.get('stores')
                 
         return [null, response]
     } catch (error) {

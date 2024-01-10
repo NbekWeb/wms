@@ -12,7 +12,7 @@ export async function acceptProduct_API(id: string): Promise<[Error, null] | [nu
 
 export async function rejectProduct_API(id: string, rejectedMessage: string): Promise<[Error, null] | [null, null]> {
     try {
-        const response = await axiosInstance.put(`moderators/reject/${id}`, {
+        const response = await axiosInstance.post(`moderators/reject/${id}`, {
             rejectedMessage
         })
                 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue"
-// import { getFileURL_UTIL } from '@/utils';
+import { getFileURL_UTIL } from '@/utils/file';
 import { uploadFile_API, removeFile_API } from '@/services/file'
 
 
@@ -31,7 +31,7 @@ async function setFile(file: File) {
    _loading.value = true;
    const [res, err] = await uploadFile_API(file as any as File);
    console.log('res: ' + res);
-   _image.value = res
+   _image.value = res as string;
    _loading.value = false
    if (err) return;
    
@@ -47,10 +47,9 @@ defineExpose({ removeFile })
 
 <template>
     <div>
-      {{ _image }}
-      <img v-if="_image" class="h-10" :src="`http://185.211.170.253:8008/api/wms/v1/files/download/resource?file=${_image}`" alt="">
+      <!-- <img v-if="_image" class="h-10" :src="modelValue" alt=""> -->
         <div class="file w-full h-full relative border border-primary rounded bg-lightgray overflow-hidden" :class="modelValue == '' ? 'border-dashed' : ''">
-            <img v-if="modelValue" class="w-full h-full object-cover object-center" :src="(modelValue)" alt="" />
+            <img v-if="modelValue" class="w-full h-full object-cover object-center" :src="getFileURL_UTIL(_image)" alt="" />
 
             <label :for="`image-box${props.id}`" class="change absolute top-0 left-0 w-full h-full rounded flex items-center justify-center cursor-pointer">
                 <p v-if="_loading" class="loader"><i class="ri-loader-2-fill ri-xl text-gray"></i></p>
