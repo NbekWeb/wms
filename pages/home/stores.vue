@@ -2,7 +2,7 @@
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { type StoreModel, getStores_API } from '@/services/store';
 
-const _items = ref<BaseListResponse<StoreModel>>(getBaseListResponse_DEFAULT())
+const _items = ref<StoreModel[]>([])
 const _modalRef = ref()
 const _employeeModalRef = ref()
 
@@ -39,13 +39,13 @@ loadItems()
             </div>
             <div 
                 class="grid grid-cols-3 gap-6 mt-8" 
-                v-if="_items.content.length > 0"
+                v-if="_items.length > 0"
             >
                 <StoreCard 
                     @set-employee="openEmployeeModal(item)"
                     @edit="openModal(item)"
                     @update="loadItems" 
-                    v-for="item of _items.content" 
+                    v-for="item of _items" 
                     :key="item.id" 
                     :item="item" 
                 />

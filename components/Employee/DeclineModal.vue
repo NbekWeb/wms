@@ -17,7 +17,7 @@ async function open(payload: ProductModel, isOpen: boolean) {
    _isDecline.value = isOpen
 }
 async function acceptProduct() {
-   const [error, response] = _isDecline.value ? await acceptProduct_API(_item.value.id)
+   const [error, response] = !_isDecline.value ? await acceptProduct_API(_item.value.id)
    : await rejectProduct_API(_item.value.id, _rejectedMessage.value)
 
    if (error) return

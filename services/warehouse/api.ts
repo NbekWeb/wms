@@ -36,9 +36,9 @@ export async function deleteWarehouse_API(id: string): Promise<[Error, null] | [
     }
 } 
 
-export async function getWarehouses_API(): Promise<[Error, null] | [null, BaseListResponse<WarehouseModel>]> {
+export async function getWarehouses_API(): Promise<[Error, null] | [null, WarehouseModel[]]> {
     try {
-        const response = <BaseListResponse<WarehouseModel>> await axiosInstance.get('warehouses')
+        const response = <WarehouseModel[]> await axiosInstance.get('warehouses')
                 
         return [null, response]
     } catch (error) {

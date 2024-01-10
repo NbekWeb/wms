@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { getProductsByStatus_API, PRODUCT_STATUS_ENUM, type ProductModel } from "@/services/product"
+import { getFileURL_UTIL } from '@/utils/file';
 
 const _items = ref<BaseListResponse<ProductModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
@@ -61,8 +62,10 @@ loadItems()
                 <el-table class="w-full tables" :data="_items.content" border table-layout="auto">
                     <el-table-column type="index" width="80" label="#" />
                     <el-table-column label="Изображение продукта">
-                        <template #default="{ row }">
-                            <span>{{ row.picture }}</span>
+                        <template  #default="{ row }">
+                           <div class="!h-16">
+                              <img class="bg-cover h-full" :src="getFileURL_UTIL(row.picture)" alt="">
+                           </div>
                         </template>
                     </el-table-column>
                     <el-table-column label="Название продукта">

@@ -4,7 +4,7 @@ import { type WarehouseModel, getWarehouses_API } from '@/services/warehouse';
 
 const _modalRef = ref()
 const _storeModalRef = ref()
-const _items = ref<BaseListResponse<WarehouseModel>>(getBaseListResponse_DEFAULT())
+const _items = ref<WarehouseModel[]>([])
 
 function openModal(item?: WarehouseModel) {
     _modalRef.value?.open(item)
@@ -18,7 +18,8 @@ async function loadItems() {
     const [error, response] = await getWarehouses_API()
 
     if (error) return
-
+     console.log('response', response);
+     
     _items.value = response
 }
 
@@ -37,13 +38,12 @@ loadItems()
                     <span>Добавить склад1</span>
                 </button>
             </div>
-
-            <div class="grid grid-cols-3 gap-6 mt-8" v-if="_items.content.length > 0">
+            <div class="grid grid-cols-3 gap-6 mt-8" v-if="_items.length > 0">
                 <WarehouseCard 
                     @set-store="openStoreModal(item)"
                     @update="loadItems"
                     @edit="openModal(item)"
-                    v-for="item of _items.content" 
+                    v-for="item of _items" 
                     :key="item.title" 
                     :item="item"
                 />
