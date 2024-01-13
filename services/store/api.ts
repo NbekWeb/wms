@@ -45,3 +45,12 @@ export async function getStores_API(): Promise<[Error, null] | [null,StoreModel[
         return [error as Error, null]
     }
 } 
+export async function getStoresWarehouse_API(warehouseId: string): Promise<[Error, null] | [null,StoreModel[]]> {
+   try {
+       const response = <StoreModel[]> await axiosInstance.get(`stores/warehouse/${warehouseId}`)
+               
+       return [null, response]
+   } catch (error) {
+       return [error as Error, null]
+   }
+} 

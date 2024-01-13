@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
-import { getProductsByStatus_API, PRODUCT_STATUS_ENUM, type ProductModel } from "@/services/product"
+import { getProductsByStatus_API,getProductsAutocomplete_API, PRODUCT_STATUS_ENUM, type ProductModel } from "@/services/product"
 import { getFileURL_UTIL } from '@/utils/file';
+import { cryleTitle } from "~/utils/crill"
 
 const _items = ref<BaseListResponse<ProductModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
@@ -19,6 +20,18 @@ async function loadItems() {
     if (error) return
 
     _items.value = response
+}
+
+async function searchProduct() {
+   if (_search.value?.length > 3) {
+      const [error, response] = await getProductsAutocomplete_API(cryleTitle(_search.value));
+      if (error) return;
+      _items.value.content = response
+      _items.value.totalPages = 1
+   }
+   else {
+      loadItems()
+   }
 }
 
 function openModal(item: ProductModel, isOpen: boolean) {
@@ -46,7 +59,7 @@ loadItems()
 
             <section class="mt-8 ">
                 <div class="w-80">
-                    <el-input class="!bg-white" v-model="_search" placeholder="Поиск" />
+                    <el-input @input="searchProduct" class="!bg-white" v-model="_search" placeholder="Поиск" />
                 </div>                
                 <div class="flex items-center justify-between mt-5 bg-text/60 p-5">
                     <el-select v-model="_status" @change="loadItems">
@@ -84,7 +97,12 @@ loadItems()
                             <span>{{ row.status }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column label="Действие">
+                    <el-table-column  v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" label="Отклоненное сообщение">
+                        <template #default="{ row }">
+                            <span>{{ row.rejectedMessage }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column v-if="_status == PRODUCT_STATUS_ENUM.MODERATION" label="Действие">
                         <template #default="{ row }">
                              <div class="flex gap-1 justify-center items-center" v-if="row.status == PRODUCT_STATUS_ENUM.MODERATION">
                                <el-button @click="openModal(row, false)" class="!h-8" type="primary">Qabul qilish</el-button>

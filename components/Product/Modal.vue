@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { cryleTitle } from "@/utils/crill"
 import { _rules } from './rules'
 import { getProductRequest_DEFAULT, type ProductModel, type ProductRequestModel, createProduct_API, MEASUREMENT_UNITS, sendProductToModeration_API } from "~/services/product";
 import { getCategory_API, type CategoryModel } from "~/services/category"
@@ -34,6 +35,7 @@ async function submit() {
    _modalRef.value?.validate(async (valid: boolean) => {
       if (valid) {
          _loading.value = true
+         _formData.value.name = cryleTitle(_formData.value.name)
          const [error, url] = await createProduct_API(_formData.value)
          _loading.value = false
 

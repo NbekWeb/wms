@@ -63,14 +63,22 @@ loadItems()
                         <span>{{ row.firstname }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="ДОЛЖНОСТЬ">
-                    <template #default="{ row }">
-                        <div v-if="row.position === EMPLOYEE_POSITION_ENUM.STACKER" class="bg-primary text-white w-fit p-2 rounded-xl">
-                            {{ EMPLOYEE_POSITION.get(row.position) }}
+                <el-table-column width="300" label="ДОЛЖНОСТЬ">
+                    <template  #default="{ row }">
+                      <div class="flex gap-3 flex-wrap" v-if="row.works?.length">
+                       <div v-for="item in row.works" :key="item.id">
+                           <div v-if="item.position === EMPLOYEE_POSITION_ENUM.STACKER" class="bg-primary text-white w-fit px-2 !py-1 rounded-xl">
+                              <p>
+                                 {{ EMPLOYEE_POSITION.get(item.position) }}
+                              </p>
+                           </div>
+                           <div v-if="item.position === EMPLOYEE_POSITION_ENUM.SALESMAN" class="bg-info-main border border-primary text-primary w-fit px-2 !py-1 rounded-xl">
+                              <p>
+                                 {{ EMPLOYEE_POSITION.get(item.position) }}
+                              </p>
+                           </div>
                         </div>
-                        <div v-if="row.position === EMPLOYEE_POSITION_ENUM.SALESMAN" class="bg-info-main border border-primary text-primary w-fit p-2 rounded-xl">
-                            {{ EMPLOYEE_POSITION.get(row.position) }}
-                        </div>
+                     </div>
                     </template>
                 </el-table-column>
                 <el-table-column label="СКЛАД">

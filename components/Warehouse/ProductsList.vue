@@ -1,6 +1,16 @@
+<script lang="ts" setup>
+import { _sendProduct, sentInventory_API } from '~/services/inventory';
+
+async function sentInventory() {
+    const [error, response] = await sentInventory_API(_sendProduct.value)
+
+    if (error) return
+}
+</script>
 <template>
     <div class="pr-8">
         <div class="space-y-5">
+         {{ _sendProduct }}
             <div class="flex items-center justify-between" v-for="item of 2">
                 <div>
                     <p class="text-black font-commissioner-600">Помидоры розовые</p>
@@ -25,7 +35,7 @@
                 <span class="text-text text-lg">Сумма:</span>
                 <span class="text-black font-commissioner-700 text-2xl">600 000 сум</span>
             </div>
-            <el-button type="primary" class="w-full">ОТПРАВИТЬ В МАГАЗИН</el-button>
+            <el-button @click="sentInventory" type="primary" class="w-full">ОТПРАВИТЬ В МАГАЗИН</el-button>
         </div>
     </div>
 </template>

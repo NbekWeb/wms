@@ -26,7 +26,7 @@ function deleteItem() {
 </script>
 
 <template>
-    <div class="p-6 bg-black rounded-2xl">
+    <div  @click="$router.push(`/home/stores/${item.id}`)" class="p-6 cursor-pointer bg-black rounded-2xl">
         <div class="flex items-center justify-between cursor-pointer">
             <span class="text-white text-sm">ID {{ props.item.id }}</span>
             <div class="flex space-x-2">

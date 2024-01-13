@@ -1,4 +1,4 @@
-import { type InventoryModel, type InventoryAddModel } from "./model";
+import { type InventoryModel, type InventoryAddModel, type InventorySentModel } from "./model";
 
 export function getInventory_DEFAULT(): InventoryModel {
    const object: InventoryModel = {
@@ -20,6 +20,14 @@ export function getInventoryAdd_DEFAULT(): InventoryAddModel {
       sellingPrice: 0,
       debt: true,
       warehouseId: ''
+   }
+
+   return object;
+}
+export function getInventorySent_DEFAULT(): InventorySentModel {
+   const object: InventorySentModel = {
+      storeId: '',
+      inventories: []
    }
 
    return object;

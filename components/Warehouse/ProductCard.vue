@@ -1,11 +1,89 @@
+<script lang="ts" setup>
+import { getFileURL_UTIL } from '@/utils/file';
+import { type ProductModel } from '~/services/product';
+import { getInventoriesByWarehouseId_API, type InventoryModel, type InventorySentModel, getInventorySent_DEFAULT, _sendProduct } from '~/services/inventory';
+import { type StoreModel, getStoresWarehouse_API } from '@/services/store';
+const _stores = ref<StoreModel[]>([])
+const _formData = ref<InventorySentModel>(getInventorySent_DEFAULT())
+const _addStore = ref<any>({
+
+})
+const router = useRouter()
+const route = useRoute()
+const _visible = ref(false)
+const emit = defineEmits(['edit', 'update', 'setEmployee'])
+const props = defineProps({
+    item: {
+        type: Object as PropType<InventoryModel>,
+        required: true
+    }
+})
+_addStore.value = props.item
+// function open(item: InventoryModel) {
+//     console.log(item);
+    
+//    // _item.value = item
+//    _visible.value = true
+//    _addStore.value = { ...item }
+// }
+
+function close() {
+    _visible.value = false
+}
+async function loadItems() {
+    const [error, response] = await getStoresWarehouse_API(route?.params?.id)
+
+    if (error) return
+    _stores.value = response
+}
+onMounted(loadItems)
+
+loadItems()
+
+async function sendProduct() {
+   _sendProduct.value.inventories.push(_addStore.value)
+    close()
+}
+
+// defineExpose({
+//    open
+// })
+</script>
+
 <template>
     <div class="rounded-2xl border border-info-main bg-info p-5 space-y-4">
-        <p class="font-commissioner-600 text-black text-center">Coca-Cola</p>
-        <img src="@/assets/img/product.png" alt="product" class="w-24 h-24 object-cover mx-auto">
-        <p class="text-center font-commissioner-600 text-black text-xl">8 000 сум (ед)</p>
-        <button class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
+        <p class="font-commissioner-600 h-12 text-black text-center text-sm">{{ item.productName }}</p>
+        <img class="w-24 h-24 object-cover mx-auto" v-if="item?.picture" :src="getFileURL_UTIL(item?.picture)" alt="">
+        <div class="h-24 rounded flex justify-center items-center bg-white" v-else>
+          No image
+        </div>
+        <!-- <img src="@/assets/img/product.png" alt="product" class="w-24 h-24 object-cover mx-auto"> -->
+        <p class="text-center font-commissioner-600 text-black text-xl">{{ item.sellingPrice }} сум </p>
+        <button @click="_visible = true" class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
             <i class="icon-plus white"></i>
             <span>Добавить</span>
         </button>
+
+        <el-dialog class="relative" align-center v-model="_visible" :show-close="false" @close="close" width="390">
+        <button @click="close" class="absolute top-4 right-4 p-0">
+            <i class="icon-close"></i>
+        </button>
+        <h2 class="font-commissioner-700 text-xl text-primary mb-4">            
+           {{ item.productName }}
+        </h2>
+       <el-form label-position="top">
+         <el-form-item label="Магазин" prop="warehouse">
+            <el-select class="w-full" v-model="_sendProduct.storeId">
+               <el-option v-for="item of _stores" :key="item.id" :label="item.title" :value="item.id" />
+            </el-select>
+         </el-form-item> 
+         <el-form-item label="amount" prop="warehouse">
+            <el-input v-model="_addStore.amount" />
+         </el-form-item> 
+         <el-form-item class="w-full" >
+            <el-button @click="sendProduct" class="w-full" type="primary">Qo'shish</el-button>
+         </el-form-item> 
+       </el-form>
+    </el-dialog>
     </div>
 </template>

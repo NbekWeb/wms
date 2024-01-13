@@ -32,3 +32,23 @@ export async function getInventoryById_API(warehouseId: string): Promise<[Error,
         return [error as Error, null]
     }
 } 
+export async function sentInventory_API(data: any): Promise<[Error, null] | [null, InventoryModel]> {
+   console.log(data);
+   
+   const arr = data.inventories.map((item) => {
+      return {
+         id: item.productId,
+         amount: item.amount
+      }
+   })
+   try {
+      const response = <InventoryModel>await axiosInstance.post(`/inventories/sent`, {
+         storeId: data.storeId,
+         inventories: arr
+      })
+               
+       return [null, response]
+   } catch (error) {
+       return [error as Error, null]
+   }
+} 
