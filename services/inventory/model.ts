@@ -14,3 +14,12 @@ export interface InventoryAddModel {
    debt: boolean,
    warehouseId: string
 }
+export interface InventorySentModel {
+   storeId: string,
+   inventories: [
+      {
+         sellingPrice: number
+         amount: number
+      }
+   ]
+}

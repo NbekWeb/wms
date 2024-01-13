@@ -1,23 +1,20 @@
 <script lang="ts" setup>
 import { type BaseListResponse, getBaseListResponse_DEFAULT } from '~/services/network';
 import { type ProductModel, getProductsByStatus_API, PRODUCT_STATUS_ENUM, getProductsAutocomplete_API, getProduct_DEFAULT } from '@/services/product';
-import { getInventoriesByWarehouseId_API, type InventoryModel } from '~/services/inventory';
-const items = ref<BaseListResponse<InventoryModel>>(getBaseListResponse_DEFAULT())
-
-// const items = ref<InventoryModel[]>([])
-const route = useRoute()
+const _itemsProduct = ref<BaseListResponse<ProductModel>>(getBaseListResponse_DEFAULT())
 const router = useRouter()
 
 async function loadItems() {
    console.log("Loading")
-   const [error, response] = await getInventoriesByWarehouseId_API(route.params.id as string)
+   console.log(_itemsProduct.value.currentPage)
+   const [error, response] = await getProductsByStatus_API(PRODUCT_STATUS_ENUM.ACCEPTED, _itemsProduct.value.currentPage - 1)
    if (error) return
 
-   items.value = response
+   _itemsProduct.value = response
 }
 
 async function handleChange(page: number) {
-   items.value.currentPage = page || 1
+   _itemsProduct.value.currentPage = page || 1
    await router.replace({ query: { page } })
    loadItems();
 }
@@ -43,10 +40,11 @@ loadItems()
             <div class="col-span-2 p-8 pr-0">
                <el-input placeholder="Поиск по товарам" />
                <div class="grid grid-cols-3 gap-4 mt-5">
-                  <WarehouseProductCard v-for="item of items.content" :key="item.productId" :item="item" />
-                  <el-pagination v-if="items.totalPages > 1" class="mt-8" background
-                     :current-page="items.currentPage" layout="prev, pager, next"
-                     :total="items.totalElements" @current-change="handleChange" />
+                  <WarehouseProductCard v-for="item of _itemsProduct.content" :key="item.id" :item="item" />
+                  <el-pagination v-if="_itemsProduct.totalPages > 1" class="mt-8" background
+                     :current-page="_itemsProduct.currentPage" layout="prev, pager, next"
+                     :total="_itemsProduct.totalElements" @current-change="handleChange" />
+
                </div>
             </div>
          </div>

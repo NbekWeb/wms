@@ -5,8 +5,8 @@ const _warehouseAddProductModalRef = ref()
 const _warehouseProductRealisationModalRef = ref()
 const items = ref<InventoryModel[]>([])
 const route = useRoute()
-function openWarehouseProductModal() {
-   _warehouseProductModalRef.value?.open()
+function openWarehouseProductModal(item: InventoryModel) {
+   _warehouseProductModalRef.value?.open(item)
 }
 
 function openWarehouseAddProductModal() {
@@ -68,7 +68,7 @@ loadItems()
          </el-table-column>
          <el-table-column label="КОЛ-ВО">
             <template #default="{ row }">
-               <span>{{ row.partCount }}</span>
+               <span>{{ row.amount }}</span>
             </template>
          </el-table-column>
          <el-table-column label="ЗАКУПОЧНАЯ ЦЕНА">
@@ -78,12 +78,12 @@ loadItems()
          </el-table-column>
          <el-table-column label="ПРОДАЖНАЯ ЦЕНА">
             <template #default="{ row }">
-               <span>{{ row.amount }}</span>
+               <span>{{ row.sellingPrice }}</span>
             </template>
          </el-table-column>
          <el-table-column label="КОЛ-ВО ПАРТИЙ">
             <template #default="{ row }">
-               <span>{{ row.coountParty }}</span>
+               <span>{{ row.partCount }}</span>
             </template>
          </el-table-column>
 
@@ -98,7 +98,7 @@ loadItems()
                      <div>
                         <el-dropdown-menu>
                            <el-dropdown-item>
-                              <button @click="openWarehouseProductModal()" class="text-white">
+                              <button @click="openWarehouseProductModal(row)" class="text-white">
                                  See product info
                               </button>
                            </el-dropdown-item>
