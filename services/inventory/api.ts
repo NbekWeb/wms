@@ -1,5 +1,5 @@
 import { axiosInstance, type BaseListResponse } from '~/services/network'
-import { type InventoryModel, type InventoryAddModel } from './index'
+import { type InventoryModel, type InventoryAddModel, type InventoryProductPartModel } from './index'
 
 export async function createInventory_API(payload: InventoryAddModel): Promise<[Error, null] | [null, InventoryAddModel]> {
     try {
@@ -32,12 +32,27 @@ export async function getInventoryById_API(warehouseId: string): Promise<[Error,
         return [error as Error, null]
     }
 } 
+
+export async function getInventoryProductPart_API(warehouseId: string, productId :string): Promise<[Error, null] | [null, InventoryProductPartModel[]]> {
+   try {
+      const response = <InventoryProductPartModel[]>await axiosInstance.get(`inventories/product-part`, {
+         params: {
+            warehouseId,
+            productId
+          }
+       })
+               
+       return [null, response]
+   } catch (error) {
+       return [error as Error, null]
+   }
+} 
 export async function sentInventory_API(data: any): Promise<[Error, null] | [null, InventoryModel]> {
    console.log(data);
    
    const arr = data.inventories.map((item) => {
       return {
-         id: item.productId,
+         id: item.id,
          amount: item.amount
       }
    })
@@ -46,6 +61,15 @@ export async function sentInventory_API(data: any): Promise<[Error, null] | [nul
          storeId: data.storeId,
          inventories: arr
       })
+               
+       return [null, response]
+   } catch (error) {
+       return [error as Error, null]
+   }
+} 
+export async function getInventoryAccept_API(id: string): Promise<[Error, null] | [null, InventoryModel]> {
+   try {
+       const response = <InventoryModel> await axiosInstance.post(`inventories/${id}/accept`)
                
        return [null, response]
    } catch (error) {
