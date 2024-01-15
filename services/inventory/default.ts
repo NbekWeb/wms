@@ -1,4 +1,4 @@
-import { type InventoryModel, type InventoryAddModel, type InventorySentModel } from "./model";
+import { type InventoryModel, type InventoryAddModel, type InventorySentModel, type InventoryProductPartModel } from "./model";
 
 export function getInventory_DEFAULT(): InventoryModel {
    const object: InventoryModel = {
