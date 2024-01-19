@@ -36,3 +36,19 @@ export interface InventorySentModel {
       }
    ]
 }
+export enum ORDER_TYPE {
+   LOAN = "LOAN",
+   CASH = "CASH",
+   TERMINAL = "TERMINAL"
+}
+export interface InventoryOrderModel {
+   workShiftId: number
+   type: ORDER_TYPE
+   productList: [
+      {
+         productId: string
+         amount: number
+         price: number
+      }
+   ]
+}

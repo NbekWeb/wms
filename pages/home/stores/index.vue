@@ -39,10 +39,9 @@ loadItems()
             </div>
             <div 
                 class="grid grid-cols-3 gap-6 mt-8" 
-                v-if="_items.length > 0"
-            >
+                v-if="_items.length > 0">
                 <StoreCard 
-                    @set-employee="openEmployeeModal(item)"
+                    @set-employee="openEmployeeModal"
                     @edit="openModal(item)"
                     @update="loadItems" 
                     v-for="item of _items" 

@@ -4,14 +4,14 @@ import { type StoreModel, getStore_DEFAULT, createStore_API, updateStore_API } f
 import { type WarehouseModel, getWarehouses_API } from '~/services/warehouse';
 import { _rules } from './rules'
 
-const _warehouses = ref<BaseListResponse<WarehouseModel>>(getBaseListResponse_DEFAULT())
+const _warehouses = ref<WarehouseModel[]>([])
 const _modalRef = ref()
 
 const emit = defineEmits(['update'])
 
 async function loadWarehouses() {
     const [error, response] = await getWarehouses_API()
-
+    
     if (error) return
     _warehouses.value = response
 }
@@ -21,6 +21,9 @@ const _loading = useState(() => false)
 const _formData = useState<StoreModel>(getStore_DEFAULT)
 
 function open(item: StoreModel, warehouseId: string) {
+   loadWarehouses()
+   console.log('itemwwwwwww', item);
+   
     if (item?.id) _formData.value = item
     if (warehouseId) _formData.value.warehouseId = warehouseId
 
@@ -66,7 +69,7 @@ defineExpose({
         <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Склад" prop="warehouseId">
                 <el-select class="w-full" v-model="_formData.warehouseId">
-                    <el-option v-for="item of _warehouses.content" :key="item.id" :label="item.title" :value="item.id" />
+                    <el-option v-for="item of _warehouses" :key="item.id" :label="item.title" :value="item.id" />
                 </el-select>
             </el-form-item>
 

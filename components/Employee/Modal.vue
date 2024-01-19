@@ -14,8 +14,8 @@ const emit = defineEmits(['update'])
 const _multiSel = ref<string[]>([])
 const data = ref([
    {
-      value: EMPLOYEE_POSITION_ENUM.SALESMAN,
-      label: EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.SALESMAN),
+      value: EMPLOYEE_POSITION_ENUM.STACKER,
+      label: EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.STACKER),
       children: [
          {
             value: '1-1',
@@ -24,8 +24,8 @@ const data = ref([
       ],
    },
    {
-      value: EMPLOYEE_POSITION_ENUM.STACKER,
-      label: EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.STACKER),
+      value: EMPLOYEE_POSITION_ENUM.SALESMAN,
+      label: EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.SALESMAN),
       children: [
          {
             value: '1-1',

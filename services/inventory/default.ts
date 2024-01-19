@@ -1,4 +1,4 @@
-import { type InventoryModel, type InventoryAddModel, type InventorySentModel, type InventoryProductPartModel } from "./model";
+import { type InventoryModel, type InventoryOrderModel, ORDER_TYPE, type InventoryAddModel, type InventorySentModel, type InventoryProductPartModel } from "./model";
 
 export function getInventory_DEFAULT(): InventoryModel {
    const object: InventoryModel = {
@@ -28,6 +28,15 @@ export function getInventorySent_DEFAULT(): InventorySentModel {
    const object: InventorySentModel = {
       storeId: '',
       inventories: []
+   }
+
+   return object;
+}
+export function getInventoryOrder_DEFAULT(): InventoryOrderModel {
+   const object: InventoryOrderModel = {
+      workShiftId: 0,
+      type: ORDER_TYPE.LOAN,
+      productList: []
    }
 
    return object;
