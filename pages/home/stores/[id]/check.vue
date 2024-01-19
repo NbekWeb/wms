@@ -7,7 +7,7 @@ import { formatDate_UTIL } from '~/utils/date';
 
 const activeName = ref('first')
 const _itemsShift = ref<BaseListResponse<OrderShiftModel>>(getBaseListResponse_DEFAULT())
-const _items = ref<BaseListResponse<ExpenseModel>>(getBaseListResponse_DEFAULT())
+// const _items = ref<BaseListResponse<ExpenseModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
 const route = useRoute()
 const _smena = ref(JSON.parse(route?.query?.smena as string))
@@ -15,12 +15,13 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
 }
 
-async function loadItems() {
-    const [error, response] = await getExpensesByStoreId_API(route.params.id as string)
+// async function loadItems() {
+//     const [error, response] = await getExpensesByStoreId_API(_smena.value.id as string)
 
-    if (error) return
-    _items.value = response
-}
+//     if (error) return
+//     _items.value = response
+// }
+
 async function getOrderWorkShift() {
     const [error, response] = await getOrderWorkShift_API(_smena.value.id as string, _itemsShift.value.currentPage-1)
 
@@ -41,13 +42,13 @@ function openModal() {
     _modalRef.value?.open()
 }
 
-loadItems()
+// loadItems()
 
 </script>
 
 <template>
     <NuxtLayout name="default">
-        <ExpenseModal @update="loadItems" ref="_modalRef" />
+        <!-- <ExpenseModal @update="loadItems" ref="_modalRef" /> -->
 
         <div class="flex items-center justify-between">
             <h2 class="font-commissioner-700 text-4xl">Магазин</h2>

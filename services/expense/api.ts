@@ -15,7 +15,7 @@ export async function createExpense_API(payload: ExpenseModel): Promise<[Error, 
 
 export async function getExpensesByStoreId_API(storeId: string): Promise<[Error, null] | [null, BaseListResponse<ExpenseModel>]> {
     try {
-        const response = <BaseListResponse<ExpenseModel>> await axiosInstance.get(`expenses/store/${storeId}`)
+        const response = <BaseListResponse<ExpenseModel>> await axiosInstance.get(`expenses/work-shift/${storeId}`)
                 
         return [null, response]
     } catch (error) {

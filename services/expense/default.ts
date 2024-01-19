@@ -2,7 +2,7 @@ import { type ExpenseModel } from "./model";
 
 export function getExpense_DEFAULT(): ExpenseModel {
     const object: ExpenseModel = {
-        storeId: '',
+        workShiftId: 0,
         comment: '',
         amount: 0
     }

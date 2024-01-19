@@ -11,11 +11,12 @@ const _visible = useState(() => false)
 const _loading = useState(() => false)
 const _formData = useState<ExpenseModel>(getExpense_DEFAULT)
 const _modalRef = ref()
-
+const route = useRoute()
+const _smena = ref(JSON.parse(route.query.smena as string))
 function open() {
     _visible.value = true
     _formData.value = getExpense_DEFAULT()
-    _formData.value.storeId = 'c7189d5c-c771-417d-83e7-3e88fe18acc8'
+   _formData.value.workShiftId = _smena.value?.id as number
 }
 
 function close() {
@@ -54,7 +55,7 @@ defineExpose({
         </h2>
         <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">            
             <el-form-item label="Сумма расхода" prop="amount">
-                <el-input v-model="_formData.amount" placeholder="Введите сумму" />
+                <el-input type="number" v-model="_formData.amount" placeholder="Введите сумму" />
             </el-form-item>
             <el-form-item label="Комментарий" prop="comment">
                 <el-input type="textarea" :rows="5" v-model="_formData.comment" placeholder="Введите комментарий" />

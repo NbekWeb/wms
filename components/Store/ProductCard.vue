@@ -8,6 +8,7 @@ const router = useRouter()
 const route = useRoute()
 const _visible = ref(false)
 const emit = defineEmits(['edit', 'update', 'setEmployee'])
+const _smena = ref(JSON.parse(route.query.smena as any))
 
 const props = defineProps({
    item: {
@@ -42,7 +43,7 @@ async function sendProduct() {
       </div>
       <!-- <img src="@/assets/img/product.png" alt="product" class="w-24 h-24 object-cover mx-auto"> -->
       <p class="text-center font-commissioner-600 text-black text-xl">{{ item.sellingPrice }} сум </p>
-      <button @click="openModal" class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
+      <button v-if="!_smena.closedDate" @click="openModal" class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
          <i class="icon-plus white"></i>
          <span>Добавить</span>
       </button>
@@ -60,7 +61,7 @@ async function sendProduct() {
                <el-input-number :max="item.amount" v-model="_addStore.amount" />
             </el-form-item>
             <el-form-item class="w-full">
-               <el-button @click="sendProduct" class="w-full" type="primary">Qo'shish</el-button>
+               <el-button @click="sendProduct" class="w-full" type="primary">Qo'1shish</el-button>
             </el-form-item>
          </el-form>
       </el-dialog>

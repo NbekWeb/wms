@@ -1,25 +1,17 @@
 <script setup lang="ts">
 import type { TabsPaneContext } from 'element-plus'
-import { type ExpenseModel, getExpensesByStoreId_API } from "@/services/expense"
 import { getBaseListResponse_DEFAULT, type BaseListResponse } from "~/services/network";
 import { createShift_API, type ShiftModel, getShift_API } from "~/services/shift"
 import { formatDate_UTIL } from '~/utils/date';
 const activeName = ref('first')
 
 const _itemsShift = ref<BaseListResponse<ShiftModel>>(getBaseListResponse_DEFAULT())
-const _items = ref<BaseListResponse<ExpenseModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
 const route = useRoute()
 const handleClick = (tab: TabsPaneContext, event: Event) => {
    console.log(tab, event)
 }
 
-async function loadItems() {
-   const [error, response] = await getExpensesByStoreId_API(route.params.id as string)
-
-   if (error) return
-   _items.value = response
-}
 async function getShift() {
    const [error, response] = await getShift_API(route.params.id as string, _itemsShift.value.currentPage - 1)
 
@@ -35,17 +27,16 @@ async function createShift() {
    getShift()
 }
 
-function openModal() {
-   _modalRef.value?.open()
-}
+// function openModal() {
+//    _modalRef.value?.open()
+// }
 
-loadItems()
 
 </script>
 
 <template>
    <NuxtLayout name="default">
-      <ExpenseModal @update="loadItems" ref="_modalRef" />
+      <!-- <ExpenseModal @update="loadItems" ref="_modalRef" /> -->
 
       <div class="flex items-center justify-between">
          <h2 class="font-commissioner-700 text-4xl">Магазин</h2>
