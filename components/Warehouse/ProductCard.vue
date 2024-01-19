@@ -2,6 +2,7 @@
 import { getFileURL_UTIL } from '@/utils/file';
 import { type ProductModel } from '~/services/product';
 import { getInventoriesByWarehouseId_API, type InventoryModel, type InventorySentModel, type InventoryProductPartModel, getInventorySent_DEFAULT, _sendProduct, getInventoryProductPart_API } from '~/services/inventory';
+import { formatDate_UTIL } from '~/utils/date';
 import { type StoreModel, getStoresWarehouse_API } from '@/services/store';
 const _stores = ref<StoreModel[]>([])
 const _ProductPart = ref<InventoryProductPartModel[]>([])
@@ -58,8 +59,8 @@ function handlePart(item) {
       el.isPart = false
       if (el.id == item.id) {
          console.log(el.id)
-          el.isPart = !el?.isPart
-          _addStore.value.id = item.id
+         el.isPart = !el?.isPart
+         _addStore.value.id = item.id
       }
       return el
    })
@@ -103,10 +104,10 @@ function handlePart(item) {
          <div class="grid grid-cols-2 gap-5 mt-8">
             <div v-for="item, ind in _ProductPart" :key="item.id" @click="handlePart(item)"
                :class="{ 'border border-primary': item?.isPart }" class="bg-info p-4 rounded-lg">
-               <p class="text-xl font-commissioner-600 text-black">{{ ind+1 }} партия</p>
+               <p class="text-xl font-commissioner-600 text-black">{{ ind + 1 }} партия</p>
                <div class="flex space-x-2">
                   <span class="text-text">Дата:</span>
-                  <span class="text-black font-commissioner-600">{{ item.createdDate }}</span>
+                  <span class="text-black font-commissioner-600">{{ formatDate_UTIL(item.createdDate, false) }}</span>
                </div>
                <div class="flex space-x-2">
                   <span class="text-text">Кол-во:</span>

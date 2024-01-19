@@ -27,10 +27,7 @@ export async function updateEmployee_API(payload: EmployeeModel): Promise<[Error
 
 export async function assignEmployee_API(payload: EmployeeModel): Promise<[Error, null] | [null, EmployeeModel]> {
     try {
-        const response = <EmployeeModel> await axiosInstance.put(`employees/${payload.id}`, {
-            workId: payload.workId,
-            position: payload.position
-        })
+        const response = <EmployeeModel> await axiosInstance.put(`employees/${payload.id}`, payload.works)
                 
         return [null, response]
     } catch (error) {
