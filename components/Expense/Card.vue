@@ -12,9 +12,9 @@ const props = defineProps({
 
 <template>
     <div class="p-4 space-y-2 border border-text/20 overflow-hidden">
-        <p class="text-text/80">21.12.2023   12:15</p>
+        <!-- <p class="text-text/80">21.12.2023   12:15</p> -->
         <div class="space-x-2">
-            <span class="font-commissioner-600 text-primary">Расход №1</span>
+            <span class="font-commissioner-600 text-primary">Расход № {{ props.item.id }}</span>
             <span class="font-commissioner-600 text-text">{{ props.item.amount }} UZS</span>
         </div>
         <div class="space-x-2 flex">

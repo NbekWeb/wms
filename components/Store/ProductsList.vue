@@ -44,7 +44,7 @@ const productPrice = computed(() => {
       <div class="space-y-5">
          <div class="flex items-center justify-between" v-for="item, ind in _orderProduct.productList" :key="ind">
             <div>
-               <p class="text-black font-commissioner-600">{{ item.productName }}</p>
+               <p class="text-black font-commissioner-600">{{ item.productName || item.name }}</p>
                <div class="flex space-x-5 mt-2">
                   <span class="text-black">{{ item.amount }} {{ item.unit }}</span>
                   <span class="text-text font-commissioner-600">{{ item.amount * (item.sellingPrice || item.price) }}

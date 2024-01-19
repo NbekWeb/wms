@@ -4,9 +4,11 @@ import { getBaseListResponse_DEFAULT, type BaseListResponse } from "~/services/n
 
 const _items = ref<BaseListResponse<ExpenseModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
+const route = useRoute()
+const _smena = ref(JSON.parse(route.query?.smena as any))
 
 async function loadItems() {
-    const [error, response] = await getExpensesByStoreId_API('c7189d5c-c771-417d-83e7-3e88fe18acc8')
+    const [error, response] = await getExpensesByStoreId_API(_smena.value.id)
 
     if (error) return
     _items.value = response
