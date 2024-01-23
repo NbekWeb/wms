@@ -43,17 +43,23 @@ async function createShift() {
       </div>
       <div v-if="_itemsShift.content.length > 0">
          <div class="grid grid-cols-3">
-            <div @click="$router.push({ path: `/home/stores/${$route.params.id}/check`, query: { smena: JSON.stringify(item) } })"
+            <div
+               @click="$router.push({ path: `/home/stores/${$route.params.id}/check`, query: { smena: JSON.stringify(item) } })"
                v-for="item, ind in  _itemsShift.content" :key="ind">
                <div class="p-4 space-y-2 border border-text/20 overflow-hidden mt-5">
                   <span class="font-commissioner-600 text-black">Смена №{{ item.id }}</span>
                   <div class="flex space-x-2">
+                     <span class="text-text">employeeName: </span>
+                     <span class="text-black font-commissioner-600">{{ item.employeeName}}</span>
+                  </div>
+                  <div class="flex space-x-2">
                      <span class="text-text">Начало: </span>
                      <span class="text-black font-commissioner-600">{{ formatDate_UTIL(item.createdDate, false) }}</span>
                   </div>
-                  <div v-if="item.closedDate" class="flex space-x-2">
+                  <div class="flex space-x-2">
                      <span class="text-text">Заканчивать: </span>
-                     <span class="text-black font-commissioner-600">{{ formatDate_UTIL(item.closedDate, false) }}</span>
+                     <span v-if="item.closedDate" class="text-black font-commissioner-600">{{formatDate_UTIL(item.closedDate, false) }} </span>
+                     <span v-else class="text-black font-commissioner-600"> -</span>
                   </div>
                </div>
             </div>

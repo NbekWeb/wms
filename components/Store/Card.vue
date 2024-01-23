@@ -30,10 +30,10 @@ function deleteItem() {
         <div class="flex items-center justify-between cursor-pointer">
             <span class="text-white text-sm">ID {{ props.item.id }}</span>
             <div class="flex space-x-2">
-                <button @click="$emit('edit')" class="p-0">
+                <button @click.stop="$emit('edit')" class="p-0">
                     <i class="icon-edit white"></i>
                 </button>
-                <button @click="deleteItem" class="p-0">
+                <button @click.stop="deleteItem" class="p-0">
                     <i class="icon-close danger"></i>
                 </button>
             </div>

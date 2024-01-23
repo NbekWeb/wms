@@ -30,8 +30,8 @@
         "icon": "icon-users"
     },
     {
-        "to": "/home/shift",
-        "title": "shift",
-        "icon": "icon-users"
-    }
+      "to": "/home/order",
+      "title": "Заказы поставки",
+      "icon": "icon-users"
+  }
 ]
