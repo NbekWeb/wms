@@ -1,4 +1,4 @@
-import { type InventoryModel, type InventoryOrderModel, ORDER_TYPE, type InventoryAddModel, type InventorySentModel, type InventoryProductPartModel } from "./model";
+import { type InventoryModel, type InventoryOrderModel, ORDER_TYPE, type InventoryAddModel, type InventoryOrderReciveModel, type InventorySentModel } from "./model";
 
 export function getInventory_DEFAULT(): InventoryModel {
    const object: InventoryModel = {
@@ -37,6 +37,14 @@ export function getInventoryOrder_DEFAULT(): InventoryOrderModel {
       workShiftId: 0,
       type: ORDER_TYPE.LOAN,
       productList: []
+   }
+
+   return object;
+}
+export function getInventoryOrderRecive_DEFAULT(): InventoryOrderReciveModel {
+   const object: InventoryOrderReciveModel = {
+      warehouseId: '',
+      sellingPrices: []
    }
 
    return object;

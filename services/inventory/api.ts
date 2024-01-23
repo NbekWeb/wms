@@ -95,11 +95,31 @@ export async function postOrder_API(data: any): Promise<[Error, null] | [null, I
          }
       })
       console.log('item', item);
-      
+
       const response = <InventoryModel>await axiosInstance.post(`orders`, {
          ...data,
          productList: item,
       })
+
+      return [null, response]
+   } catch (error) {
+      return [error as Error, null]
+   }
+}
+export async function getOrderFetch_API(): Promise<[Error, null] | [null, any]> {
+   try {
+
+      const response = <any>await axiosInstance.get(`inventories/d-order/fetch`)
+
+      return [null, response]
+   } catch (error) {
+      return [error as Error, null]
+   }
+}
+export async function postOrderReceive_API(id: number, data: any): Promise<[Error, null] | [null, any]> {
+   try {
+
+      const response = <any>await axiosInstance.post(`/inventories/d-order/receive/${id}`, data)
 
       return [null, response]
    } catch (error) {

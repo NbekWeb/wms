@@ -52,3 +52,12 @@ export interface InventoryOrderModel {
       }
    ]
 }
+export interface InventoryOrderReciveModel {
+   warehouseId: string
+   sellingPrices: [
+      {
+         sellingPrice: number
+         id: number
+      }
+   ]
+}
