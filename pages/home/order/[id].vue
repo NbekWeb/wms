@@ -5,19 +5,24 @@ const _orderPriceRef = ref()
 const router = useRouter()
 const route = useRoute()
 const _deliveryOrder = ref<any>(JSON.parse(route.query.order))
-
+const _sellingPriceInd = ref(0)
 function openModal() {
    _orderRef.value.open()
 }
-function sellingPriceModal(item: any) {
+
+function sellingPriceModal(item: any, ind: number) {
+   _sellingPriceInd.value = ind
    _orderPriceRef.value.open(item)
+}
+function enterSellingPrice(e: number) {
+   _deliveryOrder.value.order_products[_sellingPriceInd.value].sellingPrice = e
 }
 </script>
 
 <template>
    <NuxtLayout>
       <OrderModal ref="_orderRef" />
-      <OrderPriceModal ref="_orderPriceRef" />
+      <OrderPriceModal @update="enterSellingPrice" ref="_orderPriceRef" />
       <div>
          <div @click="router.go(-1)" class="flex gap-1">
             <img src="@/assets/img/icon.svg" alt="">
@@ -97,7 +102,11 @@ function sellingPriceModal(item: any) {
                   <span>{{ row.price }}</span>
                </template>
             </el-table-column>
-
+            <el-table-column label="sellingPrice">
+               <template #default="{ row }">
+                  <span>{{ row.sellingPrice }}</span>
+               </template>
+            </el-table-column>
             <el-table-column label="СКИДКА">
                <template #default="{ row }">
                   <span>{{ row.discount || '-' }}</span>
@@ -109,9 +118,9 @@ function sellingPriceModal(item: any) {
                </template>
             </el-table-column>
             <el-table-column label="цена продажи">
-               <template #default="{ row }">
-                  <el-button @click="sellingPriceModal(row)" style="height: 28px!important;" class="!!h-6 !px-4"
-                     type="primary">цена продажи</el-button>
+               <template #default="scope">
+                  <el-button @click="sellingPriceModal(scope.row, scope.$index)" style="height: 28px!important;"
+                     class="!!h-6 !px-4" type="primary">цена продажи</el-button>
                </template>
             </el-table-column>
          </el-table>

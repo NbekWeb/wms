@@ -20,18 +20,18 @@
         "icon": "icon-users"
     },
     {
-        "to": "/home/products",
-        "title": "Товары",
-        "icon": "icon-orders"
-    },
-    {
-        "to": "/home/moderators",
-        "title": "Модераторы",
-        "icon": "icon-users"
-    },
-    {
-      "to": "/home/order",
-      "title": "Заказы поставки",
-      "icon": "icon-users"
-  }
+       "to": "/home/moderators",
+       "title": "Модераторы",
+       "icon": "icon-users"
+      },
+      {
+         "to": "/home/order",
+         "title": "Заказы поставки",
+         "icon": "icon-users"
+      },
+      {
+          "to": "/home/products",
+          "title": "Классификатор",
+          "icon": "icon-orders"
+      }
 ]

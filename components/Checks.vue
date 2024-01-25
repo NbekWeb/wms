@@ -18,7 +18,7 @@ async function closeShift() {
    const [error, response] = await closeShift_API(_smena.value.id as string)
 
    if (error) return
-   router.push(`/home/stores/${route.params.id}}`)
+   router.push({ path: `/home/stores/${route.params.id}` })
 }
 
 async function createShift() {
