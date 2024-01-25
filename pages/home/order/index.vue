@@ -12,18 +12,10 @@ const router = useRouter()
 
 async function loadItems() {
    const [error, response] = await getOrderFetch_API()
-
    if (error) return
 
    _items.value = response
-   console.log('_items.value', _items.value.results);
-
 }
-
-function openModal(item: any, isOpen: boolean) {
-   _declineModalRef.value?.open(item, isOpen)
-}
-
 loadItems()
 </script>
 <template>
@@ -31,7 +23,6 @@ loadItems()
       <div>
          <EmployeeModal ref="_modalRef" @update="loadItems" />
          <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
-         <EmployeeDeclineModal ref="_declineModalRef" @update="loadItems" />
          <div class="flex items-center justify-between">
             <h2 class="font-commissioner-700 text-4xl">Заказы поставки</h2>
          </div>
@@ -50,7 +41,7 @@ loadItems()
             </div>
 
             <el-table class="w-full tables" :data="_items.results" border table-layout="auto">
-               <el-table-column type="index" width="80" label="#" />
+               <el-table-column type="index" width="80" label="№" />
                <el-table-column label="ПОСТАВЩИК">
                   <template #default="{ row }">
                      <div>
@@ -61,7 +52,7 @@ loadItems()
                </el-table-column>
                <el-table-column label="СТАТУС">
                   <template #default="{ row }">
-                     <el-button @click="openModal(row, false)" class="!h-8" type="primary">{{ !row.registered_by_the_client ?
+                     <el-button class="!h-8" type="primary">{{ !row.registered_by_the_client ?
                         'Новый' : 'Старый' }}</el-button>
                   </template>
                </el-table-column>

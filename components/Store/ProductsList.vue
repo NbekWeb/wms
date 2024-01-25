@@ -65,7 +65,7 @@ const productPrice = computed(() => {
          <div v-if="!_checkId" class="flex gap-1">
             <el-button @click="postOrder(ORDER_TYPE.TERMINAL)" type="primary" class="w-full">ТЕРМИНАЛ</el-button>
             <el-button @click="postOrder(ORDER_TYPE.CASH)" type="primary" class="w-full">НАЛИЧНЫЕ</el-button>
-            <el-button @click="postOrder(ORDER_TYPE.CASH)" type="primary" class="w-full">ДОЛГ</el-button>
+            <el-button @click="postOrder(ORDER_TYPE.LOAN)" type="primary" class="w-full">ДОЛГ</el-button>
          </div>
       </div>
    </div>

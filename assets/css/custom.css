@@ -1,26 +1,33 @@
 @import url(./icons.css);
+
 .el-input__wrapper {
-    @apply !rounded-xl !bg-[#F4F7FB] !border-none !h-12 !shadow-none;
+   @apply !rounded-xl !bg-[#F4F7FB] !border-none !h-12 !shadow-none;
 }
 
 .el-tabs__item {
-    @apply !text-text !text-lg;
+   @apply !text-text !text-lg;
 }
 
 .is-active {
-    @apply !text-black !font-commissioner-600;
+   @apply !text-black !font-commissioner-600;
 }
 
 .el-textarea__inner {
-    @apply !rounded-xl !bg-[#F4F7FB] !border-none !shadow-none;
+   @apply !rounded-xl !bg-[#F4F7FB] !border-none !shadow-none;
 }
 
 .el-input__wrapper:focus-visible {
-    outline: none !important;
+   outline: none !important;
+}
+
+.el-pager {
+   .is-active {
+      color: white !important;
+   }
 }
 
 .el-form-item__label {
-    @apply !text-primary-light !font-commissioner-600 !text-base; 
+   @apply !text-primary-light !font-commissioner-600 !text-base;
 }
 
 /* button {
@@ -28,37 +35,37 @@
 } */
 
 input {
-    /* @apply !bg-text/40; */
+   /* @apply !bg-text/40; */
 }
 
 input:focus {
-    box-shadow: none !important;
+   box-shadow: none !important;
 }
 
 select:focus {
-    box-shadow: none !important;
+   box-shadow: none !important;
 }
 
 .el-dialog {
-    border-radius: 20px !important;
+   border-radius: 20px !important;
 }
 
 .el-dialog__header {
-    display: none !important;
+   display: none !important;
 }
 
 i.primary::before {
-    @apply text-primary;
+   @apply text-primary;
 }
 
 i.danger::before {
-    @apply text-danger;
+   @apply text-danger;
 }
 
 i.white::before {
-    @apply text-white;
+   @apply text-white;
 }
 
 .el-button {
-    @apply !h-12 !rounded-2xl;
+   @apply !h-12 !rounded-2xl;
 }

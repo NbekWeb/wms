@@ -1,22 +1,19 @@
 <script lang="ts" setup>
 import { getWarehouses_API, type WarehouseModel } from '~/services/warehouse';
-import { postOrderReceive_API } from '~/services/inventory'
 import { _distributionProduct } from '~/services/inventory';
 
 const _warehouses = ref<WarehouseModel[]>([])
 
 const _visible = ref(false)
-const _warehouseId = ref('')
 const _sellingPrice = ref('')
 const _productId = ref(0)
-const route = useRoute()
-
+const emit = defineEmits(['update'])
 function open(item: any) {
    loadWarehouses()
    _visible.value = true
    console.log(item);
    _productId.value = item.product.id
-
+   _sellingPrice.value = item.sellingPrice
 }
 async function submit() {
    if (_distributionProduct.value.sellingPrices.some((el => el.id == _productId.value))) {
@@ -38,6 +35,7 @@ async function submit() {
          sellingPrice: _sellingPrice.value
       })
    }
+   emit('update', _sellingPrice.value)
    close()
 }
 
@@ -60,7 +58,6 @@ defineExpose({
 <template>
    <div>
       <el-dialog v-model="_visible" title="Tips" width="30%" :before-close="close">
-         <span>Выбрать склад</span>
          <el-form label-position="top">
             <el-form-item label="цена продажи">
                <el-input type="number" v-model="_sellingPrice" />

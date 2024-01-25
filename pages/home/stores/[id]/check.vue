@@ -64,7 +64,6 @@ function openModal() {
  
          <el-tabs v-model="activeName" class="demo-tabs mt-5" @tab-click="handleClick">
              <el-tab-pane label="Чеки" name="first">
-               <!-- {{ _itemsShift.content }} -->
                  <Checks :items="_itemsShift?.content"/>
              </el-tab-pane>
              <el-tab-pane label="Расходы" name="second">
