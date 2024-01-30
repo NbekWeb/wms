@@ -36,6 +36,7 @@ export function getInventoryOrder_DEFAULT(): InventoryOrderModel {
    const object: InventoryOrderModel = {
       workShiftId: 0,
       type: ORDER_TYPE.LOAN,
+      regularCustomerId: '',
       productList: []
    }
 

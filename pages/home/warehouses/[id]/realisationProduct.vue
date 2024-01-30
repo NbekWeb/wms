@@ -20,7 +20,7 @@ async function loadItems() {
 }
 
 async function getStore() {
-    const [error, response] = await getStoresWarehouse_API(route?.params?.id)
+    const [error, response] = await getStoresWarehouse_API(route?.params?.id as string)
 
     if (error) return
     _stores.value = response
@@ -35,7 +35,7 @@ async function handleChange(page: number) {
 
 loadItems()
 
-function handleSelect(e) {
+function handleSelect(e: string) {
    _sendProduct.value.storeId = e
 }
 </script>

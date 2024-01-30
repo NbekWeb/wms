@@ -43,7 +43,8 @@ export enum ORDER_TYPE {
 }
 export interface InventoryOrderModel {
    workShiftId: number
-   type: ORDER_TYPE
+   type: ORDER_TYPE,
+   regularCustomerId: string
    productList: [
       {
          productId: string
