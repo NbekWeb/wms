@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-import { _sendProduct, sentInventory_API, getInventoryAccept_API } from '~/services/inventory';
-
+import { _sendProduct, sentInventory_API, getInventoryAccept_API, getInventorySent_DEFAULT } from '~/services/inventory';
 const route = useRoute()
+const emit = defineEmits(['update'])
+
 async function sentInventory() {
    const [error, response] = await sentInventory_API(_sendProduct.value)
 
    if (error) return
    // getInventoryAccept()
+   _sendProduct.value = getInventorySent_DEFAULT()
+   emit('update')
 }
 async function getInventoryAccept() {
    const [error, response] = await getInventoryAccept_API(route.params.id as string)
@@ -14,19 +17,19 @@ async function getInventoryAccept() {
    if (error) return
 }
 
-function close(ind) {
+function close(ind: number) {
    _sendProduct.value.inventories.splice(ind, 1)
 }
 const productCount = computed(() => {
    return _sendProduct.value.inventories.reduce(
       (accumulator, item) => {
-        return accumulator + +item.amount
+         return accumulator + +item.amount
       }, 0);
 })
 const productPrice = computed(() => {
    return _sendProduct.value.inventories.reduce(
       (accumulator, item) => {
-        return accumulator + item.amount * item.sellingPrice
+         return accumulator + item.amount * item.sellingPrice
       }, 0);
 })
 </script>

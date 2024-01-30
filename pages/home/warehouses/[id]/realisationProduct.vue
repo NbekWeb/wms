@@ -57,7 +57,7 @@ function handleSelect(e) {
          <div class="bg-text/20 w-full h-[1px]" />
 
          <div class="grid grid-cols-3">
-            <WarehouseProductsList class="mt-5 border-r border-r-text/20 h-fit" />
+            <WarehouseProductsList @update="loadItems" class="mt-5 border-r border-r-text/20 h-fit" />
             <div class="col-span-2 p-8 pr-0">
                <el-input placeholder="Поиск по товарам" />
                <div class="grid grid-cols-3 gap-4 mt-5">

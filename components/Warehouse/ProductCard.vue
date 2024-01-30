@@ -48,7 +48,26 @@ async function openModal() {
    _ProductPart.value[0].isPart = true
 }
 async function sendProduct() {
-   _sendProduct.value.inventories.push(_addStore.value)
+   console.log('_sendProduct.value.inventories', _sendProduct.value.inventories);
+   console.log('_addStore.value', _addStore.value);
+   // _sendProduct.value.inventories.push(_addStore.value)
+
+   if (_sendProduct.value.inventories.some((el => el.productId == _addStore.value.productId))) {
+      _sendProduct.value.inventories = _sendProduct.value.inventories.map((el) => {
+         if (el.productId == _addStore.value.productId) {
+            return {
+               ..._addStore.value
+            }
+         }
+         else {
+            return el
+         }
+      })
+   }
+   else {
+      _sendProduct.value.inventories.push({ ..._addStore.value })
+   }
+
    close()
 }
 
