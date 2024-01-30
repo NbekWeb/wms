@@ -3,7 +3,9 @@ import { type ShiftModel, type OrderShiftModel } from './index'
 
 export async function createShift_API(storeId: string): Promise<[Error, null] | [null, ShiftModel]> {
    try {
-      const response = <ShiftModel>await axiosInstance.post(`work-shifts/store/${storeId}`)
+      const response = <ShiftModel>await axiosInstance.post(`work-shifts`, {
+         storeId
+      })
 
       return [null, response]
    } catch (error) {
@@ -34,7 +36,7 @@ export async function getOrderById_API(id: string): Promise<[Error, null] | [nul
 
 export async function closeShift_API(id: string): Promise<[Error, null] | [null, ShiftModel]> {
    try {
-      const response = <ShiftModel>await axiosInstance.put(`/work-shifts/${id}`)
+      const response = <ShiftModel>await axiosInstance.put(`/work-shifts/${id}/close`)
 
       return [null, response]
    } catch (error) {
@@ -44,8 +46,9 @@ export async function closeShift_API(id: string): Promise<[Error, null] | [null,
 
 export async function getShift_API(storeId: string, page: number): Promise<[Error, null] | [null, BaseListResponse<ShiftModel>]> {
    try {
-      const response = <BaseListResponse<ShiftModel>>await axiosInstance.get(`/work-shifts/store/${storeId}/me`, {
+      const response = <BaseListResponse<ShiftModel>>await axiosInstance.get(`/work-shifts`, {
          params: {
+            storeId,
             page: page > 0 ? page : 0,
             size: 10
          }
