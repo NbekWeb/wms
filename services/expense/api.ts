@@ -22,7 +22,7 @@ export async function getExpensesByStoreId_API(storeId: string): Promise<[Error,
       return [error as Error, null]
    }
 }
-export async function deleteExpenses_API(storeId: string): Promise<[Error, null] | [null, BaseListResponse<ExpenseModel>]> {
+export async function deleteExpenses_API(storeId: number): Promise<[Error, null] | [null, BaseListResponse<ExpenseModel>]> {
    try {
       const response = <BaseListResponse<ExpenseModel>>await axiosInstance.delete(`expenses/${storeId}`)
 

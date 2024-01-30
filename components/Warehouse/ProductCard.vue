@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { getFileURL_UTIL } from '@/utils/file';
-import { type ProductModel } from '~/services/product';
-import { getInventoriesByWarehouseId_API, type InventoryModel, type InventorySentModel, type InventoryProductPartModel, getInventorySent_DEFAULT, _sendProduct, getInventoryProductPart_API } from '~/services/inventory';
+import { type InventoryModel, type InventoryProductPartModel, _sendProduct, getInventoryProductPart_API } from '~/services/inventory';
 import { formatDate_UTIL } from '~/utils/date';
-import { type StoreModel, getStoresWarehouse_API } from '@/services/store';
-const _stores = ref<StoreModel[]>([])
+
 const _ProductPart = ref<InventoryProductPartModel[]>([])
-const _formData = ref<InventorySentModel>(getInventorySent_DEFAULT())
 const _addStore = ref<any>({})
 const router = useRouter()
 const route = useRoute()
@@ -23,15 +20,7 @@ _addStore.value = props.item
 function close() {
    _visible.value = false
 }
-async function loadItems() {
-   const [error, response] = await getStoresWarehouse_API(route?.params?.id as string)
 
-   if (error) return
-   _stores.value = response
-}
-onMounted(loadItems)
-
-loadItems()
 async function getInventoryProductPart() {
    const [error, response] = await getInventoryProductPart_API(route?.params?.id as string, props.item.productId)
    console.log('response', response);
@@ -40,7 +29,7 @@ async function getInventoryProductPart() {
    _ProductPart.value = response
 }
 
-getInventoryProductPart()
+// getInventoryProductPart()
 async function openModal() {
    _visible.value = true
    await getInventoryProductPart()
@@ -48,12 +37,8 @@ async function openModal() {
    _ProductPart.value[0].isPart = true
 }
 async function sendProduct() {
-   console.log('_sendProduct.value.inventories', _sendProduct.value.inventories);
-   console.log('_addStore.value', _addStore.value);
-   // _sendProduct.value.inventories.push(_addStore.value)
-
-   if (_sendProduct.value.inventories.some((el => el.productId == _addStore.value.productId))) {
-      _sendProduct.value.inventories = _sendProduct.value.inventories.map((el) => {
+   if (_sendProduct.value.inventories.some(((el: any) => el.productId == _addStore.value.productId))) {
+      _sendProduct.value.inventories = _sendProduct.value.inventories.map((el: any) => {
          if (el.productId == _addStore.value.productId) {
             return {
                ..._addStore.value
@@ -67,17 +52,13 @@ async function sendProduct() {
    else {
       _sendProduct.value.inventories.push({ ..._addStore.value })
    }
-
    close()
 }
 
-function handlePart(item) {
-   _ProductPart.value = _ProductPart.value.map((el) => {
-      console.log(el.id);
-      console.log(item.id);
+function handlePart(item: InventoryProductPartModel) {
+   _ProductPart.value = _ProductPart.value.map((el: any) => {
       el.isPart = false
       if (el.id == item.id) {
-         console.log(el.id)
          el.isPart = !el?.isPart
          _addStore.value.id = item.id
       }

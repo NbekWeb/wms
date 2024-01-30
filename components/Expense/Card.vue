@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { type PropType } from "vue"
 import { type ExpenseModel, patchExpenses_API, deleteExpenses_API } from "@/services/expense"
-
+const route = useRoute()
+const _smena = ref(JSON.parse(route.query.smena as any))
 const emit = defineEmits(['update', 'edit'])
 const props = defineProps({
    item: {
@@ -11,7 +12,7 @@ const props = defineProps({
 })
 
 async function deleteItem() {
-   const [error, response] = await deleteExpenses_API(props.item.id as string)
+   const [error, response] = await deleteExpenses_API(props.item.id as number)
    if (error)
       console.log('dff');
 
@@ -37,7 +38,7 @@ async function editItem() {
             <span class="font-commissioner-600 text-text">{{ props.item.comment }}</span>
          </div>
       </div>
-      <div class="flex space-x-2">
+      <div v-if="!_smena.closedDate" class="flex space-x-2">
          <button @click.stop="editItem" class="p-0">
             <i class="icon-edit "></i>
          </button>

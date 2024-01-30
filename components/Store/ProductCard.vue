@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { getFileURL_UTIL } from '@/utils/file';
-import { type ProductModel } from '~/services/product';
-import { getInventoriesByWarehouseId_API, type InventoryModel, _orderProduct } from '~/services/inventory';
+import { type InventoryModel, _orderProduct } from '~/services/inventory';
 
 const _addStore = ref<any>({})
 const router = useRouter()
@@ -9,7 +8,7 @@ const route = useRoute()
 const _visible = ref(false)
 const emit = defineEmits(['edit', 'update', 'setEmployee'])
 const _smena = ref(JSON.parse(route.query.smena as any))
-
+const _checkId = ref(route.query?.checkId || null)
 const props = defineProps({
    item: {
       type: Object as PropType<InventoryModel>,
@@ -28,7 +27,23 @@ async function openModal() {
    _visible.value = true
 }
 async function sendProduct() {
-   _orderProduct.value.productList?.push(Object.assign(_productStore.value, { amount: _addStore.value.amount }))
+   if (_orderProduct.value.productList.some((el => el.productId == _productStore.value.productId))) {
+      _orderProduct.value.productList = _orderProduct.value.productList.map((el) => {
+
+         if (el.productId == _productStore.value.productId) {
+            return {
+               ..._productStore.value,
+               amount: _addStore.value.amount
+            }
+         }
+         else {
+            return el
+         }
+      })
+   }
+   else {
+      _orderProduct.value.productList.push({ ..._productStore.value, amount: _addStore.value.amount })
+   }
    close()
 }
 
@@ -43,7 +58,8 @@ async function sendProduct() {
       </div>
       <!-- <img src="@/assets/img/product.png" alt="product" class="w-24 h-24 object-cover mx-auto"> -->
       <p class="text-center font-commissioner-600 text-black text-xl">{{ item.sellingPrice }} сум </p>
-      <button v-if="!_smena.closedDate" @click="openModal" class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
+      <button v-if="!_checkId" @click="openModal"
+         class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
          <i class="icon-plus white"></i>
          <span>Добавить</span>
       </button>
@@ -61,7 +77,7 @@ async function sendProduct() {
                <el-input-number :max="item.amount" v-model="_addStore.amount" />
             </el-form-item>
             <el-form-item class="w-full">
-               <el-button @click="sendProduct" class="w-full" type="primary">Qo'1shish</el-button>
+               <el-button @click="sendProduct" class="w-full" type="primary">Qo'shish</el-button>
             </el-form-item>
          </el-form>
       </el-dialog>

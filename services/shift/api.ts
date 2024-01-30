@@ -33,6 +33,24 @@ export async function getOrderById_API(id: string): Promise<[Error, null] | [nul
       return [error as Error, null]
    }
 }
+export async function getOrderCustomer_API(id: string): Promise<[Error, null] | [null, ShiftModel]> {
+   try {
+      const response = <ShiftModel>await axiosInstance.get('orders/customer/' + id)
+
+      return [null, response]
+   } catch (error) {
+      return [error as Error, null]
+   }
+}
+export async function orderIdPaid_API(id: string): Promise<[Error, null] | [null, ShiftModel]> {
+   try {
+      const response = <ShiftModel>await axiosInstance.put(`/orders/${id}/paid`)
+
+      return [null, response]
+   } catch (error) {
+      return [error as Error, null]
+   }
+}
 
 export async function closeShift_API(id: string): Promise<[Error, null] | [null, ShiftModel]> {
    try {

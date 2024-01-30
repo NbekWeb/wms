@@ -1,37 +1,42 @@
 [
-    {
-        "to": "/home/main",
-        "title": "Главная",
-        "icon": "icon-main"
-    },
-    {
-        "to": "/home/warehouses",
-        "title": "Склады",
-        "icon": "icon-warehouse"
-    },
-    {
-        "to": "/home/stores",
-        "title": "Магазины",
-        "icon": "icon-shop"
-    },
-    {
-        "to": "/home/employees",
-        "title": "Сотрудники",
-        "icon": "icon-users"
-    },
-    {
-       "to": "/home/moderators",
-       "title": "Модераторы",
-       "icon": "icon-users"
-      },
-      {
-         "to": "/home/order",
-         "title": "Заказы поставки",
-         "icon": "icon-users"
-      },
-      {
-          "to": "/home/products",
-          "title": "Классификатор",
-          "icon": "icon-orders"
-      }
+   {
+      "to": "/home/main",
+      "title": "Главная",
+      "icon": "icon-main"
+   },
+   {
+      "to": "/home/warehouses",
+      "title": "Склады",
+      "icon": "icon-warehouse"
+   },
+   {
+      "to": "/home/stores",
+      "title": "Магазины",
+      "icon": "icon-shop"
+   },
+   {
+      "to": "/home/employees",
+      "title": "Сотрудники",
+      "icon": "icon-users"
+   },
+   {
+      "to": "/home/moderators",
+      "title": "Модераторы",
+      "icon": "icon-users"
+   },
+   {
+      "to": "/home/order",
+      "title": "Заказы поставки",
+      "icon": "icon-users"
+   },
+   {
+      "to": "/home/customer",
+      "title": "customer",
+      "icon": "icon-users"
+   },
+   {
+      "to": "/home/products",
+      "title": "Классификатор",
+      "icon": "icon-orders"
+   }
 ]
