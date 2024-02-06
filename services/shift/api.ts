@@ -1,5 +1,5 @@
 import { axiosInstance, type BaseListResponse } from '~/services/network'
-import { type ShiftModel, type OrderShiftModel } from './index'
+import { type ShiftModel, type OrderShiftModel, type OrderReportModel } from './index'
 
 export async function createShift_API(storeId: string): Promise<[Error, null] | [null, ShiftModel]> {
    try {
@@ -85,6 +85,15 @@ export async function getOrderWorkShift_API(workShiftId: string, page: number): 
             size: 10
          }
       })
+
+      return [null, response]
+   } catch (error) {
+      return [error as Error, null]
+   }
+}
+export async function getOrderReport_API(id: string): Promise<[Error, null] | [null, OrderReportModel]> {
+   try {
+      const response = <OrderReportModel>await axiosInstance.get(`/work-shifts/${id}/report`)
 
       return [null, response]
    } catch (error) {

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { getCustomers_API, deleteCustomer_API, type CustomerModel } from "@/services/customer"
+import { getCustomers_API, deleteCustomer_API, type CustomerModel, getLoanCustomer_API } from "@/services/customer"
 import { axiosInstance, type BaseListResponse, } from '~/services/network'
 
 
 
 const _partnerRef = ref()
 const _items = ref<CustomerModel[]>([])
-
+const _totalLoan = ref<number>(0)
 function openModal(item?: CustomerModel) {
    _partnerRef.value.open(item)
 }
@@ -17,6 +17,14 @@ async function getCustomer() {
    _items.value = response
 }
 getCustomer()
+
+async function getLoanCustomer() {
+
+   const [response, error] = await getLoanCustomer_API()
+   if (error) return
+   _totalLoan.value = response
+}
+getLoanCustomer()
 
 async function deletePartner(item: CustomerModel) {
    const [response, error] = await deleteCustomer_API(item.id as string)
@@ -29,6 +37,7 @@ async function deletePartner(item: CustomerModel) {
 <template>
    <NuxtLayout>
       <customers-modal @update="getCustomer" ref="_partnerRef" />
+      <h1 class="text-3xl font-commissioner-700 mb-4">Umumiy qarz: {{ _totalLoan.toLocaleString() }} so'm</h1>
       <div class="grid grid-cols-4 gap-5">
          <div @click="openModal(undefined)"
             class="cursor-pointer bg-gray rounded-2xl p-5 flex justify-center items-center flex-col">

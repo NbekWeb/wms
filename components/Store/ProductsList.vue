@@ -81,7 +81,7 @@ function createFilter(queryString: string) {
 const handleSelect = (item: Record<string, any>) => {
    console.log('item', item);
    _orderProduct.value.regularCustomerId = item.id
-   _productName.value = item.firstname
+   _productName.value = item.firstname + ' ' + item.lastname
 };
 
 function openModal() {
@@ -121,11 +121,11 @@ function openModal() {
 
    <el-dialog v-model="dialogVisible" title="Tips" width="30%">
       <el-form label-position="top">
-         <el-form-item class="w-full" label="Maxsulotni nomi" prop="name">
+         <el-form-item class="w-full" label="Mijoz nomi" prop="name">
             <el-autocomplete class="w-full" v-model="_productName" :fetch-suggestions="querySearchAsync"
-               placeholder="Maxsulotni qidiring" @select="handleSelect">
+               placeholder="Mijozni qidiring" @select="handleSelect">
                <template v-slot:default="{ item }">
-                  {{ item.firstname }}
+                  {{ item.firstname + ' ' + item.lastname }}
                </template>
             </el-autocomplete>
          </el-form-item>

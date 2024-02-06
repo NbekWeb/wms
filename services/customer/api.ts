@@ -66,3 +66,13 @@ export async function deleteCustomer_API(id: string): Promise<[BaseListResponse<
       return [null, error as Error]
    }
 }
+export async function getLoanCustomer_API(): Promise<[number, null] | [null, Error]> {
+   try {
+      const response = <number>await axiosInstance.get(
+         `customers/total-loan`)
+
+      return [response, null]
+   } catch (error) {
+      return [null, error as Error]
+   }
+}
