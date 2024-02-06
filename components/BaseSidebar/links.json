@@ -38,5 +38,10 @@
       "to": "/home/products",
       "title": "Классификатор",
       "icon": "icon-orders"
+   },
+   {
+      "to": "/home/analitik",
+      "title": "Отчет о продажах",
+      "icon": "icon-users"
    }
 ]

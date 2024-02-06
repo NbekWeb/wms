@@ -31,6 +31,8 @@ getOrderCustomer()
                <p>price:{{ el.price }}</p>
             </div>
             <h2 class="font-commissioner-600">Totalprice: {{ (+item.totalPrice).toLocaleString() }}</h2>
+
+            <p class="font-commissioner-600" v-if="item.paidBy">paidBy:{{ item.paidBy }}</p>
             <el-button v-if="item.loanStatus != 'LOAN_PAID'" @click="orderIdPaid(item.id)" class="!py-1 mt-4"
                type="primary">To'lash</el-button>
          </div>
