@@ -48,7 +48,7 @@ loadItems()
 </script>
 
 <template>
-    <NuxtLayout name="default">
+    <div>
         <div>
             <EmployeeModal ref="_modalRef" @update="loadItems" />
             <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
@@ -115,7 +115,7 @@ loadItems()
                 <el-pagination v-if="_items.totalPages > 1" class="mt-8" background :current-page="_items.currentPage" layout="prev, pager, next" :total="_items.totalElements" @current-change="handleChange" />
             </section>            
         </div>
-    </NuxtLayout>
+    </div>
 </template>
 
 <style>

@@ -38,7 +38,7 @@ loadItems()
 </script>
 
 <template>
-   <NuxtLayout name="default">
+   <div>
       <WarehouseProductModal ref="_warehouseProductModalRef" />
       <WarehouseAddProductModal @update="loadItems" ref="_warehouseAddProductModalRef" />
       <WarehouseProductRealisationModal ref="_warehouseProductRealisationModalRef" />
@@ -109,5 +109,5 @@ loadItems()
             </template>
          </el-table-column>
       </el-table>
-   </NuxtLayout>
+   </div>
 </template>

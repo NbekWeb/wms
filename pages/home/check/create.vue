@@ -1,5 +1,5 @@
 <template>
-    <NuxtLayout name="default">
+    <div>
         <div class="flex items-center justify-between">
             <h2 class="font-commissioner-700 text-4xl">Чек  №1</h2>            
         </div>
@@ -25,5 +25,5 @@
                 </div>
             </div>
         </div>
-    </NuxtLayout>
+    </div>
 </template>

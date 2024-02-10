@@ -26,7 +26,7 @@ loadItems()
 </script>
 
 <template>
-    <NuxtLayout name="default">
+    <div>
         <ExpenseModal @update="loadItems" ref="_modalRef" />
         <div class="flex items-center justify-between">
             <h2 class="font-commissioner-700 text-4xl">Открытие смены</h2>
@@ -60,7 +60,7 @@ loadItems()
             </el-tab-pane>
             <el-tab-pane label="Расходы" name="second">Расходы</el-tab-pane>
         </el-tabs>        
-    </NuxtLayout>
+    </div>
 </template>
 
 <style>

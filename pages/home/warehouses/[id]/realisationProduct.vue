@@ -41,7 +41,7 @@ function handleSelect(e: string) {
 </script>
 
 <template>
-   <NuxtLayout name="default">
+   <div>
       <div class="flex items-center justify-between">
          <h2 class="font-commissioner-700 text-4xl">Реализация товаров</h2>
       </div>
@@ -69,4 +69,4 @@ function handleSelect(e: string) {
             </div>
          </div>
       </div>
-   </NuxtLayout></template>
+   </div></template>

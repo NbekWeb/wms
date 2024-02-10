@@ -35,7 +35,7 @@ async function createShift() {
 </script>
 
 <template>
-   <NuxtLayout name="default">
+   <div>
       <!-- <ExpenseModal @update="loadItems" ref="_modalRef" /> -->
 
       <div class="flex items-center justify-between">
@@ -71,7 +71,7 @@ async function createShift() {
       </div>
 
       <NoData v-else title="Открытие смены" @set="createShift" />
-   </NuxtLayout>
+   </div>
 </template>
 
 <style>

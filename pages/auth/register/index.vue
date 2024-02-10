@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+definePageMeta({
+  layout: 'auth'
+})
 import { getRegister_DEFAULT, type RegisterModel, register_API } from '~/services/profile';
 import type { FormRules } from 'element-plus'
 
@@ -47,7 +50,6 @@ async function submit() {
 </script>
 
 <template>
-    <NuxtLayout name="auth">
         <section class="mx-auto w-5/6">
             <div>
                 <h1 class="font-commissioner-700 text-4xl text-center">Регистрация в системе</h1>
@@ -91,5 +93,4 @@ async function submit() {
                 <NuxtLink to="/auth/login" class="ml-1 font-commissioner-600 text-primary">Войдите</NuxtLink>
             </div>
         </section>
-    </NuxtLayout>
 </template>

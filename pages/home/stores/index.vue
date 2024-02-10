@@ -26,30 +26,28 @@ loadItems()
 </script>
 
 <template>
-    <NuxtLayout name="default">
-        <div>
-            <StoreModal @update="loadItems" ref="_modalRef" />
-            <EmployeeModal @update="loadItems" ref="_employeeModalRef" />
-            <div class="flex items-center justify-between">
-                <h2 class="font-commissioner-700 text-4xl">Магазины</h2>
-                <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3">
-                    <i class="icon-plus white"></i>
-                    <span>Добавить магазин</span>
-                </button>
-            </div>
-            <div 
-                class="grid grid-cols-3 gap-6 mt-8" 
-                v-if="_items.length > 0">
-                <StoreCard 
-                    @set-employee="openEmployeeModal"
-                    @edit="openModal(item)"
-                    @update="loadItems" 
-                    v-for="item of _items" 
-                    :key="item.id" 
-                    :item="item" 
-                />
-            </div>
-            <NoData v-else title="Добавить магазин" @set="openModal()" />
+    <div>
+        <StoreModal @update="loadItems" ref="_modalRef" />
+        <EmployeeModal @update="loadItems" ref="_employeeModalRef" />
+        <div class="flex items-center justify-between">
+            <h2 class="font-commissioner-700 text-4xl">Магазины</h2>
+            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3">
+                <i class="icon-plus white"></i>
+                <span>Добавить магазин</span>
+            </button>
         </div>
-    </NuxtLayout>
+        <div 
+            class="grid grid-cols-3 gap-6 mt-8" 
+            v-if="_items.length > 0">
+            <StoreCard 
+                @set-employee="openEmployeeModal"
+                @edit="openModal(item)"
+                @update="loadItems" 
+                v-for="item of _items" 
+                :key="item.id" 
+                :item="item" 
+            />
+        </div>
+        <NoData v-else title="Добавить магазин" @set="openModal()" />
+    </div>
 </template>

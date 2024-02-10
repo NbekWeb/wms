@@ -29,7 +29,7 @@ loadItems()
 </script>
 
 <template>
-   <NuxtLayout>
+   <div>
       <div class="flex items-center justify-between">
          <h2 class="font-commissioner-700 text-4xl">Чек </h2>
       </div>
@@ -55,5 +55,5 @@ loadItems()
             </div>
          </div>
       </div>
-   </NuxtLayout>
+   </div>
 </template>
