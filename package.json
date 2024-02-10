@@ -26,7 +26,6 @@
     "axios": "^1.6.2",
     "firebaseui": "^6.1.0",
     "nuxt-hero-icons": "^0.0.9",
-    "nuxt-vue3-google-signin": "^0.0.10",
     "remixicon": "^3.7.0",
     "vue-remix-icons": "^3.5.0"
   }
