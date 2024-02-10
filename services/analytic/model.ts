@@ -23,11 +23,15 @@ export interface AnalyticWarehouseResponseModel {
    start: null | string
    end: null | string
 }
-export enum DATE_EMUN  {
+export enum DATE_EMUN {
    DAY = "DAY",
    MONTH = "MONTH",
    YEAR = "YEAR",
 }
+export const DATE_EMUN_TR = new Map()
+DATE_EMUN_TR.set(DATE_EMUN.DAY, 'ДЕНЬ')
+DATE_EMUN_TR.set(DATE_EMUN.MONTH, 'МЕСЯЦ')
+DATE_EMUN_TR.set(DATE_EMUN.YEAR, 'ГОД')
 export interface AnalyticReportResponseModel {
    warehouseId: string
    start: null | string
