@@ -42,7 +42,7 @@ loadItems()
 </script>
 
 <template>
-    <NuxtLayout name="default">
+    <div>
         <div>
             <EmployeeModal ref="_modalRef" @update="loadItems" />
             <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
@@ -141,7 +141,7 @@ loadItems()
                 </el-table-column>
             </el-table>
         </div>
-    </NuxtLayout>
+    </div>
 </template>
 
 <style>

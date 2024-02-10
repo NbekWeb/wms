@@ -3,8 +3,8 @@ import "element-plus/theme-chalk/src/notification.scss";
 </script>
 
 <template>
-  <div>
+  <NuxtLayout>
     <delete-modal />
     <NuxtPage />
-  </div>
+  </NuxtLayout>
 </template>

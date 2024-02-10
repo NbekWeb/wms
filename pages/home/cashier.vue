@@ -20,7 +20,7 @@ loadItems()
 </script>
 
 <template>
-    <NuxtLayout name="default">
+    <div>
         <ExpenseModal @update="loadItems" ref="_modalRef" />
         <div class="flex items-center justify-between">
             <h2 class="font-commissioner-700 text-4xl">Открытие смены</h2>
@@ -40,5 +40,5 @@ loadItems()
                 <span>Добавить продукт</span>
             </button>
         </div>
-    </NuxtLayout>
+    </div>
 </template>

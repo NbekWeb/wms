@@ -26,7 +26,6 @@ loadItems()
 </script>
 
 <template>
-   <NuxtLayout name="default">
       <div>
          <WarehouseModal @update="loadItems" ref="_modalRef" />
          <StoreModal @update="loadItems" ref="_storeModalRef" />
@@ -44,5 +43,4 @@ loadItems()
 
          <NoData v-else title="Добавить склад" @set="openModal()" />
       </div>
-   </NuxtLayout>
 </template>

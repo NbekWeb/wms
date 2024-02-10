@@ -19,7 +19,7 @@ async function loadItems() {
 loadItems()
 </script>
 <template>
-   <NuxtLayout>
+   <div>
       <div>
          <EmployeeModal ref="_modalRef" @update="loadItems" />
          <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
@@ -77,7 +77,7 @@ loadItems()
             </el-table>
          </section>
       </div>
-   </NuxtLayout>
+   </div>
 </template>
 
 <style></style>

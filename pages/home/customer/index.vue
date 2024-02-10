@@ -35,7 +35,7 @@ async function deletePartner(item: CustomerModel) {
 </script>
 
 <template>
-   <NuxtLayout>
+   <div>
       <customers-modal @update="getCustomer" ref="_partnerRef" />
       <h1 class="text-3xl font-commissioner-700 mb-4">Umumiy qarz: {{ _totalLoan.toLocaleString() }} so'm</h1>
       <div class="grid grid-cols-4 gap-5">
@@ -66,6 +66,6 @@ async function deletePartner(item: CustomerModel) {
             </div>
          </div>
       </div>
-   </NuxtLayout>
+   </div>
 </template>
 <style></style>

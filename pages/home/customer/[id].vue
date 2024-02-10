@@ -19,7 +19,7 @@ getOrderCustomer()
 </script>
 
 <template>
-   <NuxtLayout>
+   <div>
       <div class="grid grid-cols-4 gap-5">
          <div class="bg-gray p-5 rounded-2xl" v-for="item, ind in _items" :key="ind">
             <h2 class="font-commissioner-600">{{ item.employee }}</h2>
@@ -37,5 +37,5 @@ getOrderCustomer()
                type="primary">To'lash</el-button>
          </div>
       </div>
-   </NuxtLayout>
+   </div>
 </template>

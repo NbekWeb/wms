@@ -55,7 +55,7 @@ const handleClick = () => {
 </script>
 
 <template>
-   <NuxtLayout name="default">
+   <div>
       <div>
          <ProductModal ref="_modalRef" />
          <div class="flex items-center justify-between mt-8">
@@ -114,5 +114,5 @@ const handleClick = () => {
                @current-change="handleChange" />
          </section>
       </div>
-   </NuxtLayout>
+   </div>
 </template>

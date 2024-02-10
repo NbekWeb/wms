@@ -27,7 +27,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 </script>
 
 <template>
-   <NuxtLayout name="default">
+   <div>
       <el-tabs v-model="activeName" class="demo-tabs mt-5" @tab-click="handleClick">
          <el-tab-pane label="product" name="first">
             <AnalitikProduct />
@@ -42,7 +42,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
             <AnalitikReport/>
          </el-tab-pane>
       </el-tabs>
-   </NuxtLayout>
+   </div>
 </template>
 
 <style>

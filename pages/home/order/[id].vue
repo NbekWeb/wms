@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { _distributionProduct } from '~/services/inventory';
+import { _distributionProduct } from '@/services/inventory';
 const _orderRef = ref()
 const _orderPriceRef = ref()
 const router = useRouter()
 const route = useRoute()
-const _deliveryOrder = ref<any>(JSON.parse(route.query.order))
+const _deliveryOrder = ref(JSON.parse(route.query.order as any))
 const _sellingPriceInd = ref(0)
 function openModal() {
    _orderRef.value.open()
@@ -20,7 +20,7 @@ function enterSellingPrice(e: number) {
 </script>
 
 <template>
-   <NuxtLayout>
+   <div>
       <OrderModal ref="_orderRef" />
       <OrderPriceModal @update="enterSellingPrice" ref="_orderPriceRef" />
       <div>
@@ -128,5 +128,5 @@ function enterSellingPrice(e: number) {
             <el-button @click="openModal" type="primary">Выбрать склад</el-button>
          </div>
       </div>
-   </NuxtLayout>
+   </div>
 </template>
