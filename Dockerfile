@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20.11.0
 RUN mkdir -p /usr/src/nuxt-app
 WORKDIR /usr/src/nuxt-app
 COPY . /usr/src/nuxt-app
