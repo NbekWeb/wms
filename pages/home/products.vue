@@ -83,7 +83,7 @@ const handleClick = () => {
                <el-table-column label="Изображение продукта">
                   <template #default="{ row }">
                      <div class="!h-16">
-                        <img class="bg-cover h-full" :src="getFileURL_UTIL(row.picture)" alt="">
+                        <img v-if="row.picture" class="bg-cover h-full" :src="getFileURL_UTIL(row.picture)" alt="">
                      </div>
                   </template>
                </el-table-column>
