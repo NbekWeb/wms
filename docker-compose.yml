@@ -1,14 +1,8 @@
-version: "3.10"
+version: '3'
 services:
-  frontend:
-    container_name: frontend
-    image: frontend:latest
-    restart: on-failure
+  web:
     build:
-      context: . # Context will be the project root
-      dockerfile: ./Dockerfile
-      args:
-        version: 1.0.0-SNAPSHOT
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 3000:3000
- 
+      - "3000:3000"
