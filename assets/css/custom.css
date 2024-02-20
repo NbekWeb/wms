@@ -1,6 +1,6 @@
 @import url(./icons.css);
 
-.el-input__wrapper {
+.el-input__wrapper, .el-select__wrapper {
    @apply !rounded-xl !bg-[#F4F7FB] !border-none !h-12 !shadow-none;
 }
 

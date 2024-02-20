@@ -76,9 +76,9 @@ function changeSort() {
 </script>
 <template>
    <div>
-      <el-form class="flex justify-between items-end" label-position="top">
+      <el-form class="grid grid-cols-3 gap-6" label-position="top">
          <el-form-item label="Магазин" prop="warehouse">
-            <el-select v-model="_item.storeId" placeholder="Select">
+            <el-select class="!w-60" v-model="_item.storeId" placeholder="Select">
                <el-option v-for="item  in _storeItems" :key="item.id" :label="item.title" :value="item.id" />
             </el-select>
          </el-form-item>
@@ -87,14 +87,16 @@ function changeSort() {
                end-placeholder="End date" format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd"
                time-format="A hh:mm:ss" />
          </el-form-item>
-         <el-form-item label="Saralash">
-            <el-select @change="changeSort" v-model="_sort" placeholder="Select">
-               <el-option v-for="item  in _sortOptions" :key="item.label" :label="item.label" :value="item" />
-            </el-select>
-         </el-form-item>
-         <el-form-item>
-            <el-button @click="postProduct" type="primary">submit</el-button>
-         </el-form-item>
+         <div class="flex gap-4 items-end">
+            <el-form-item label="Saralash">
+               <el-select class="!w-60" @change="changeSort" v-model="_sort" placeholder="Select">
+                  <el-option v-for="item  in _sortOptions" :key="item.label" :label="item.label" :value="item" />
+               </el-select>
+            </el-form-item>
+            <el-form-item>
+               <el-button class="" @click="postProduct" type="primary">submit</el-button>
+            </el-form-item>
+         </div>
       </el-form>
       <div>
          <section class="mt-7">

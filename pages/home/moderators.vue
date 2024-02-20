@@ -62,7 +62,7 @@ loadItems()
                     <el-input @input="searchProduct" class="!bg-white" v-model="_search" placeholder="Поиск" />
                 </div>                
                 <div class="flex items-center justify-between mt-5 bg-text/60 p-5">
-                    <el-select v-model="_status" @change="loadItems">
+                    <el-select class="!w-60" v-model="_status" @change="loadItems">
                         <el-option label="Принятый" :value="PRODUCT_STATUS_ENUM.ACCEPTED" />
                         <el-option label="Инициализировано" :value="PRODUCT_STATUS_ENUM.INITIALIZED" />
                         <el-option label="На модерации" :value="PRODUCT_STATUS_ENUM.MODERATION" />

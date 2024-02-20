@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { getBaseListResponse_DEFAULT, type BaseListResponse } from "@/services/network"
 import { type StoreModel, getStores_API } from "@/services/store"
-import { getEmployee_DEFAULT, type EmployeeModel, updateEmployee_API, createEmployee_API, EMPLOYEE_POSITION_ENUM, EMPLOYEE_POSITION } from "~/services/employee";
+import { getEmployee_DEFAULT, type EmployeeModel, patchEmployee_API, createEmployee_API, EMPLOYEE_POSITION_ENUM, EMPLOYEE_POSITION } from "~/services/employee";
 import { type WarehouseModel, getWarehouses_API } from '~/services/warehouse';
 import { _rules } from './rules'
 
@@ -10,8 +10,9 @@ const _stores = ref<StoreModel[]>([])
 const _modalRef = ref()
 
 const emit = defineEmits(['update'])
-
+const checkedSelect = ref(true)
 const _multiSel = ref<string[]>([])
+
 const data = ref([
    {
       value: EMPLOYEE_POSITION_ENUM.STACKER,
@@ -36,6 +37,7 @@ const data = ref([
 ])
 
 
+
 async function loadWarehouses() {
    const [error, response] = await getWarehouses_API()
 
@@ -45,7 +47,7 @@ async function loadWarehouses() {
    data.value[0].children = _warehouses.value.map((el) => {
       return {
          value: el.id,
-         label: el.title
+         label: el.title,
       }
    })
 }
@@ -58,7 +60,7 @@ async function loadStores() {
    data.value[1].children = _stores.value.map((el) => {
       return {
          value: el.id,
-         label: el.title
+         label: el.title,
       }
    })
 }
@@ -67,12 +69,12 @@ const _visible = useState(() => false)
 const _loading = useState(() => false)
 const _formData = useState<EmployeeModel>(getEmployee_DEFAULT)
 
-function open(item: EmployeeModel, storeId: string) {
-   if (item?.id) _formData.value = item
-   // if (storeId) {
-   //    _formData.value.position = EMPLOYEE_POSITION_ENUM.SALESMAN
-   //    _formData.value.workId = storeId
-   // }
+function open(item: EmployeeModel) {
+   if (item?.id) _formData.value = { ...item }
+   if (item) {
+        checkedSelect.value = false
+      _multiSel.value = item.works?.map(el => el.workId)
+   }
 
    _visible.value = true
    loadWarehouses()
@@ -83,22 +85,25 @@ function close() {
    _visible.value = false
    _modalRef.value?.resetFields()
    _formData.value = getEmployee_DEFAULT()
+   checkedSelect.value = true
+   _multiSel.value = []
 }
 function handleItem() {
    _warehouses.value.forEach((el) => {
       if (_multiSel.value.includes(el.id)) {
          _formData.value.works.push({
             position: EMPLOYEE_POSITION_ENUM.STACKER,
-            workId: el.id
-         })  
+            workId: el.id,
+         })
       }
    })
    _stores.value.forEach((el) => {
       if (_multiSel.value.includes(el.id)) {
          _formData.value.works.push({
             position: EMPLOYEE_POSITION_ENUM.SALESMAN,
-            workId: el.id
-         })  
+            workId: el.id,
+
+         })
       }
    })
 }
@@ -109,14 +114,15 @@ async function submit() {
       if (valid) {
          await handleItem()
          _loading.value = true
-         const handler = _formData.value.id ? updateEmployee_API : createEmployee_API
+         const handler = _formData.value.id ? patchEmployee_API : createEmployee_API
          const [error, response] = await handler(_formData.value)
          _loading.value = false
 
          if (error) return
          emit('update')
-
+         close()
          _visible.value = false
+         checkedSelect.value = true
       }
    })
 }
@@ -124,6 +130,7 @@ async function submit() {
 defineExpose({
    open
 })
+
 </script>
 
 <template>
@@ -143,30 +150,14 @@ defineExpose({
             <el-input v-model="_formData.lastname" placeholder="Введите фамилию" />
          </el-form-item>
 
-         <!-- <el-form-item label="Должность" prop="position">
-                <el-select class="w-full" v-model="_formData.position">
-                    <el-option :value="EMPLOYEE_POSITION_ENUM.STACKER" :label="EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.STACKER)" />
-                    <el-option :value="EMPLOYEE_POSITION_ENUM.SALESMAN" :label="EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.SALESMAN)" />
-                </el-select>
-            </el-form-item> -->
-         <el-form-item class="item" label="Должность" >
-            <el-tree-select class="w-full" v-model="_multiSel" :data="data" multiple :render-after-expand="false" show-checkbox>
+         <el-form-item v-if="checkedSelect" class="item" label="Должность">
+            <el-tree-select class="w-full" v-model="_multiSel" :data="data" multiple :default-expand-all="true"
+               :show-checkbox="checkedSelect">
                <template #default="{ data: { label } }">
                   {{ label }}
                </template>
             </el-tree-select>
          </el-form-item>
-
-         <!-- <el-form-item label="Склад" prop="warehouse" v-if="_formData.position === EMPLOYEE_POSITION_ENUM.STACKER">
-            <el-select class="w-full" v-model="_formData.workId">
-               <el-option v-for="item of _warehouses" :key="item.id" :label="item.title" :value="item.id" />
-            </el-select>
-         </el-form-item>
-         <el-form-item label="Магазин" prop="warehouse" v-else>
-            <el-select class="w-full" v-model="_formData.workId">
-               <el-option v-for="item of _stores" :key="item.id" :label="item.title" :value="item.id" />
-            </el-select>
-         </el-form-item> -->
 
          <el-form-item label="Логин" prop="username">
             <el-input v-model="_formData.username" placeholder="Введите логин" />
@@ -181,10 +172,12 @@ defineExpose({
    </el-dialog>
 </template>
 <style lang="scss">
-.item{
-   .el-input__wrapper{
-      height: auto!important;
-      min-height: 3rem!important;;
+.item {
+
+   .el-input__wrapper,
+   .el-select__wrapper {
+      height: auto !important;
+      min-height: 3rem !important;
    }
 }
 </style>

@@ -44,20 +44,22 @@ function handleTime() {
 </script>
 <template>
    <div>
-      <el-form class="flex justify-between items-end" label-position="top">
-         <el-form-item label="Магазин" prop="warehouse">
-            <el-select v-model="_item.storeId" placeholder="Select">
+      <el-form class="grid grid-cols-3 items-end" label-position="top">
+         <el-form-item class="col-span-1" label="Магазин" prop="warehouse">
+            <el-select class="!w-60" v-model="_item.storeId" placeholder="Select">
                <el-option v-for="item  in _storeItems" :key="item.id" :label="item.title" :value="item.id" />
             </el-select>
          </el-form-item>
-         <el-form-item label="vaqt" prop="startDate">
-            <el-date-picker @change="handleTime" v-model="_time" type="datetimerange" start-placeholder="Start date"
-               end-placeholder="End date" format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd"
-               time-format="A hh:mm:ss" />
-         </el-form-item>
-         <el-form-item>
-            <el-button @click="postAnalyticStore" type="primary">submit</el-button>
-         </el-form-item>
+         <div class="col-span-2 flex gap-5 items-end ml-auto">
+            <el-form-item label="vaqt" prop="startDate">
+               <el-date-picker @change="handleTime" v-model="_time" type="datetimerange" start-placeholder="Start date"
+                  end-placeholder="End date" format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd"
+                  time-format="A hh:mm:ss" />
+            </el-form-item>
+            <el-form-item>
+               <el-button @click="postAnalyticStore" type="primary">submit</el-button>
+            </el-form-item>
+         </div>
       </el-form>
       <div>
          <section class="mt-7">

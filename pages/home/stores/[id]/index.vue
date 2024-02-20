@@ -11,6 +11,7 @@ const route = useRoute()
 const handleClick = (tab: TabsPaneContext, event: Event) => {
    console.log(tab, event)
 }
+const router = useRouter()
 
 async function getShift() {
    const [error, response] = await getShift_API(route.params.id as string, _itemsShift.value.currentPage - 1)
@@ -39,7 +40,7 @@ async function createShift() {
       <!-- <ExpenseModal @update="loadItems" ref="_modalRef" /> -->
 
       <div class="flex items-center justify-between">
-         <h2 class="font-commissioner-700 text-4xl">Магазин</h2>
+         <h2 class="font-commissioner-700 text-4xl"><i @click="router.go(-1)" class="ri-arrow-left-line mr-2 cursor-pointer"></i>Магазин</h2>
       </div>
       <div v-if="_itemsShift.content.length > 0">
          <div class="grid grid-cols-3">
@@ -83,13 +84,4 @@ async function createShift() {
    @apply !font-commissioner-600;
 }
 
-.router-link-exact-active::after {
-   @apply !font-commissioner-600 bg-black;
-   content: '';
-   position: absolute;
-   bottom: -10px;
-   left: 0;
-   width: 100%;
-   height: 2px;
-}
 </style>

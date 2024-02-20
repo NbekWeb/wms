@@ -35,7 +35,7 @@ async function submit() {
 
         <div class="space-y-5 mt-8">
           <el-button :loading="_loading" class="w-full" type="danger" @click="submit">Удалить</el-button>
-          <button class="h-12 border w-full border-text text-text font-commissioner-700">Отмена</button>
+          <button @click="_deleteModal.visible = false" class="h-12 border w-full border-text text-text font-commissioner-700">Отмена</button>
         </div>
     </el-dialog>
 </template>

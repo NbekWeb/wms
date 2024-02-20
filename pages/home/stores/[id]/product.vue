@@ -6,6 +6,7 @@ import { formatDate_UTIL } from "~/utils/date";
 const _itemsShift = ref<BaseListResponse<ShiftModel>>(getBaseListResponse_DEFAULT())
 const items = ref<BaseListResponse<InventoryModel>>(getBaseListResponse_DEFAULT())
 const route = useRoute()
+const router = useRouter()
 const _smena = ref(JSON.parse(route?.query?.smena as any))
 
 async function loadItems() {
@@ -31,7 +32,7 @@ loadItems()
 <template>
    <div>
       <div class="flex items-center justify-between">
-         <h2 class="font-commissioner-700 text-4xl">Чек </h2>
+         <h2 class="font-commissioner-700 text-4xl"><i @click="router.go(-1)" class="ri-arrow-left-line mr-2 cursor-pointer"></i>Чек </h2>
       </div>
          <div class="flex space-x-2 mt-5">
             <span class="font-commissioner-600 text-black">Смена № {{ _smena.id }}</span>

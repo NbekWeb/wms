@@ -24,6 +24,18 @@ export async function updateEmployee_API(payload: EmployeeModel): Promise<[Error
         return [error as Error, null]
     }
 } 
+export async function patchEmployee_API(payload: EmployeeModel): Promise<[Error, null] | [null, EmployeeModel]> {
+   try {
+       const response = <EmployeeModel> await axiosInstance.patch(`employees/${payload.id}`, {
+           ...payload
+       })
+               
+       return [null, response]
+   } catch (error) {
+       return [error as Error, null]
+   }
+} 
+
 
 export async function assignEmployee_API(payload: EmployeeModel): Promise<[Error, null] | [null, EmployeeModel]> {
     try {

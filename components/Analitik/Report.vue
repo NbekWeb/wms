@@ -31,18 +31,18 @@ async function handleChange(page: number) {
 <template>
    <div>
       <div>
-         <div class="flex w-max items-center justify-center rounded-3xl border border-gray-300 p-[2px]">
-            <div @click="_type = DATE_EMUN.DAY; postAnalyticReport()" :class="{ 'bg-danger': _type === DATE_EMUN.DAY }"
-               class="rounded-3xl px-4 py-3">
-               <p>{{ DATE_EMUN_TR.get(DATE_EMUN.DAY) }}</p>
+         <div class="flex w-max items-center justify-center rounded-3xl border-2 border-primary/30 p-[2px]">
+            <div @click="_type = DATE_EMUN.DAY; postAnalyticReport()" :class="{ 'bg-black': _type === DATE_EMUN.DAY }"
+               class="rounded-3xl px-4 py-3 text-black">
+               <p :class="{ 'text-white': _type === DATE_EMUN.DAY }">{{ DATE_EMUN_TR.get(DATE_EMUN.DAY) }}</p>
             </div>
-            <div @click="_type = DATE_EMUN.MONTH; postAnalyticReport()" :class="{ 'bg-danger': _type === DATE_EMUN.MONTH }"
-               class="rounded-3xl px-4 py-3">
-               <p>{{ DATE_EMUN_TR.get(DATE_EMUN.MONTH) }}</p>
+            <div @click="_type = DATE_EMUN.MONTH; postAnalyticReport()" :class="{ 'bg-black': _type === DATE_EMUN.MONTH }"
+               class="rounded-3xl px-4 py-3 text-black">
+               <p :class="{ 'text-white': _type === DATE_EMUN.MONTH }">{{ DATE_EMUN_TR.get(DATE_EMUN.MONTH) }}</p>
             </div>
-            <div @click="_type = DATE_EMUN.YEAR; postAnalyticReport()" :class="{ 'bg-danger': _type === DATE_EMUN.YEAR }"
-               class="rounded-3xl px-4 py-3">
-               <p>{{ DATE_EMUN_TR.get(DATE_EMUN.YEAR) }}</p>
+            <div @click="_type = DATE_EMUN.YEAR; postAnalyticReport()" :class="{ 'bg-black': _type === DATE_EMUN.YEAR }"
+               class="rounded-3xl px-4 py-3 text-black">
+               <p :class="{ 'text-white': _type === DATE_EMUN.YEAR }">{{ DATE_EMUN_TR.get(DATE_EMUN.YEAR) }}</p>
             </div>
          </div>
          <section class="mt-7">
