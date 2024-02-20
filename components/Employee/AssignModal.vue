@@ -105,9 +105,11 @@ defineExpose({
 </template>
 <style lang="scss">
 .modal {
-   .el-input__wrapper {
+
+   .el-input__wrapper,
+   .el-select__wrapper {
       min-height: 3rem !important;
-      height: auto!important;
+      height: auto !important;
    }
 }
 </style>

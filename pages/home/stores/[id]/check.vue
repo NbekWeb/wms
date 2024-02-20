@@ -10,6 +10,7 @@ const _itemsShift = ref<BaseListResponse<OrderShiftModel>>(getBaseListResponse_D
 // const _items = ref<BaseListResponse<ExpenseModel>>(getBaseListResponse_DEFAULT())
 const _modalRef = ref()
 const route = useRoute()
+const router = useRouter()
 const _smena = ref(JSON.parse(route?.query?.smena as string))
 const handleClick = (tab: TabsPaneContext, event: Event) => {
    console.log(tab, event)
@@ -51,7 +52,7 @@ function openModal() {
       <!-- <ExpenseModal @update="loadItems" ref="_modalRef" /> -->
 
       <div class="flex items-center justify-between">
-         <h2 class="font-commissioner-700 text-4xl">Магазин</h2>
+         <h2 class="font-commissioner-700 text-4xl"> <i @click="router.go(-1)" class="ri-arrow-left-line mr-2 cursor-pointer"></i>Магазин</h2>
       </div>
       <!-- <div v-if="_itemsShift.content.length > 0"> -->
       <div class="flex space-x-2 mt-5">
@@ -87,13 +88,4 @@ function openModal() {
    @apply !font-commissioner-600;
 }
 
-.router-link-exact-active::after {
-   @apply !font-commissioner-600 bg-black;
-   content: '';
-   position: absolute;
-   bottom: -10px;
-   left: 0;
-   width: 100%;
-   height: 2px;
-}
 </style>

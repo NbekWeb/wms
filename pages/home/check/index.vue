@@ -72,13 +72,4 @@ loadItems()
     @apply !font-commissioner-600;
 }
 
-.router-link-exact-active::after {
-    @apply !font-commissioner-600 bg-black;
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-}
 </style>

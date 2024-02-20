@@ -120,6 +120,7 @@ loadItems()
                                         </el-dropdown-item>
                                         <el-dropdown-item>
                                             <button
+                                            @click="openModal(row)"
                                                 class="text-white"
                                             >                  
                                                 Редактировать
