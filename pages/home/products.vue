@@ -58,15 +58,15 @@ const handleClick = () => {
    <div>
       <div>
          <ProductModal ref="_modalRef" />
-         <div class="flex items-center justify-between mt-8">
-            <h2 class="font-commissioner-700 text-4xl">Классификатор</h2>
+         <div class="flex items-center justify-between mt-8 max-sm:flex-col max-sm:items-start max-sm:gap-y-3">
+            <h2 class="font-commissioner-700 text-4xl max-sm:text-3xl">Классификатор</h2>
             <!-- <el-select class="w-96" v-model="_selectedProduct" value-key="id" remote @change="onProductChange"
                reserve-keyword filterable placeholder="Поиск продукта ..." remote-show-suffix
                :remote-method="getProductsAutocomplete" :loading="_loading">
                <el-option v-for="item of _items" :key="item.id" :label="item.name" :value="item" />
             </el-select> -->
             
-            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3">
+            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
                <i class="icon-plus white"></i>
                <span>Добавить</span>
             </button>
@@ -79,20 +79,20 @@ const handleClick = () => {
                <el-tab-pane label="Отказано" :name="PRODUCT_STATUS_ENUM.REJECTED" />
             </el-tabs>
             <el-table class="w-full tables" :data="_itemsProduct?.content" border table-layout="auto">
-               <el-table-column type="index" width="80" label="#" />
-               <el-table-column label="Изображение продукта">
+               <el-table-column type="index" width="50" label="#" />
+               <el-table-column width="200" label="Изображение продукта">
                   <template #default="{ row }">
                      <div class="!h-16">
                         <img v-if="row.picture" class="bg-cover h-full" :src="getFileURL_UTIL(row.picture)" alt="">
                      </div>
                   </template>
                </el-table-column>
-               <el-table-column label="Название продукта">
+               <el-table-column width="400"  label="Название продукта">
                   <template #default="{ row }">
                      <span>{{ row.name }}</span>
                   </template>
                </el-table-column>
-               <el-table-column label="Единица продукта">
+               <el-table-column width="200" label="Единица продукта">
                   <template #default="{ row }">
                      <span>{{ row.unit }}</span>
                   </template>
@@ -103,7 +103,7 @@ const handleClick = () => {
                   </template>
                </el-table-column>
 
-               <el-table-column label="Статус">
+               <el-table-column  label="Статус">
                   <template #default="{ row }">
                      <span>{{ row.status }}</span>
                   </template>

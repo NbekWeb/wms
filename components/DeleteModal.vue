@@ -25,7 +25,7 @@ async function submit() {
         <button @click="CLOSE_DELETE_MODAL" class="absolute top-4 right-4 p-0">
             <i class="icon-close"></i>
         </button>
-        <h2 class="font-commissioner-700 text-3xl text-primary">            
+        <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">            
           {{ _deleteModal.text }}
         </h2>
         <div class="mt-5 space-x-1">

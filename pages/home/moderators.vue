@@ -54,22 +54,22 @@ loadItems()
             <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
             <EmployeeDeclineModal ref="_declineModalRef" @update="loadItems"  />  
             <div class="flex items-center justify-between">
-                <h2 class="font-commissioner-700 text-4xl">Продукты</h2>
+                <h2 class="font-commissioner-700 text-4xl max-md:text-3xl">Продукты</h2>
             </div>
 
             <section class="mt-8 ">
-                <div class="w-80">
+                <div class="w-80  max-md:!w-full">
                     <el-input @input="searchProduct" class="!bg-white" v-model="_search" placeholder="Поиск" />
                 </div>                
-                <div class="flex items-center justify-between mt-5 bg-text/60 p-5">
-                    <el-select class="!w-60" v-model="_status" @change="loadItems">
+                <div class="flex items-center justify-between mt-5 bg-text/60 p-5 max-md:p-3 max-md:gap-2">
+                    <el-select class="!w-60 max-md:!w-48" v-model="_status" @change="loadItems">
                         <el-option label="Принятый" :value="PRODUCT_STATUS_ENUM.ACCEPTED" />
                         <el-option label="Инициализировано" :value="PRODUCT_STATUS_ENUM.INITIALIZED" />
                         <el-option label="На модерации" :value="PRODUCT_STATUS_ENUM.MODERATION" />
                         <el-option label="Отклоненный" :value="PRODUCT_STATUS_ENUM.REJECTED" />
                     </el-select>
 
-                    <button class="border border-white text-white text-sm font-commissioner-700">Сбросить</button>
+                    <button class="border border-white text-white text-sm font-commissioner-700 ">Сбросить</button>
                 </div>
 
                 <el-table class="w-full tables" :data="_items.content" border table-layout="auto">
@@ -81,28 +81,28 @@ loadItems()
                            </div>
                         </template>
                     </el-table-column>
-                    <el-table-column label="Название продукта">
+                    <el-table-column width="300"  label="Название продукта">
                         <template #default="{ row }">
                             <span>{{ row.name }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column label="Тип продукта">
+                    <el-table-column width="200" label="Тип продукта">
                         <template #default="{ row }">
                             <span>{{ row.type }}</span>
                         </template>
                     </el-table-column>
 
-                    <el-table-column label="Статус">
+                    <el-table-column  width="150" label="Статус">
                         <template #default="{ row }">
                             <span>{{ row.status }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column  v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" label="Отклоненное сообщение">
+                    <el-table-column width="200"  v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" label="Отклоненное сообщение">
                         <template #default="{ row }">
                             <span>{{ row.rejectedMessage }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column v-if="_status == PRODUCT_STATUS_ENUM.MODERATION" label="Действие">
+                    <el-table-column width="200" v-if="_status == PRODUCT_STATUS_ENUM.MODERATION" label="Действие">
                         <template #default="{ row }">
                              <div class="flex gap-1 justify-center items-center" v-if="row.status == PRODUCT_STATUS_ENUM.MODERATION">
                                <el-button @click="openModal(row, false)" class="!h-8" type="primary">Qabul qilish</el-button>
@@ -119,6 +119,16 @@ loadItems()
 </template>
 
 <style>
+.el-pager li {
+   @media(max-width: 430px){
+      min-width: 22px;
+   }
+}
+.el-pagination button {
+   @media(max-width: 430px){
+      min-width: 22px;
+   }
+}
 .tables .el-button{
    height: 30px!important;
 }

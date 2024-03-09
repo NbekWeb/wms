@@ -48,14 +48,14 @@ defineExpose({
         <button @click="close" class="absolute top-4 right-4 p-0">
             <i class="icon-close"></i>
         </button>
-        <h2 class="font-commissioner-700 text-3xl text-primary">            
+        <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">            
            {{ _item.productName }}
         </h2>
-        <div class="grid grid-cols-3 gap-10 mt-5">
-            <div class="bg-[#F4F7FB] p-2 rounded-md col-span-1">
+        <div class="grid grid-cols-3 gap-10  max-md:grid-cols-2 mt-5">
+            <div class="bg-[#F4F7FB] p-2 rounded-md col-span-1 max-md:hidden">
                 <img src="@/assets/img/product.png" alt="product">
             </div>
-            <div class="grid grid-cols-2 gap-10 col-span-2">
+            <div class="grid grid-cols-2 gap-10 max-md:gap-4 col-span-2">
                 <div>
                     <p class="text-text text-sm">КОЛИЧЕСТВО</p>
                     <p class="font-commissioner-600 text-lg text-black">{{ _item.amount }}</p>

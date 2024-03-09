@@ -138,7 +138,7 @@ defineExpose({
       <button @click="close" class="absolute top-4 right-4 p-0">
          <i class="icon-close"></i>
       </button>
-      <h2 class="font-commissioner-700 text-3xl text-primary">
+      <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">
          {{ _formData.id ? 'Редактировать сотрудника' : 'Добавить сотрудника' }}
       </h2>
       <el-form label-position="top" ref="_modalRef" :model="_formData" :rules="_rules" class="mt-5 space-y-5"

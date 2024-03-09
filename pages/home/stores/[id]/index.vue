@@ -43,7 +43,7 @@ async function createShift() {
          <h2 class="font-commissioner-700 text-4xl"><i @click="router.go(-1)" class="ri-arrow-left-line mr-2 cursor-pointer"></i>Магазин</h2>
       </div>
       <div v-if="_itemsShift.content.length > 0">
-         <div class="grid grid-cols-3">
+         <div class="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
             <div
                @click="$router.push({ path: `/home/stores/${$route.params.id}/check`, query: { smena: JSON.stringify(item) } })"
                v-for="item, ind in  _itemsShift.content" :key="ind">

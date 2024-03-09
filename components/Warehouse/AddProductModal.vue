@@ -100,7 +100,7 @@ defineExpose({
       </button>
       <div>
          <el-form label-position="top">
-            <el-form-item class="w-full" label="Maxsulotni nomi" prop="name">
+            <el-form-item class="w-full mt-2" label="Maxsulotni nomi" prop="name">
                <el-autocomplete class="w-full" v-model="_productName" :fetch-suggestions="querySearchAsync"
                   placeholder="Maxsulotni qidiring" @select="handleSelect">
                   <template v-slot:default="{ item }">
@@ -111,12 +111,12 @@ defineExpose({
          </el-form>
       </div>
 
-      <div class="grid grid-cols-3 gap-5">
-         <div class=" bg-[#F4F7FB] p-2 rounded-md col-span-1 flex justify-center items-center">
+      <div class="grid grid-cols-3 max-md:grid-cols-2 gap-5">
+         <div class="max-md:hidden bg-[#F4F7FB] p-2 rounded-md col-span-1 flex justify-center items-center">
             <img v-if="_productPicture" src="@/assets/img/product.png" alt="product">
             <p v-else>No image</p>
          </div>
-         <el-form class="grid grid-cols-2 col-span-2 gap-2 mt-5" label-position="top">
+         <el-form class="grid grid-cols-2 max-sm:grid-cols-1 col-span-2 gap-2 mt-5" label-position="top">
             <el-form-item :label="`КОЛИЧЕСТВО (${_productUnit})`">
                <el-input v-model="_inventory.amount" />
             </el-form-item>

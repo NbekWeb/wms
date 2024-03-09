@@ -37,8 +37,8 @@ async function deletePartner(item: CustomerModel) {
 <template>
    <div>
       <customers-modal @update="getCustomer" ref="_partnerRef" />
-      <h1 class="text-3xl font-commissioner-700 mb-4">Umumiy qarz: {{ _totalLoan.toLocaleString() }} so'm</h1>
-      <div class="grid grid-cols-4 gap-5">
+      <h1 class="text-3xl font-commissioner-700 mb-4 max-sm:font-commissioner-600 max-sm:text-2xl">Umumiy qarz: {{ _totalLoan.toLocaleString() }} so'm</h1>
+      <div class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1  gap-5">
          <div @click="openModal(undefined)"
             class="cursor-pointer bg-gray rounded-2xl p-5 flex justify-center items-center flex-col">
             <!-- <img src="@/assets/img/add.svg" alt=""> -->

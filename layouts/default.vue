@@ -1,7 +1,7 @@
 <template>
-    <div class="grid grid-cols-5">
-        <BaseSidebar class="col-span-1" />
-        <div class="col-span-4 p-[30px]">
+    <div class="flex max-xl:justify-between">
+        <BaseSidebar class="max-md:hidden col-span-1 max-xl:w-[250px]" />
+        <div class="col-span-4 max-xl:grid-cols-1  p-[30px] max-md:p-5 calc max-md:!w-full">
             <div>
                 <BaseHeader />
             </div>
@@ -11,3 +11,8 @@
         </div>
     </div>
 </template>
+<style>
+.calc{
+   width: calc(100% - 250px);
+}
+</style>

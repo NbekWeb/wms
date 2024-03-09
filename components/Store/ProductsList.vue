@@ -89,7 +89,7 @@ function openModal() {
 }
 </script>
 <template>
-   <div class="pr-8">
+   <div class="pr-8 max-lg:pr-0 mt-6">
       <div class="space-y-5">
          <div class="flex items-center justify-between" v-for="item, ind in _orderProduct.productList" :key="ind">
             <div>
@@ -105,16 +105,16 @@ function openModal() {
             </button>
          </div>
       </div>
-      <div class="bg-text/20 w-full h-[1px] mt-20" />
+      <div class="bg-text/20 w-full h-[1px] mt-20 max-lg:mt-6" />
       <div class="space-y-6 mt-6">
          <div class="flex justify-between items-center">
             <span class="text-text text-lg">К ОПЛАТЕ:</span>
             <span class="text-black font-commissioner-700 text-2xl">{{ productPrice }} сум</span>
          </div>
-         <div v-if="!_checkId" class="flex gap-1">
-            <el-button @click="postOrder(ORDER_TYPE.TERMINAL)" type="primary" class="w-full">ТЕРМИНАЛ</el-button>
-            <el-button @click="postOrder(ORDER_TYPE.CASH)" type="primary" class="w-full">НАЛИЧНЫЕ</el-button>
-            <el-button @click="openModal" type="primary" class="w-full">ДОЛГ</el-button>
+         <div v-if="!_checkId" class="flex gap-1 ">
+            <el-button @click="postOrder(ORDER_TYPE.TERMINAL)" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">ТЕРМИНАЛ</el-button>
+            <el-button @click="postOrder(ORDER_TYPE.CASH)" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">НАЛИЧНЫЕ</el-button>
+            <el-button @click="openModal" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">ДОЛГ</el-button>
          </div>
       </div>
    </div>

@@ -76,12 +76,13 @@ function changeSort() {
 </script>
 <template>
    <div>
-      <el-form class="grid grid-cols-3 gap-6" label-position="top">
+      <el-form class="grid grid-cols-3 max-2xl:grid-cols-2 gap-x-6" label-position="top">
          <el-form-item label="Магазин" prop="warehouse">
             <el-select class="!w-60" v-model="_item.storeId" placeholder="Select">
                <el-option v-for="item  in _storeItems" :key="item.id" :label="item.title" :value="item.id" />
             </el-select>
          </el-form-item>
+         
          <el-form-item label="vaqt" prop="startDate">
             <el-date-picker @change="handleTime" v-model="_time" type="datetimerange" start-placeholder="Start date"
                end-placeholder="End date" format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd"
@@ -89,7 +90,7 @@ function changeSort() {
          </el-form-item>
          <div class="flex gap-4 items-end">
             <el-form-item label="Saralash">
-               <el-select class="!w-60" @change="changeSort" v-model="_sort" placeholder="Select">
+               <el-select class="!w-60 max-md:!w-48" @change="changeSort" v-model="_sort" placeholder="Select">
                   <el-option v-for="item  in _sortOptions" :key="item.label" :label="item.label" :value="item" />
                </el-select>
             </el-form-item>
@@ -101,7 +102,7 @@ function changeSort() {
       <div>
          <section class="mt-7">
             <el-table class="w-full tables" :data="_items.content" border table-layout="auto">
-               <el-table-column type="index" width="80" label="#" />
+               <el-table-column type="index" width="50" label="#" />
                <el-table-column label="Изображение продукта">
                   <template #default="{ row }">
                      <div class="!h-16">
@@ -109,12 +110,12 @@ function changeSort() {
                      </div>
                   </template>
                </el-table-column>
-               <el-table-column label="Название продукта">
+               <el-table-column width="280px" label="Название продукта">
                   <template #default="{ row }">
                      <span>{{ row.name }}</span>
                   </template>
                </el-table-column>
-               <el-table-column label="Единица продукта">
+               <el-table-column width="180px" label="Единица продукта">
                   <template #default="{ row }">
                      <span>{{ row.unit }}</span>
                   </template>

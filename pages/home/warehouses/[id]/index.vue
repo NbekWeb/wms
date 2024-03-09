@@ -43,7 +43,7 @@ loadItems()
       <WarehouseAddProductModal @update="loadItems" ref="_warehouseAddProductModalRef" />
       <WarehouseProductRealisationModal ref="_warehouseProductRealisationModalRef" />
 
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between max-md:flex-col max-md:gap-y-4 max-md:items-start">
          <h2 class="font-commissioner-700 text-4xl">Склады</h2>
          <div class="flex space-x-2">
             <NuxtLink :to="`/home/warehouses/${$route.params.id}/realisationProduct`">
@@ -58,8 +58,30 @@ loadItems()
             </button>
          </div>
       </div>
-
-      <el-table class="mt-8 w-full" :data="items" border table-layout="auto">
+      <div class="mt-8 w-full hidden max-lg:block">
+         <div class="p-4 border border-black/20" v-for="item, ind in items" :key="ind">
+            <p @click="openWarehouseProductModal(item)" class="font-commissioner-500 mb-4">{{ item.productName }}</p>
+            <div class="grid grid-cols-2 gap-y-3">
+               <div>
+                  <p class="!text-black/40 mb-1">КОЛ-ВО</p>
+                  <p>{{ item.amount }} кг</p>
+               </div>
+               <div>
+                  <p class="!text-black/40 mb-1">ЗАКУПОЧНАЯ ЦЕНА</p>
+                  <p>{{ item.basePrice.toLocaleString() }} сум</p>
+               </div>
+               <div>
+                  <p class="!text-black/40 mb-1">ПАРТИИ</p>
+                  <p>{{ item.partCount.toLocaleString() }}</p>
+               </div>
+               <div>
+                  <p class="!text-black/40 mb-1">ПРОДАЖНАЯ ЦЕНА</p>
+                  <p>{{ item.sellingPrice.toLocaleString() }} сум</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <el-table class="mt-8 w-full max-lg:hidden" :data="items" border table-layout="auto">
          <el-table-column type="index" width="80" label="#" />
          <el-table-column label="НАИМЕНОВАНИЕ ТОВАРА">
             <template #default="{ row }">
@@ -111,3 +133,10 @@ loadItems()
       </el-table>
    </div>
 </template>
+<style lang="scss">
+  .el-overlay-dialog{
+   left: 20px!important;
+   right: 20px!important;
+ }
+
+</style>

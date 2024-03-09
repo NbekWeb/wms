@@ -2,7 +2,7 @@
     <div class="pr-8">
         <div class="space-y-5">
             <h2 class="font-commissioner-700 text-4xl">Продажа</h2>          
-            <div class="bg-text/20 w-full h-[1px] mt-20" />  
+            <div class="bg-text/20 w-full h-[1px] mt-20 max-lg:mt-6" />  
             <div class="flex items-center justify-between" v-for="item of 2">
                 <div>
                     <p class="text-black font-commissioner-600">Помидоры розовые</p>
@@ -16,7 +16,7 @@
                 </button>
             </div>
         </div>
-        <div class="bg-text/20 w-full h-[1px] mt-20" />
+        <div class="bg-text/20 w-full h-[1px] mt-20 max-lg:mt-6" />
         <div class="space-y-6 mt-6">
             <div class="flex justify-between items-center">
                 <span class="text-text text-lg">К ОПЛАТЕ:</span>

@@ -29,15 +29,15 @@ loadItems()
     <div>
         <StoreModal @update="loadItems" ref="_modalRef" />
         <EmployeeModal @update="loadItems" ref="_employeeModalRef" />
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between max-sm:flex-col max-md:items-start max-sm:gap-y-4">
             <h2 class="font-commissioner-700 text-4xl">Магазины</h2>
-            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3">
+            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center max-sm:w-full max-sm:justify-center">
                 <i class="icon-plus white"></i>
                 <span>Добавить магазин</span>
             </button>
         </div>
         <div 
-            class="grid grid-cols-3 gap-6 mt-8" 
+            class="grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1 gap-6 mt-8" 
             v-if="_items.length > 0">
             <StoreCard 
                 @set-employee="openEmployeeModal"

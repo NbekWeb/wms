@@ -49,7 +49,7 @@ const productPrice = computed(() => {
             </button>
          </div>
       </div>
-      <div class="bg-text/20 w-full h-[1px] mt-20" />
+      <div class="bg-text/20 w-full h-[1px] mt-20 max-lg:mt-6" />
       <div class="space-y-6 mt-6">
          <p class="text-text text-lg">ИТОГО:</p>
          <div class="flex justify-between items-center">

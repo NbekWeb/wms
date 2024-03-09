@@ -28,7 +28,7 @@ async function createShift() {
 
 <template>
    <div>
-      <div v-if="props.items?.length" class="grid grid-cols-3">
+      <div v-if="props.items?.length" class="grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1">
          <CheckCard v-for="item, idx of props.items" :key="idx" :item="item" />
       </div>
       <NoData v-else title="Создать чек" @set="createShift" />
@@ -38,7 +38,7 @@ async function createShift() {
             <i class="icon-plus white"></i>
             <span>Создать чек</span>
          </button>
-         <button @click="closeShift" class="h-12 flex items-center bg-black text-white space-x-3">
+         <button @click="closeShift" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
             <span>Закрыть смену</span>
          </button>
       </div>

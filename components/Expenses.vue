@@ -32,11 +32,11 @@ loadItems()
    <div>
       <ExpenseModal @update="loadItems" ref="_modalRef" />
 
-      <div class="grid grid-cols-3">
+      <div class="grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1">
          <ExpenseCard @update="handleItem" @edit="editModal" v-for="item, idx of _items.content" :key="idx" :item="item" />
       </div>
       <div v-if="!_smena.closedDate" class="flex justify-center w-full mt-10">
-         <button @click="openModal" class="h-12 flex items-center bg-black text-white space-x-3">
+         <button @click="openModal" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
             <i class="icon-plus white"></i>
             <span>Добавить расход</span>
          </button>

@@ -19,7 +19,7 @@ getOrderReport()
 
 <template>
    <div>
-      <div class="w-1/2 bg-gray p-5 rounded-2xl">
+      <div class="w-1/2 bg-gray p-5 rounded-2xl max-md:w-full">
          <h2 class="font-commissioner-600 text-2xl">{{ _item.employee.firstname + ' ' + _item.employee.lastname }}</h2>
          <div class="flex justify-between mt-2">
             <p class="font-commissioner-600 text-lg">выгода</p>

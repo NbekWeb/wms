@@ -47,9 +47,9 @@ loadItems()
             <EmployeeModal ref="_modalRef" @update="loadItems" />
             <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
 
-            <div class="flex items-center justify-between">
-                <h2 class="font-commissioner-700 text-4xl">Сотрудники</h2>
-                <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3">
+            <div class="flex items-center justify-between max-md:flex-col max-md:items-start max-md:gap-y-4">
+                <h2 class="font-commissioner-700 text-4xl max-md:text-3xl">Сотрудники</h2>
+                <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
                     <i class="icon-plus white"></i>
                     <span>Добавить сотрудника</span>
                 </button>
@@ -57,7 +57,7 @@ loadItems()
 
             <el-table class="mt-8 w-full" :data="_items.content" border table-layout="auto">
                 <el-table-column type="index" width="80" label="#" />
-                <el-table-column label="ФАМИЛИЯ И ИМЯ">
+                <el-table-column  label="ФАМИЛИЯ И ИМЯ">
                     <template #default="{ row }">
                         <span>{{ row.lastname }}</span>
                         <span>{{ row.firstname }}</span>
@@ -81,18 +81,18 @@ loadItems()
                      </div>
                     </template>
                 </el-table-column>
-                <el-table-column label="СКЛАД">
+                <el-table-column width="200" label="СКЛАД">
                     <template #default="{ row }">                        
                         {{ row.assignedWarehouseName || 'Не назначен' }}
                     </template>
                 </el-table-column>
 
-                <el-table-column label="МАГАЗИН">
+                <el-table-column width="200" label="МАГАЗИН">
                     <template #default="{ row }">
                         {{ row.assignedStoreName || 'Не назначен' }}
                     </template>
                 </el-table-column>
-                <el-table-column label="ЕЩЁ">
+                <el-table-column width="100" label="ЕЩЁ">
                     <template #default="{ row }">
                         <el-dropdown trigger="click">
                             <button class="bg-black py-1 px-2">

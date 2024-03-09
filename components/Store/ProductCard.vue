@@ -50,7 +50,7 @@ async function sendProduct() {
 </script>
 
 <template>
-   <div class="rounded-2xl border border-info-main bg-info p-5 space-y-4">
+   <div class="rounded-2xl border border-info-main bg-info p-5 space-y-4 max-md:p-3 max-md:space-y-3">
       <p class="font-commissioner-600 h-12 text-black text-center text-sm">{{ item.productName }}</p>
       <img class="w-24 h-24 object-cover mx-auto" v-if="item?.picture" :src="getFileURL_UTIL(item?.picture)" alt="">
       <div class="h-24 rounded flex justify-center items-center bg-white" v-else>

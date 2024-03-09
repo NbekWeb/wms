@@ -50,11 +50,11 @@ async function submit() {
 </script>
 
 <template>
-        <section class="mx-auto w-5/6">
+        <section class="mx-auto w-5/6 max-md:w-full">
             <div>
                 <h1 class="font-commissioner-700 text-4xl text-center">Регистрация в системе</h1>
                 <el-form :rules="_rules" label-position="top" :model="_formData" ref="_formRef" class="mt-10" @submit.prevent="submit">
-                    <div class="grid grid-cols-2 gap-6">
+                    <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-6 max-md:gap-x-4 max-md:gap-y-0">
                         <el-form-item label="Имя" prop="firstname">
                             <el-input placeholder="Введите имя" v-model="_formData.firstname" />
                         </el-form-item>
@@ -84,7 +84,7 @@ async function submit() {
                         </el-form-item>
                     </div>
                     <div class="mt-10 flex justify-center">
-                        <el-button :loading="_loading" native-type="submit" type="primary" class="w-1/2 bg-black text-white">Зарегистрироваться</el-button>
+                        <el-button :loading="_loading" native-type="submit" type="primary" class="w-1/2 max-md:w-full bg-black text-white">Зарегистрироваться</el-button>
                     </div>
                 </el-form>
             </div>

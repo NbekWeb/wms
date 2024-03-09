@@ -80,7 +80,7 @@ defineExpose({
 
 <template>
    <BaseModal class="modal" v-model="_visible" @close="close" :loading="_loading" @confirm="submit" width="480px">
-      <h2 class="font-commissioner-700 text-3xl text-primary">
+      <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">
          {{ _position === EMPLOYEE_POSITION_ENUM.STACKER ? "Прикрепить к складу" : "Прикрепить к магазину" }}
       </h2>
       <div class="flex items-center space-x-2 mt-5">

@@ -24,15 +24,15 @@ loadItems()
          <EmployeeModal ref="_modalRef" @update="loadItems" />
          <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
          <div class="flex items-center justify-between">
-            <h2 class="font-commissioner-700 text-4xl">Заказы поставки</h2>
+            <h2 class="font-commissioner-700 text-4xl max-md:text-3xl">Заказы поставки</h2>
          </div>
 
-         <section class="mt-8 ">
-            <div class="w-80">
+         <section class="mt-8 max-md:mt-4">
+            <div class="w-80 max-md:w-full">
                <el-input class="!bg-white" v-model="_search" placeholder="Поиск" />
             </div>
-            <div class="flex items-center justify-between mt-5 bg-text/60 p-5">
-               <el-select v-model="_status" @change="loadItems">
+            <div class="flex items-center justify-between mt-5 bg-text/60 p-5 max-md:p-3 max-md:gap-2">
+               <el-select class="!w-48" v-model="_status" @change="loadItems">
                   <el-option label="Принятый" :value="1" />
                   <el-option label="Инициализировано" :value="2" />
                </el-select>
@@ -62,7 +62,7 @@ loadItems()
                   </template>
                </el-table-column>
 
-               <el-table-column label="КОЛ-ВО ТОВАРОВ">
+               <el-table-column width="180" label="КОЛ-ВО ТОВАРОВ">
                   <template #default="{ row }">
                      <span>{{ row?.order_products?.length }}</span>
                   </template>

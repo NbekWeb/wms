@@ -35,7 +35,7 @@ loadItems()
         </div>
 
         <div>
-            <button @click="openModal" class="h-12 flex items-center bg-black text-white space-x-3">
+            <button @click="openModal" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
                 <i class="icon-plus white"></i>
                 <span>Добавить продукт</span>
             </button>
