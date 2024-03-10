@@ -41,7 +41,7 @@ const productPrice = computed(() => {
                <p class="text-black font-commissioner-600">{{ item.productName }}</p>
                <div class="flex space-x-5 mt-2">
                   <span class="text-black">{{ item.amount }} {{ item.unit }}</span>
-                  <span class="text-text font-commissioner-600">{{ item.amount * item.sellingPrice }} сум</span>
+                  <span class="text-text font-commissioner-600">{{ item.amount * item.sellingPrice }} {{ $t('summ') }}</span>
                </div>
             </div>
             <button @click="close(ind)" class="p-0">
@@ -51,16 +51,16 @@ const productPrice = computed(() => {
       </div>
       <div class="bg-text/20 w-full h-[1px] mt-20 max-lg:mt-6" />
       <div class="space-y-6 mt-6">
-         <p class="text-text text-lg">ИТОГО:</p>
+         <p class="text-text text-lg">{{ $t('total') }} :</p>
          <div class="flex justify-between items-center">
-            <span class="text-text text-lg">Товаров:</span>
+            <span class="text-text text-lg">{{ $t('products') }}:</span>
             <span class="text-black font-commissioner-700 text-2xl">{{ productCount }}</span>
          </div>
          <div class="flex justify-between items-center">
-            <span class="text-text text-lg">Сумма:</span>
-            <span class="text-black font-commissioner-700 text-2xl">{{ productPrice }} сум</span>
+            <span class="text-text text-lg">{{ $t('sum') }}:</span>
+            <span class="text-black font-commissioner-700 text-2xl">{{ productPrice }} {{ $t('summ') }}</span>
          </div>
-         <el-button @click="sentInventory" type="primary" class="w-full">ОТПРАВИТЬ В МАГАЗИН</el-button>
+         <el-button @click="sentInventory" type="primary" class="w-full">{{ $t('sendStore') }}</el-button>
       </div>
    </div>
 </template>

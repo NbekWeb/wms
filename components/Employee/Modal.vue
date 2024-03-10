@@ -5,6 +5,7 @@ import { getEmployee_DEFAULT, type EmployeeModel, patchEmployee_API, createEmplo
 import { type WarehouseModel, getWarehouses_API } from '~/services/warehouse';
 import { _rules } from './rules'
 
+const { t } = useI18n()
 const _warehouses = ref<WarehouseModel[]>([])
 const _stores = ref<StoreModel[]>([])
 const _modalRef = ref()
@@ -16,7 +17,7 @@ const _multiSel = ref<string[]>([])
 const data = ref([
    {
       value: EMPLOYEE_POSITION_ENUM.STACKER,
-      label: EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.STACKER),
+      label: t(EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.STACKER) as any as string),
       children: [
          {
             value: '1-1',
@@ -26,7 +27,7 @@ const data = ref([
    },
    {
       value: EMPLOYEE_POSITION_ENUM.SALESMAN,
-      label: EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.SALESMAN),
+      label: t(EMPLOYEE_POSITION.get(EMPLOYEE_POSITION_ENUM.SALESMAN) as any as string),
       children: [
          {
             value: '1-1',
@@ -139,18 +140,18 @@ defineExpose({
          <i class="icon-close"></i>
       </button>
       <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">
-         {{ _formData.id ? 'Редактировать сотрудника' : 'Добавить сотрудника' }}
+         {{ _formData.id ? 'editEmployee' : 'addEmployee' }}
       </h2>
       <el-form label-position="top" ref="_modalRef" :model="_formData" :rules="_rules" class="mt-5 space-y-5"
          @submit.prevent="submit">
-         <el-form-item label="Имя" prop="firstname">
-            <el-input v-model="_formData.firstname" placeholder="Введите имя" />
+         <el-form-item :label="$t('firstname')" prop="firstname">
+            <el-input v-model="_formData.firstname" :placeholder="$t('enterfirstname')" />
          </el-form-item>
-         <el-form-item label="Фамилия" prop="lastname">
-            <el-input v-model="_formData.lastname" placeholder="Введите фамилию" />
+         <el-form-item :label="$t('lastname')" prop="lastname">
+            <el-input v-model="_formData.lastname" :placeholder="$t('enterlastname')" />
          </el-form-item>
 
-         <el-form-item v-if="checkedSelect" class="item" label="Должность">
+         <el-form-item v-if="checkedSelect" class="item" :label="$t('job')">
             <el-tree-select class="w-full" v-model="_multiSel" :data="data" multiple :default-expand-all="true"
                :show-checkbox="checkedSelect">
                <template #default="{ data: { label } }">
@@ -159,15 +160,15 @@ defineExpose({
             </el-tree-select>
          </el-form-item>
 
-         <el-form-item label="Логин" prop="username">
-            <el-input v-model="_formData.username" placeholder="Введите логин" />
+         <el-form-item :label="$t('username')" prop="username">
+            <el-input v-model="_formData.username" :placeholder="$t('enterusername')" />
          </el-form-item>
 
-         <el-form-item label="Пароль" prop="password">
-            <el-input v-model="_formData.password" placeholder="Введите пароль" />
+         <el-form-item :label="$t('password')" prop="password">
+            <el-input v-model="_formData.password" :placeholder="$t('enterpassword')" />
          </el-form-item>
 
-         <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">Сохранить</el-button>
+         <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">{{ $t('save') }}</el-button>
       </el-form>
    </el-dialog>
 </template>

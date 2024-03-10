@@ -6,7 +6,7 @@ import { getRegister_DEFAULT, type RegisterModel, register_API } from '~/service
 import type { FormRules } from 'element-plus'
 
 const _rules = ref<FormRules>({
-    name: [{ required: true, message: 'Введите имя', trigger: 'change' }],
+    name: [{ required: true, message: ()=> $t('enterName'), trigger: 'change' }],
     surname: [{ required: true, message: 'Введите фамилию', trigger: 'change' }],
     companyName: [{ required: true, message: 'Введите название организации', trigger: 'change' }],
     companyType: [{ required: true, message: 'Введите ИНН', trigger: 'change' }],

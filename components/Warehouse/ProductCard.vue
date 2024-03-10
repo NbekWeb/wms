@@ -72,13 +72,13 @@ function handlePart(item: InventoryProductPartModel) {
       <p class="font-commissioner-600 h-12 text-black text-center text-sm">{{ item.productName }}</p>
       <img class="w-24 h-24 object-cover mx-auto" v-if="item?.picture" :src="getFileURL_UTIL(item?.picture)" alt="">
       <div class="h-24 rounded flex justify-center items-center bg-white" v-else>
-         No image
+         {{ $t('noImage') }}
       </div>
       <!-- <img src="@/assets/img/product.png" alt="product" class="w-24 h-24 object-cover mx-auto"> -->
-      <p class="text-center font-commissioner-600 text-black text-xl">{{ item.sellingPrice }} сум </p>
+      <p class="text-center font-commissioner-600 text-black text-xl">{{ item.sellingPrice }} {{ $t('summ') }} </p>
       <button @click="openModal" class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
          <i class="icon-plus white"></i>
-         <span>Добавить</span>
+         <span>{{ $t('add') }}</span>
       </button>
 
       <el-dialog class="relative" align-center v-model="_visible" :show-close="false" @close="close" width="450">
@@ -104,13 +104,13 @@ function handlePart(item: InventoryProductPartModel) {
          <div class="grid grid-cols-2 gap-5 mt-8">
             <div v-for="item, ind in _ProductPart" :key="item.id" @click="handlePart(item)"
                :class="{ 'border border-primary': item?.isPart }" class="bg-info p-4 rounded-lg">
-               <p class="text-xl font-commissioner-600 text-black">{{ ind + 1 }} партия</p>
+               <p class="text-xl font-commissioner-600 text-black">{{ ind + 1 }} {{ $t('party') }}</p>
                <div class="flex space-x-2">
-                  <span class="text-text">Дата:</span>
+                  <span class="text-text">{{ $t('date') }}:</span>
                   <span class="text-black font-commissioner-600">{{ formatDate_UTIL(item.createdDate, false) }}</span>
                </div>
                <div class="flex space-x-2">
-                  <span class="text-text">Кол-во:</span>
+                  <span class="text-text">{{ $t('amount') }}:</span>
                   <span class="text-black font-commissioner-600">{{ item.amount + ' ' + item.unit }}</span>
                </div>
             </div>

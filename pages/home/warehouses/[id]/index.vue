@@ -44,17 +44,17 @@ loadItems()
       <WarehouseProductRealisationModal ref="_warehouseProductRealisationModalRef" />
 
       <div class="flex items-center justify-between max-md:flex-col max-md:gap-y-4 max-md:items-start">
-         <h2 class="font-commissioner-700 text-4xl">Склады</h2>
+         <h2 class="font-commissioner-700 text-4xl">{{ $t('warehouses') }}</h2>
          <div class="flex space-x-2">
             <NuxtLink :to="`/home/warehouses/${$route.params.id}/realisationProduct`">
                <button class="h-12 flex items-center space-x-3 text-black border border-black">
-                  <span>Реализация товаров</span>
+                  <span> {{ $t('salesGoods') }}</span>
                </button>
             </NuxtLink>
             <button @click="openWarehouseAddProductModal()"
                class="h-12 flex items-center space-x-3 bg-black text-white">
                <i class="icon-plus white"></i>
-               <span>Добавить</span>
+               <span>{{ $t('add') }}</span>
             </button>
          </div>
       </div>
@@ -63,53 +63,53 @@ loadItems()
             <p @click="openWarehouseProductModal(item)" class="font-commissioner-500 mb-4">{{ item.productName }}</p>
             <div class="grid grid-cols-2 gap-y-3">
                <div>
-                  <p class="!text-black/40 mb-1">КОЛ-ВО</p>
+                  <p class="!text-black/40 mb-1"> {{ $t('amount') }}</p>
                   <p>{{ item.amount }} кг</p>
                </div>
                <div>
-                  <p class="!text-black/40 mb-1">ЗАКУПОЧНАЯ ЦЕНА</p>
-                  <p>{{ item.basePrice.toLocaleString() }} сум</p>
+                  <p class="!text-black/40 mb-1"> {{ $t('basePrice') }}</p>
+                  <p>{{ item.basePrice.toLocaleString() }} {{ $t('summ') }} </p>
                </div>
                <div>
-                  <p class="!text-black/40 mb-1">ПАРТИИ</p>
+                  <p class="!text-black/40 mb-1"> {{ $t('partCount') }}</p>
                   <p>{{ item.partCount.toLocaleString() }}</p>
                </div>
                <div>
-                  <p class="!text-black/40 mb-1">ПРОДАЖНАЯ ЦЕНА</p>
-                  <p>{{ item.sellingPrice.toLocaleString() }} сум</p>
+                  <p class="!text-black/40 mb-1"> {{ $t('sellingPrice') }}</p>
+                  <p>{{ item.sellingPrice.toLocaleString() }} {{ $t('summ') }} </p>
                </div>
             </div>
          </div>
       </div>
       <el-table class="mt-8 w-full max-lg:hidden" :data="items" border table-layout="auto">
          <el-table-column type="index" width="80" label="#" />
-         <el-table-column label="НАИМЕНОВАНИЕ ТОВАРА">
+         <el-table-column :label="$t('productName')">
             <template #default="{ row }">
                <span>{{ row.productName }}</span>
             </template>
          </el-table-column>
-         <el-table-column label="КОЛ-ВО">
+         <el-table-column :label="$t('amount')">
             <template #default="{ row }">
                <span>{{ row.amount }}</span>
             </template>
          </el-table-column>
-         <el-table-column label="ЗАКУПОЧНАЯ ЦЕНА">
+         <el-table-column :label="$t('basePrice')">
             <template #default="{ row }">
                <span>{{ row.basePrice }}</span>
             </template>
          </el-table-column>
-         <el-table-column label="ПРОДАЖНАЯ ЦЕНА">
+         <el-table-column :label="$t('sellingPrice')">
             <template #default="{ row }">
                <span>{{ row.sellingPrice }}</span>
             </template>
          </el-table-column>
-         <el-table-column label="КОЛ-ВО ПАРТИЙ">
+         <el-table-column :label="$t('partCount')">
             <template #default="{ row }">
                <span>{{ row.partCount }}</span>
             </template>
          </el-table-column>
 
-         <el-table-column label="ЕЩЁ">
+         <el-table-column :label="$t('more')">
             <template #default="{ row }">
                <el-dropdown trigger="click">
                   <button class="bg-black py-1 px-2">
@@ -121,7 +121,7 @@ loadItems()
                         <el-dropdown-menu>
                            <el-dropdown-item>
                               <button @click="openWarehouseProductModal(row)" class="text-white">
-                                 See product info
+                                 {{ $t('productInfo') }}
                               </button>
                            </el-dropdown-item>
                         </el-dropdown-menu>

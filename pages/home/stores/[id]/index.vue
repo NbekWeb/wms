@@ -40,7 +40,7 @@ async function createShift() {
       <!-- <ExpenseModal @update="loadItems" ref="_modalRef" /> -->
 
       <div class="flex items-center justify-between">
-         <h2 class="font-commissioner-700 text-4xl"><i @click="router.go(-1)" class="ri-arrow-left-line mr-2 cursor-pointer"></i>Магазин</h2>
+         <h2 class="font-commissioner-700 text-4xl"><i @click="router.go(-1)" class="ri-arrow-left-line mr-2 cursor-pointer"></i>{{ $t('store1') }}</h2>
       </div>
       <div v-if="_itemsShift.content.length > 0">
          <div class="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
@@ -48,17 +48,17 @@ async function createShift() {
                @click="$router.push({ path: `/home/stores/${$route.params.id}/check`, query: { smena: JSON.stringify(item) } })"
                v-for="item, ind in  _itemsShift.content" :key="ind">
                <div class="p-4 space-y-2 border border-text/20 overflow-hidden mt-5">
-                  <span class="font-commissioner-600 text-black">Смена №{{ item.id }}</span>
+                  <span class="font-commissioner-600 text-black">{{ $t('change') }} №{{ item.id }}</span>
                   <div class="flex space-x-2">
-                     <span class="text-text">employeeName: </span>
+                     <span class="text-text">{{ $t('employeeName') }}: </span>
                      <span class="text-black font-commissioner-600">{{ item.employeeName}}</span>
                   </div>
                   <div class="flex space-x-2">
-                     <span class="text-text">Начало: </span>
+                     <span class="text-text">{{ $t('start') }}: </span>
                      <span class="text-black font-commissioner-600">{{ formatDate_UTIL(item.createdDate, false) }}</span>
                   </div>
                   <div class="flex space-x-2">
-                     <span class="text-text">Заканчивать: </span>
+                     <span class="text-text">  {{ $t('end') }}: </span>
                      <span v-if="item.closedDate" class="text-black font-commissioner-600">{{formatDate_UTIL(item.closedDate, false) }} </span>
                      <span v-else class="text-black font-commissioner-600"> -</span>
                   </div>
@@ -67,11 +67,11 @@ async function createShift() {
          </div>
          <button @click="createShift" class="flex h-12 items-center bg-black text-white space-x-3 mx-auto mt-8">
             <i class="icon-plus white"></i>
-            <span>Открытие смены</span>
+            <span>{{ $t('openingShift') }}</span>
          </button>
       </div>
 
-      <NoData v-else title="Открытие смены" @set="createShift" />
+      <NoData v-else :title="$t('openingShift')" @set="createShift" />
    </div>
 </template>
 

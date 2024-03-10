@@ -18,7 +18,7 @@
 }
 
 * {
-    @apply font-commissioner-400 leading-[140%];
+    @apply font-commissioner leading-[140%];
 }
 
 body {

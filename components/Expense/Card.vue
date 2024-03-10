@@ -30,11 +30,11 @@ async function editItem() {
          <p class="text-text/80">{{ formatDate_UTIL(props.item.createdDate, false) }}</p>
 
          <div class="space-x-2 py-2">
-            <span class="font-commissioner-600 text-primary">Расход № {{ props.item.id }}</span>
-            <span class="font-commissioner-600 text-text">{{ props.item.amount }} UZS</span>
+            <span class="font-commissioner-600 text-primary">{{ $t('expens') }} № {{ props.item.id }}</span>
+            <span class="font-commissioner-600 text-text">{{ props.item.amount }} {{ $t('summ') }}</span>
          </div>
          <div class="space-x-2 flex">
-            <span class="font-commissioner-600 text-primary">Комментарий:</span>
+            <span class="font-commissioner-600 text-primary">{{ $t('comment') }}:</span>
             <span class="font-commissioner-600 text-text">{{ props.item.comment }}</span>
          </div>
       </div>

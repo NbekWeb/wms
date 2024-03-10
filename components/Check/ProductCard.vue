@@ -5,7 +5,7 @@
         <p class="text-center font-commissioner-600 text-black text-xl">8 000 сум (ед)</p>
         <button class="h-10 w-full justify-center flex items-center space-x-3 bg-black text-white">
             <i class="icon-plus white"></i>
-            <span>Добавить</span>
+            <span>{{ $t('add') }}</span>
         </button>
     </div>
 </template>

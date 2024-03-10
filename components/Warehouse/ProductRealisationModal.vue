@@ -86,7 +86,7 @@ defineExpose({
                     </div>
                     <button class="h-10 w-full flex items-center justify-center space-x-2 bg-black text-white">
                         <i class="icon-plus white"></i>
-                        <span>Добавить</span>
+                        <span>{{ $t('add') }}</span>
                     </button>
                 </div>
                 <div class="bg-info p-4 rounded-lg space-y-4">
@@ -101,7 +101,7 @@ defineExpose({
                     </div>
                     <button class="h-10 w-full flex items-center justify-center space-x-2 bg-black text-white">
                         <i class="icon-plus white"></i>
-                        <span>Добавить</span>
+                        <span>{{ $t('add') }}</span>
                     </button>
                 </div>
                 <div class="bg-info p-4 rounded-lg space-y-4">
@@ -116,7 +116,7 @@ defineExpose({
                     </div>
                     <button class="h-10 w-full flex items-center justify-center space-x-2 bg-black text-white">
                         <i class="icon-plus white"></i>
-                        <span>Добавить</span>
+                        <span>{{ $t('add') }}</span>
                     </button>
                 </div>
             </div>

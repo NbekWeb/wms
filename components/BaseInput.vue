@@ -27,7 +27,7 @@ const modelValue = defineModel()
         <input 
             v-model="modelValue"
             :type="props.type" 
-            placeholder="Введите имя" 
+            :placeholder="$t('enterName')" 
             class="mt-1 rounded-xl border border-white bg-[#F4F7FB]"
             :class="bgColor"
         >

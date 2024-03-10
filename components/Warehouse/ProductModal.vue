@@ -57,24 +57,24 @@ defineExpose({
             </div>
             <div class="grid grid-cols-2 gap-10 max-md:gap-4 col-span-2">
                 <div>
-                    <p class="text-text text-sm">КОЛИЧЕСТВО</p>
+                    <p class="text-text text-sm">{{ $t('amounts') }}</p>
                     <p class="font-commissioner-600 text-lg text-black">{{ _item.amount }}</p>
                 </div>
                 <div>
-                    <p class="text-text text-sm">КОЛИЧЕСТВО ПАРТИЙ</p>
+                    <p class="text-text text-sm"> {{ $t('partCount') }}</p>
                     <p class="font-commissioner-600 text-lg text-black">{{ _item.partCount }}</p>
                 </div>
                 <div>
-                    <p class="text-text text-sm">ЗАКУПОЧНАЯ ЦЕНА</p>
-                    <p class="font-commissioner-600 text-lg text-black">{{ _item.basePrice }} UZS</p>
+                    <p class="text-text text-sm"> {{ $t('basePrice') }}</p>
+                    <p class="font-commissioner-600 text-lg text-black">{{ _item.basePrice }} {{ $t('summ') }}</p>
                 </div>
                 <div>
-                    <p class="text-text text-sm">ПРОДАЖНАЯ ЦЕНА</p>
-                    <p class="font-commissioner-600 text-lg text-black">{{ _item.sellingPrice }} UZS</p>
+                    <p class="text-text text-sm"> {{ $t('sellingPrice') }}</p>
+                    <p class="font-commissioner-600 text-lg text-black">{{ _item.sellingPrice }} {{ $t('summ') }}</p>
                 </div>                
             </div>
         </div>
-        <div class="grid grid-cols-2 gap-5 mt-8">
+        <!-- <div class="grid grid-cols-2 gap-5 mt-8">
             <div class="bg-info p-4 rounded-lg">
                 <p class="text-xl font-commissioner-600 text-black">1 партия</p>
                 <div class="flex space-x-2">
@@ -108,6 +108,6 @@ defineExpose({
                     <span class="text-black font-commissioner-600">200 ед</span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </el-dialog>
 </template>

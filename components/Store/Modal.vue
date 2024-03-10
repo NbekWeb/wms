@@ -22,7 +22,6 @@ const _formData = useState<StoreModel>(getStore_DEFAULT)
 
 function open(item: StoreModel, warehouseId: string) {
    loadWarehouses()
-   console.log('itemwwwwwww', item);
    
     if (item?.id) _formData.value = item
     if (warehouseId) _formData.value.warehouseId = warehouseId
@@ -64,23 +63,23 @@ defineExpose({
             <i class="icon-close"></i>
         </button>
         <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">            
-            {{ _formData.id ? 'Редактировать магазина' : 'Добавить магазин' }}
+            {{ _formData.id ? $t('editStore') : $t('addStore') }}
         </h2>
         <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">            
-            <el-form-item label="Склад" prop="warehouseId">
+            <el-form-item :label="$t('warehouse')" prop="warehouseId">
                 <el-select class="w-full" v-model="_formData.warehouseId">
                     <el-option v-for="item of _warehouses" :key="item.id" :label="item.title" :value="item.id" />
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="Название магазина" prop="title">
-                <el-input v-model="_formData.title" placeholder="Введите название склада" />
+            <el-form-item :label="$t('storeName')" prop="title">
+                <el-input v-model="_formData.title" :placeholder="$t('enterStoreName')" />
             </el-form-item>
-            <el-form-item label="Адрес магазина" prop="address">
-                <el-input v-model="_formData.address" placeholder="Введите адрес склада" />
+            <el-form-item label="$t('enterAddressStore')" prop="address">
+                <el-input v-model="_formData.address" :placeholder="$t('enterAddressStore')" />
             </el-form-item>
 
-            <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">Сохранить</el-button>
+            <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">{{ $t('save') }}</el-button>
         </el-form>
     </el-dialog>
 </template>

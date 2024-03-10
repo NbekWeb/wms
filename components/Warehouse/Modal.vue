@@ -47,17 +47,17 @@ defineExpose({
             <i class="icon-close"></i>
         </button>
         <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">            
-            {{ _formData.id ? 'Редактировать склада' : 'Добавить склад' }}
+            {{ _formData.id ? $t('editWareHouse') :  $t('addWareHouse')  }}
         </h2>
         <el-form :rules="_rules" :model="_formData" ref="_modalRef" label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">
-            <el-form-item label="Название склада" prop="title">
-                <el-input v-model="_formData.title" placeholder="Введите название склада" />
+            <el-form-item :label="$t('warehouseName')" prop="title">
+                <el-input v-model="_formData.title" :placeholder="$t('enterWarehouseName')" />
             </el-form-item>
-            <el-form-item label="Адрес склада" prop="address">
-                <el-input v-model="_formData.address" placeholder="Введите адрес склада" />
+            <el-form-item ;label="$t('addressWarehouse')" prop="address">
+                <el-input v-model="_formData.address" :placeholder="$t('enterAddressWarehouse')" />
             </el-form-item>
 
-            <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">Сохранить</el-button>
+            <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">{{ $t('save') }}</el-button>
         </el-form>
     </el-dialog>
 </template>

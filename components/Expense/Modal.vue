@@ -51,18 +51,18 @@ defineExpose({
          <i class="icon-close"></i>
       </button>
       <h2 class="font-commissioner-700 text-3xl text-primary max-md:text-2xl my-4">
-         {{ _formData.id ? 'Редактировать расхода' : 'Добавление расхода' }}
+         {{ _formData.id ? $t('editExpense') : $t('addExpense') }}
       </h2>
       <el-form :model="_formData" ref="_modalRef" :rules="_rules" label-position="top" class="mt-5 space-y-5"
          @submit.prevent="submit">
-         <el-form-item label="Сумма расхода" prop="amount">
-            <el-input type="number" v-model="_formData.amount" placeholder="Введите сумму" />
+         <el-form-item :label="$t('sumExpense')" prop="amount">
+            <el-input type="number" v-model="_formData.amount" :placeholder="$t('enterAmount')" />
          </el-form-item>
-         <el-form-item label="Комментарий" prop="comment">
-            <el-input type="textarea" :rows="5" v-model="_formData.comment" placeholder="Введите комментарий" />
+         <el-form-item :label="$t('comment')" prop="comment">
+            <el-input type="textarea" :rows="5" v-model="_formData.comment" :placeholder="$t('enterComment')" />
          </el-form-item>
 
-         <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">Сохранить</el-button>
+         <el-button :loading="_loading" native-type="submit" class="w-full" type="primary">{{ $t('save') }}</el-button>
       </el-form>
    </el-dialog>
 </template>

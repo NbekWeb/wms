@@ -100,9 +100,9 @@ defineExpose({
       </button>
       <div>
          <el-form label-position="top">
-            <el-form-item class="w-full mt-2" label="Maxsulotni nomi" prop="name">
+            <el-form-item class="w-full mt-2" :label="$t('productName')" prop="name">
                <el-autocomplete class="w-full" v-model="_productName" :fetch-suggestions="querySearchAsync"
-                  placeholder="Maxsulotni qidiring" @select="handleSelect">
+                  :placeholder="$t('productName')" @select="handleSelect">
                   <template v-slot:default="{ item }">
                      {{ item.name }}
                   </template>
@@ -114,26 +114,26 @@ defineExpose({
       <div class="grid grid-cols-3 max-md:grid-cols-2 gap-5">
          <div class="max-md:hidden bg-[#F4F7FB] p-2 rounded-md col-span-1 flex justify-center items-center">
             <img v-if="_productPicture" src="@/assets/img/product.png" alt="product">
-            <p v-else>No image</p>
+            <p v-else>{{ $t('noImage') }}</p>
          </div>
          <el-form class="grid grid-cols-2 max-sm:grid-cols-1 col-span-2 gap-2 mt-5" label-position="top">
-            <el-form-item :label="`КОЛИЧЕСТВО (${_productUnit})`">
+            <el-form-item :label="`$t('amounts') (${_productUnit})`">
                <el-input v-model="_inventory.amount" />
             </el-form-item>
-            <el-form-item label="basePrice">
+            <el-form-item label="$t('basePrice')">
                <el-input v-model="_inventory.basePrice" />
             </el-form-item> 
-            <el-form-item label="sellingPrice">
+            <el-form-item label="$t('sellingPrice')">
                <el-input v-model="_inventory.sellingPrice" />
             </el-form-item>
-            <el-form-item label="debt">
+            <el-form-item label="$t('debt')">
                <el-switch v-model="_inventory.debt" class="mt-2" style="margin-left: 24px" inline-prompt
                   :active-icon="Check" :inactive-icon="Close" />
             </el-form-item>
          </el-form>
       </div>
       <div @click="createInventory" class="flex justify-end">
-         <el-button type="primary">Qo'shish</el-button>
+         <el-button type="primary">{{ $t('add') }}</el-button>
       </div>
    </el-dialog>
 </template>

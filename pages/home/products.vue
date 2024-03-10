@@ -59,7 +59,7 @@ const handleClick = () => {
       <div>
          <ProductModal ref="_modalRef" />
          <div class="flex items-center justify-between mt-8 max-sm:flex-col max-sm:items-start max-sm:gap-y-3">
-            <h2 class="font-commissioner-700 text-4xl max-sm:text-3xl">Классификатор</h2>
+            <h2 class="font-commissioner-700 text-4xl max-sm:text-3xl">{{ $t('classifier') }}</h2>
             <!-- <el-select class="w-96" v-model="_selectedProduct" value-key="id" remote @change="onProductChange"
                reserve-keyword filterable placeholder="Поиск продукта ..." remote-show-suffix
                :remote-method="getProductsAutocomplete" :loading="_loading">
@@ -68,42 +68,42 @@ const handleClick = () => {
             
             <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
                <i class="icon-plus white"></i>
-               <span>Добавить</span>
+               <span>{{ $t('add') }}</span>
             </button>
          </div>
          <el-input @input="searchProduct" class="!bg-white !w-80 mt-8" v-model="_search" placeholder="Поиск" />
          <section class="mt-7">
             <el-tabs v-model="_status" class="demo-tabs my-5" @tab-change="handleClick">
-               <el-tab-pane label="Все" :name="PRODUCT_STATUS_ENUM.ACCEPTED" />
-               <el-tab-pane label="На модерации" :name="PRODUCT_STATUS_ENUM.MODERATION" />
-               <el-tab-pane label="Отказано" :name="PRODUCT_STATUS_ENUM.REJECTED" />
+               <el-tab-pane :label="$t('all')" :name="PRODUCT_STATUS_ENUM.ACCEPTED" />
+               <el-tab-pane :label="$t('MODERATION')" :name="PRODUCT_STATUS_ENUM.MODERATION" />
+               <el-tab-pane :label="$t('denied')" :name="PRODUCT_STATUS_ENUM.REJECTED" />
             </el-tabs>
             <el-table class="w-full tables" :data="_itemsProduct?.content" border table-layout="auto">
                <el-table-column type="index" width="50" label="#" />
-               <el-table-column width="200" label="Изображение продукта">
+               <el-table-column width="200" :label="$t('productPicture')">
                   <template #default="{ row }">
                      <div class="!h-16">
                         <img v-if="row.picture" class="bg-cover h-full" :src="getFileURL_UTIL(row.picture)" alt="">
                      </div>
                   </template>
                </el-table-column>
-               <el-table-column width="400"  label="Название продукта">
+               <el-table-column width="400" :label="$t('productsName')">
                   <template #default="{ row }">
                      <span>{{ row.name }}</span>
                   </template>
                </el-table-column>
-               <el-table-column width="200" label="Единица продукта">
+               <el-table-column width="200" :label="$t('productUnit')">
                   <template #default="{ row }">
                      <span>{{ row.unit }}</span>
                   </template>
                </el-table-column>
-               <el-table-column v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" label="Отклоненное сообщение">
+               <el-table-column v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" :label="$t('rejectedMessage')">
                   <template #default="{ row }">
                      <span>{{ row.rejectedMessage }}</span>
                   </template>
                </el-table-column>
 
-               <el-table-column  label="Статус">
+               <el-table-column :label="$t('status')">
                   <template #default="{ row }">
                      <span>{{ row.status }}</span>
                   </template>

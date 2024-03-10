@@ -28,7 +28,7 @@ function deleteItem() {
 <template>
    <div @click.stop="$router.push(`/home/stores/${item.id}`)" class="p-6 cursor-pointer bg-black rounded-2xl">
       <div class="flex items-center justify-between cursor-pointer">
-         <h2 class="font-commissioner-600 text-white text-lg">Название магазина</h2>
+         <h2 class="font-commissioner-600 text-white text-lg">{{ $t('storeName') }}</h2>
          <div class="flex space-x-2">
             <button @click.stop="$emit('edit')" class="p-0">
                <i class="icon-edit white"></i>
@@ -46,12 +46,12 @@ function deleteItem() {
       <section class="flex items-center justify-between mt-5">
          <div class="mt-5 flex items-center space-x-2">
             <i class="icon-shop white"></i>
-            <span class="text-sm text-white font-commissioner-600">{{ props.item.countOfEmployees }} сотрудников</span>
+            <span class="text-sm text-white font-commissioner-600">{{ props.item.countOfEmployees }} {{ $t('employees1') }}</span>
          </div>
 
          <button @click.stop="emit('setEmployee', props.item)" class="flex items-center space-x-2 border border-white">
             <i class="icon-plus white"></i>
-            <span class="text-white font-commissioner-700">Добавить</span>
+            <span class="text-white font-commissioner-700">{{ $t('add') }}</span>
          </button>
       </section>
    </div>

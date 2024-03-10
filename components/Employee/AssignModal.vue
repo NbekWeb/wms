@@ -84,22 +84,22 @@ defineExpose({
          {{ _position === EMPLOYEE_POSITION_ENUM.STACKER ? "Прикрепить к складу" : "Прикрепить к магазину" }}
       </h2>
       <div class="flex items-center space-x-2 mt-5">
-         <span class="text-text">Сотрудник</span>
+         <span class="text-text">{{ $t('employee') }}</span>
          <span class="text-primary font-commissioner-600">: {{ _formData.lastname }} {{ _formData.firstname }} </span>
       </div>
       <el-form label-position="top" class="mt-5 space-y-5" @submit.prevent="submit">
-         <el-form-item label="Склад" prop="warehouse" v-if="_position === EMPLOYEE_POSITION_ENUM.STACKER">
-            <el-select class="w-full" v-model="_formData.works" multiple placeholder="Select">
+         <el-form-item :label="$t('warehouse')" prop="warehouse" v-if="_position === EMPLOYEE_POSITION_ENUM.STACKER">
+            <el-select class="w-full" v-model="_formData.works" multiple >
                <el-option v-for="item  in _warehouses" :key="item.id" :label="item.title" :value="item.id" />
             </el-select>
          </el-form-item>
-         <el-form-item label="Магазин" prop="warehouse" v-else-if="_position === EMPLOYEE_POSITION_ENUM.SALESMAN">
-            <el-select class="w-full" v-model="_formData.works" multiple placeholder="Select">
+         <el-form-item :label="$t('store1')" prop="warehouse" v-else-if="_position === EMPLOYEE_POSITION_ENUM.SALESMAN">
+            <el-select class="w-full" v-model="_formData.works" multiple >
                <el-option v-for="item  in _stores" :key="item.id" :label="item.title" :value="item.id" />
             </el-select>
          </el-form-item>
 
-         <button class="bg-primary h-12 text-white w-full">Сохранить</button>
+         <button class="bg-primary h-12 text-white w-full">{{ $t('save') }}</button>
       </el-form>
    </BaseModal>
 </template>

@@ -30,10 +30,10 @@ loadItems()
         <StoreModal @update="loadItems" ref="_modalRef" />
         <EmployeeModal @update="loadItems" ref="_employeeModalRef" />
         <div class="flex items-center justify-between max-sm:flex-col max-md:items-start max-sm:gap-y-4">
-            <h2 class="font-commissioner-700 text-4xl">Магазины</h2>
-            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center max-sm:w-full max-sm:justify-center">
+            <h2 class="font-commissioner-700 text-4xl">{{ $t('store') }}</h2>
+            <button @click="openModal()" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
                 <i class="icon-plus white"></i>
-                <span>Добавить магазин</span>
+                <span>{{ $t("addStore") }}</span>
             </button>
         </div>
         <div 
@@ -48,6 +48,6 @@ loadItems()
                 :item="item" 
             />
         </div>
-        <NoData v-else title="Добавить магазин" @set="openModal()" />
+        <NoData v-else :title="$t('addStore')" @set="openModal()" />
     </div>
 </template>

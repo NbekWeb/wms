@@ -23,7 +23,7 @@ loadItems()
     <div>
         <ExpenseModal @update="loadItems" ref="_modalRef" />
         <div class="flex items-center justify-between">
-            <h2 class="font-commissioner-700 text-4xl">Открытие смены</h2>
+            <h2 class="font-commissioner-700 text-4xl">{{ $t('openingShift') }}</h2>
         </div>
 
         <div class="grid grid-cols-3">
@@ -37,7 +37,7 @@ loadItems()
         <div>
             <button @click="openModal" class="h-12 flex items-center bg-black text-white space-x-3 max-sm:w-full max-sm:justify-center">
                 <i class="icon-plus white"></i>
-                <span>Добавить продукт</span>
+                <span>{{ $t('addProduct') }}</span>
             </button>
         </div>
     </div>

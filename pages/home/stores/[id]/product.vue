@@ -36,22 +36,21 @@ loadItems()
                class="ri-arrow-left-line mr-2 cursor-pointer"></i>Чек </h2>
       </div>
       <div class="flex space-x-2 mt-5">
-         <span class="font-commissioner-600 text-black">Смена № {{ _smena.id }}</span>
+         <span class="font-commissioner-600 text-black">{{ $t('change') }} № {{ _smena.id }}</span>
          <div class="flex space-x-2">
-            <span class="text-text">Начало: </span>
+            <span class="text-text">{{ $t('start') }}: </span>
             <span class="text-black font-commissioner-600">{{ formatDate_UTIL(_smena.createdDate, false) }}</span>
          </div>
       </div>
       <div class="mt-8">
          <div class="max-lg:hidden bg-text/20 w-full h-[1px]" />
-         <el-button class="max-lg:!block !hidden" @click="mobileVisible = true" type="primary">СОБРАННЫЕ
-            ТОВАРЫ</el-button>
+         <el-button class="max-lg:!block !hidden" @click="mobileVisible = true" type="primary">{{ $t('collegentTovar') }}</el-button>
          <div class="grid grid-cols-3 max-lg:grid-cols-2">
             <div class="max-lg:!hidden">
                <StoreProductsList class="max-lg:!hidden mt-5 border-r border-r-text/20 h-fit" />
             </div>
             <div class="col-span-2 p-8 pr-0 max-lg:p-0 max-lg:mt-5">
-               <el-input placeholder="Поиск по товарам" />
+               <el-input :placeholder="$t('searchTovar')" />
                <div class="grid grid-cols-3 max-xl:grid-cols-2  max-md:grid-cols-2 gap-4 mt-5">
                   <StoreProductCard v-for="item of items.content" :key="item.productId" :item="item" />
                   <el-pagination v-if="items.totalPages > 1" class="mt-8" background :current-page="items.currentPage"

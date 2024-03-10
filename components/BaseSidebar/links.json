@@ -1,32 +1,32 @@
 [
    {
       "to": "/home/main",
-      "title": "Главная",
+      "title": "home",
       "icon": "icon-main"
    },
    {
       "to": "/home/warehouses",
-      "title": "Склады",
+      "title": "warehouses",
       "icon": "icon-warehouse"
    },
    {
       "to": "/home/stores",
-      "title": "Магазины",
+      "title": "store",
       "icon": "icon-shop"
    },
    {
       "to": "/home/employees",
-      "title": "Сотрудники",
+      "title": "employees",
       "icon": "icon-users"
    },
    {
       "to": "/home/moderators",
-      "title": "Модераторы",
+      "title": "moderators",
       "icon": "icon-users"
    },
    {
       "to": "/home/order",
-      "title": "Заказы поставки",
+      "title": "orders",
       "icon": "icon-users"
    },
    {
@@ -36,12 +36,12 @@
    },
    {
       "to": "/home/products",
-      "title": "Классификатор",
+      "title": "classifier",
       "icon": "icon-orders"
    },
    {
       "to": "/home/analitik",
-      "title": "Отчет о продажах",
+      "title": "salesReport",
       "icon": "icon-users"
    }
 ]

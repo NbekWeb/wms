@@ -3,8 +3,6 @@ import links from "./links.json"
 const drawer = ref(false)
 const router = useRouter()
 function open() {
-   console.log('dd');
-
    drawer.value = !drawer.value
 }
 
@@ -27,7 +25,7 @@ watch(() => router, () => drawer.value = false, { deep: true })
                   <NuxtLink v-for="link of links" :key="link.title" :to="link.to"
                      class="text-text p-4 flex items-center space-x-3">
                      <i class="text-white" :class="link.icon"></i>
-                     <span>{{ link.title }}</span>
+                     <span>{{ $t(link.title) }}</span>
                   </NuxtLink>
                </div>
             </div>
@@ -36,11 +34,11 @@ watch(() => router, () => drawer.value = false, { deep: true })
          <div class="flex flex-col">
             <NuxtLink to="/home/help" class="text-text p-4 flex items-center space-x-3">
                <span class="icon-help text-lg"></span>
-               <span>Помощь</span>
+               <span>{{ $t('help') }}</span>
             </NuxtLink>
             <NuxtLink to="/home/settings" class="text-text p-4 flex items-center space-x-3">
                <img src="@/assets/img/settings.svg" />
-               <span>Настройки</span>
+               <span>{{ $t('settings') }}</span>
             </NuxtLink>
          </div>
       </aside>
@@ -56,17 +54,17 @@ watch(() => router, () => drawer.value = false, { deep: true })
                <NuxtLink v-for="link of links" :key="link.title" :to="link.to"
                   class="text-text p-4 flex items-center space-x-3">
                   <i class="text-white" :class="link.icon"></i>
-                  <span>{{ link.title }}</span>
+                  <span>{{ $t(link.title) }}</span>
                </NuxtLink>
             </div>
             <div class="flex flex-col">
                <NuxtLink to="/home/help" class="text-text p-4 flex items-center space-x-3">
                   <span class="icon-help text-lg"></span>
-                  <span>Помощь</span>
+                  <span>{{ $t('help') }}</span>
                </NuxtLink>
                <NuxtLink to="/home/settings" class="text-text p-4 flex items-center space-x-3">
                   <img src="@/assets/img/settings.svg" />
-                  <span>Настройки</span>
+                  <span>{{ $t('settings') }}</span>
                </NuxtLink>
             </div>
          </div>

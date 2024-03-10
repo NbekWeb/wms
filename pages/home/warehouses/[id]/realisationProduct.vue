@@ -44,14 +44,14 @@ function handleSelect(e: string) {
    <div>
       <div @click="$router.go(-1)" class="flex gap-2 mb-2">
          <img src="@/assets/img/black.svg" />
-         <p class="font-commissioner-600">Назад</p>
+         <p class="font-commissioner-600">{{ $t('back') }}</p>
       </div>
       <div class="flex items-center justify-between">
-         <h2 class="font-commissioner-700 text-4xl max-lg:text-3xl">Реализация товаров</h2>
+         <h2 class="font-commissioner-700 text-4xl max-lg:text-3xl">{{ $t('salesGoods') }}</h2>
       </div>
       <div class="space-y-4 mt-6 w-[420px] max-sm:w-full">
-         <p class="text-2xl font-commissioner-700 max-xl:text-xl">Магазин для реализации</p>
-         <el-select @change="handleSelect" placeholder="Название магазина" class="w-full"
+         <p class="text-2xl font-commissioner-700 max-xl:text-xl">{{ $t('shopSale') }}</p>
+         <el-select @change="handleSelect" :placeholder="$t('storeName')" class="w-full"
             v-model="_sendProduct.storeId">
             <el-option v-for="item of _stores" :key="item.id" :label="item.title" :value="item.id" />
          </el-select>
@@ -61,7 +61,7 @@ function handleSelect(e: string) {
       <div class="mt-8">
          <div class="bg-text/20 max-lg:hidden max-lg:h-0 w-full h-[1px]" />
 
-         <el-button class="max-lg:!block !hidden" @click="mobileVisible = true" type="primary">СОБРАННЫЕ ТОВАРЫ</el-button>
+         <el-button class="max-lg:!block !hidden" @click="mobileVisible = true" type="primary">{{ $t('collegentTovar') }}</el-button>
          <div class="grid grid-cols-3 max-lg:grid-cols-2">
             <WarehouseProductsList @update="loadItems" class="max-lg:hidden mt-5 border-r border-r-text/20 h-fit" />
             <div class="col-span-2 p-8 pr-0 max-lg:p-0 max-lg:mt-5">

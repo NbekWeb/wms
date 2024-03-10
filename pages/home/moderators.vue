@@ -5,16 +5,12 @@ import { getFileURL_UTIL } from '@/utils/file';
 import { cryleTitle } from "~/utils/crill"
 
 const _items = ref<BaseListResponse<ProductModel>>(getBaseListResponse_DEFAULT())
-const _modalRef = ref()
-const _assignModalRef = ref()
 const _declineModalRef = ref()
 const _status = ref<PRODUCT_STATUS_ENUM>(PRODUCT_STATUS_ENUM.ACCEPTED)
 const _search = ref('')
 const router = useRouter()
 
 async function loadItems() {
-    console.log("Loading")
-    console.log(_items.value.currentPage)
     const [error, response] = await getProductsByStatus_API(_status.value, _items.value.currentPage - 1)
 
     if (error) return
@@ -50,63 +46,61 @@ loadItems()
 <template>
     <div>
         <div>
-            <EmployeeModal ref="_modalRef" @update="loadItems" />
-            <EmployeeAssignModal ref="_assignModalRef" @update="loadItems" />
             <EmployeeDeclineModal ref="_declineModalRef" @update="loadItems"  />  
             <div class="flex items-center justify-between">
-                <h2 class="font-commissioner-700 text-4xl max-md:text-3xl">Продукты</h2>
+                <h2 class="font-commissioner-700 text-4xl max-md:text-3xl">{{ $t('product') }}</h2>
             </div>
 
             <section class="mt-8 ">
                 <div class="w-80  max-md:!w-full">
-                    <el-input @input="searchProduct" class="!bg-white" v-model="_search" placeholder="Поиск" />
+                    <el-input @input="searchProduct" class="!bg-white" v-model="_search" :placeholder="$t('search')" />
                 </div>                
                 <div class="flex items-center justify-between mt-5 bg-text/60 p-5 max-md:p-3 max-md:gap-2">
                     <el-select class="!w-60 max-md:!w-48" v-model="_status" @change="loadItems">
-                        <el-option label="Принятый" :value="PRODUCT_STATUS_ENUM.ACCEPTED" />
-                        <el-option label="Инициализировано" :value="PRODUCT_STATUS_ENUM.INITIALIZED" />
-                        <el-option label="На модерации" :value="PRODUCT_STATUS_ENUM.MODERATION" />
-                        <el-option label="Отклоненный" :value="PRODUCT_STATUS_ENUM.REJECTED" />
+                        <el-option :label="$t('ACCEPTED')" :value="PRODUCT_STATUS_ENUM.ACCEPTED" />
+                        <el-option :label="$t('INITIALIZED')" :value="PRODUCT_STATUS_ENUM.INITIALIZED" />
+                        <el-option :label="$t('MODERATION')" :value="PRODUCT_STATUS_ENUM.MODERATION" />
+                        <el-option :label="$t('REJECTED')" :value="PRODUCT_STATUS_ENUM.REJECTED" />
                     </el-select>
 
-                    <button class="border border-white text-white text-sm font-commissioner-700 ">Сбросить</button>
+                    <button class="border border-white text-white text-sm font-commissioner-700 ">{{ $t('reset') }}</button>
                 </div>
 
                 <el-table class="w-full tables" :data="_items.content" border table-layout="auto">
                     <el-table-column type="index" width="80" label="#" />
-                    <el-table-column label="Изображение продукта">
+                    <el-table-column :label="$t('productPicture')">
                         <template  #default="{ row }">
                            <div class="!h-16">
                               <img v-if="row.picture" class="bg-cover h-full" :src="getFileURL_UTIL(row.picture)" alt="">
                            </div>
                         </template>
                     </el-table-column>
-                    <el-table-column width="300"  label="Название продукта">
+                    <el-table-column width="300"  :label="$t('productsName')">
                         <template #default="{ row }">
                             <span>{{ row.name }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column width="200" label="Тип продукта">
+                    <el-table-column width="200" :label="$t('typeproduct')">
                         <template #default="{ row }">
                             <span>{{ row.type }}</span>
                         </template>
                     </el-table-column>
 
-                    <el-table-column  width="150" label="Статус">
+                    <el-table-column  width="150" :label="$t('status')">
                         <template #default="{ row }">
                             <span>{{ row.status }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column width="200"  v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" label="Отклоненное сообщение">
+                    <el-table-column width="200"  v-if="_status == PRODUCT_STATUS_ENUM.REJECTED" :label="$t('rejectedMessage')">
                         <template #default="{ row }">
                             <span>{{ row.rejectedMessage }}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column width="200" v-if="_status == PRODUCT_STATUS_ENUM.MODERATION" label="Действие">
+                    <el-table-column width="200" v-if="_status == PRODUCT_STATUS_ENUM.MODERATION" label="$t('action')">
                         <template #default="{ row }">
                              <div class="flex gap-1 justify-center items-center" v-if="row.status == PRODUCT_STATUS_ENUM.MODERATION">
-                               <el-button @click="openModal(row, false)" class="!h-8" type="primary">Qabul qilish</el-button>
-                               <el-button @click="openModal(row, true)" type="danger">Rad etish</el-button>
+                               <el-button @click="openModal(row, false)" class="!h-8" type="primary">{{ $t('Confirm') }}</el-button>
+                               <el-button @click="openModal(row, true)" type="danger">{{ $t('Cancel') }}</el-button>
                              </div>
                             <span v-else>{{ row.status }}</span>
                         </template>

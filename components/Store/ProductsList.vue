@@ -97,7 +97,7 @@ function openModal() {
                <div class="flex space-x-5 mt-2">
                   <span class="text-black">{{ item.amount }} {{ item.unit }}</span>
                   <span class="text-text font-commissioner-600">{{ item.amount * (item.sellingPrice || item.price) }}
-                     сум</span>
+                     {{ $t('summ') }}</span>
                </div>
             </div>
             <button v-if="!_checkId" @click="close(ind)" class="p-0">
@@ -108,13 +108,13 @@ function openModal() {
       <div class="bg-text/20 w-full h-[1px] mt-20 max-lg:mt-6" />
       <div class="space-y-6 mt-6">
          <div class="flex justify-between items-center">
-            <span class="text-text text-lg">К ОПЛАТЕ:</span>
-            <span class="text-black font-commissioner-700 text-2xl">{{ productPrice }} сум</span>
+            <span class="text-text text-lg">{{ $t('pay') }}:</span>
+            <span class="text-black font-commissioner-700 text-2xl">{{ productPrice }} {{ $t('summ') }}</span>
          </div>
          <div v-if="!_checkId" class="flex gap-1 ">
-            <el-button @click="postOrder(ORDER_TYPE.TERMINAL)" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">ТЕРМИНАЛ</el-button>
-            <el-button @click="postOrder(ORDER_TYPE.CASH)" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">НАЛИЧНЫЕ</el-button>
-            <el-button @click="openModal" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">ДОЛГ</el-button>
+            <el-button @click="postOrder(ORDER_TYPE.TERMINAL)" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">{{ $t('TERMINAL') }}</el-button>
+            <el-button @click="postOrder(ORDER_TYPE.CASH)" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">{{ $t('CASH') }}</el-button>
+            <el-button @click="openModal" type="primary" class="w-full max-sm:!px-2 max-sm:!text-xs">{{ $t('DEBT') }}</el-button>
          </div>
       </div>
    </div>
@@ -132,9 +132,9 @@ function openModal() {
       </el-form>
       <template #footer>
          <span class="dialog-footer">
-            <el-button @click="dialogVisible = false">Cancel</el-button>
+            <el-button @click="dialogVisible = false">{{ $t('Cancel') }}</el-button>
             <el-button type="primary" @click="postOrder(ORDER_TYPE.LOAN)">
-               Confirm
+               {{ $t('Confirm') }}
             </el-button>
          </span>
       </template>
