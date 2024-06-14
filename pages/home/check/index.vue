@@ -29,7 +29,7 @@ loadItems()
     <div>
         <ExpenseModal @update="loadItems" ref="_modalRef" />
         <div class="flex items-center justify-between">
-            <h2 class="font-commissioner-700 text-4xl">Открытие смены</h2>
+            <h2 class="font-commissioner-700 text-4xl">{{ $t('openingShift') }}</h2>
         </div>
 
         <div class="flex space-x-8 border-b border-b-text/20 pb-2">
